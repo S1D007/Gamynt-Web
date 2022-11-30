@@ -1,0 +1,84 @@
+// flex_box
+@mixin flex_box($direction:row , $justify:center , $align:center , $gap:0.5rem){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+@mixin gridwrap($width:200px){
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax($width , 1fr));
+}
+
+@mixin textgrad($from:to bottom , $bg1:rgb(253, 255, 254) , $bg2:rgb(106, 107, 107)){
+    background:linear-gradient($from ,$bg1, $bg2) ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1px rgba(224, 224, 224, 0.2);
+  }
+@mixin textwrap($line:1){
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @mixin scrollbar($width:5px , $height:0px){
+    &::-webkit-scrollbar{
+        width: $width;
+        height: $height;
+    }
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+        border-radius: 11rem;
+        background-color: rgba(101, 101, 101, 0.696);
+    }
+  }
+
+
+// media quires
+@mixin mobile350(){
+    @media (max-width:350px) {
+        @content;
+    }
+}
+@mixin mobile400(){
+    @media (max-width:400px) {
+        @content;
+    }
+}
+@mixin mobile500(){
+    @media (max-width:500px) {
+        @content;
+    }
+}
+@mixin mobile600(){
+    @media (max-width:600px) {
+        @content;
+    }
+}
+@mixin mobile(){
+    @media (max-width:700px) {
+        @content;
+    }
+}
+
+@mixin mobile800(){
+    @media (max-width:800px) {
+        @content;
+    }
+}
+@mixin laptop(){
+    @media (max-width:900px) {
+        @content;
+    }
+}
+@mixin responsive($width:1000px){
+    @media (max-width:$width) {
+        @content;
+    }
+}

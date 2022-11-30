@@ -1,0 +1,20 @@
+@import "./mixins";
+
+.page_view{
+    display: flex;
+    gap: 2rem;
+    height: 100vh;
+    @include scrollbar();
+    @include mobile(){
+        gap: 1.5rem;
+    }
+    @include mobile400(){
+        gap: 1rem;
+    }
+
+    .page_view_section{
+        overflow-y: scroll;
+        flex: 1 1 auto;
+        @include scrollbar();
+    }
+}

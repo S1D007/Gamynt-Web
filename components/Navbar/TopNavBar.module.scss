@@ -1,0 +1,84 @@
+@import "../../styles/mixins";
+
+.top_navbar{
+    margin: 0.5rem 0rem;
+    width: calc(100% + 0.2rem);
+    height: 3.5rem;
+    border-radius: 0.4rem;
+    background-color: var(--theme-nav);
+    padding: 0rem 1rem;
+    @include flex_box($justify:space-between);
+    position: sticky;
+    top: 0rem;
+    transition: 0.30s ease;
+    section{
+        @include flex_box();
+    }
+}
+.search_box{
+    border-radius: 0.4rem;
+    border-radius: 0.98rem;
+    position: relative;
+    overflow: hidden;
+    width: min(25rem , 70%);
+    input{
+        width: 100%;
+        height: 2.2rem;
+        padding: 0.4rem 0.5rem;
+        padding-right: 2rem;
+        font-size: 1rem;
+        background-color: inherit;
+        border: none;
+        outline: none;
+        background-color: rgb(53, 58, 58);
+        color: inherit;
+        &::placeholder{
+            transition: 0.30s ease;
+            opacity: 0.5;
+            color: inherit;
+        }
+        &:focus::placeholder{
+            transition: 0.30s ease;
+            padding-left:0.4rem;
+            font-size: 0.9rem;
+        }
+    }
+    svg{
+        padding: 0.2rem;
+        border-radius: 50%;
+        right: 0.3rem;
+        width: 1.8rem;
+        height: 1.8rem;
+        position: absolute;
+        background-color: var(--primary-color);
+    }
+}
+
+.notification{
+    position: relative;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    @include flex_box();
+    p{
+        background-color: rgb(178, 6, 6);
+        width: 1.2rem;
+        line-height: 1.2rem;
+        font-size: 0.75rem;
+        position: absolute;
+        border-radius: 50%;
+        top: -0.2rem;
+        right: -0.2rem;
+        @include flex_box();
+    }
+}
+.profile_icon{
+    h1{
+        @include flex_box();
+        border-radius: 50%;
+        background-color: rgb(9, 120, 118);
+        text-transform: capitalize;
+        width: 2rem;
+    }
+    @include flex_box();
+}
