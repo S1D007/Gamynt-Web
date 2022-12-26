@@ -2,25 +2,50 @@
 
 .top_navbar{
     margin: 0.5rem 0rem;
-    width: calc(100% + 0.2rem);
-    height: 3.5rem;
+    width: 100%;
+    height: $navheight;
     border-radius: 0.4rem;
     background-color: var(--theme-nav);
-    padding: 0rem 1rem;
+    padding: 0rem 1rem 0rem 0.5rem;
     @include flex_box($justify:space-between);
     position: sticky;
     top: 0rem;
     transition: 0.30s ease;
+    z-index: 50;
+    svg{
+        cursor: pointer;
+    }
     section{
         @include flex_box();
     }
 }
+.page_name{
+    h1 , h2{
+        text-transform: capitalize;
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+    }
+    h1{
+        min-width: 9.5rem;
+        // @include textgrad();
+    }
+    h2{
+        width: max-content;
+        display: none;
+    }
+    @include mobile800(){
+        h1{
+            display: none;
+        } 
+    }
+}
 .search_box{
-    border-radius: 0.4rem;
-    border-radius: 0.98rem;
+    // border-radius: 0.4rem;
+    border-radius: 0.5rem;
     position: relative;
     overflow: hidden;
-    width: min(25rem , 70%);
+    width: min(35rem , 70%);
     input{
         width: 100%;
         height: 2.2rem;
@@ -54,14 +79,41 @@
     }
 }
 
+.coin_diamond_container{
+    @include flex_box(column  , $gap:0rem);
+    div{
+        border-radius: 0.3rem;
+        // width: 5rem;
+        // padding:0rem 0.2rem;
+        @include flex_box();
+        p{
+            // line-height: 1rem;
+            font-size: 1rem;
+            font-family:sans-serif;
+            font-weight:bold;
+        }
+    }
+}
+.profile_section{
+    @include flex_box($gap:23rem);
+}
+
 .notification{
+    margin: 0rem 1rem;
     position: relative;
     width: 2rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
     @include flex_box();
+    @include mobile(){
+        margin: 0rem;
+    }
+    svg{
+        width: 1.6rem;
+        line-height: 1.6rem;
+    }
     p{
-        background-color: rgb(178, 6, 6);
+        background-color: rgb(183, 73, 73);
         width: 1.2rem;
         line-height: 1.2rem;
         font-size: 0.75rem;
@@ -81,4 +133,17 @@
         width: 2rem;
     }
     @include flex_box();
+    @include mobile600(){
+        display: none;
+    }
+}
+@media (max-width:$mobile) {
+    .top_navbar{
+        width: 100%;
+        margin: 0rem;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        border-radius: 0rem 0rem 0.5rem 0.5rem;
+    }
 }

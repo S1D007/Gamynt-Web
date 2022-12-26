@@ -1,0 +1,13 @@
+@import "../../styles/mixins";
+
+.post_main{
+    width: 100%;
+    height: calc(100% - $navheight - 1rem);
+    @include flex_box(column , flex-start );
+}
+@media (max-width:$mobile) {
+    .post_main{
+        width: 100%;
+        height: 100%;
+    }
+}

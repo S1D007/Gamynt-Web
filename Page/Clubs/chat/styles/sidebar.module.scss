@@ -1,0 +1,141 @@
+@import "../../../../styles/mixins";
+
+.sidebar_main{
+    flex: 0 0 20rem;
+    width: 20rem;
+    display: grid;
+    grid-template-columns: 4.5rem 15.5rem;
+    gap: 0.3;
+    height: 100%;
+    overflow-y: hidden;
+    border-radius: 0.2rem;
+    transition: 0.30s ease;
+}
+
+// club side main continer width
+.club_nav_main{
+    @include flex_box(column , flex-start);
+    overflow-y: auto;
+    @include scrollbar(0px , 0px);
+    transition: 0.30s ease;
+}
+.club_list{
+    @include flex_box(column , flex , center , 1rem);
+    background-color:#202225;
+    div{
+        width: 80%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        position: relative;
+        img{
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+}
+.back_to_club{
+    padding: 0.3rem 0.1rem;
+    @include flex_box();
+    width: 100%;
+    position: sticky;
+    top: 0%;
+    background-color: inherit;
+    background-color: rgba(var(--secondry-color-rgb) , 0.1);
+    backdrop-filter: blur(50px);
+    z-index: 10;
+}
+
+
+// side bar ui main container for width
+.sidebar_container{
+    overflow-y: auto;
+    @include scrollbar(0px , 0px);
+    background-color: #2F3136;
+    transition: 0.30s ease;
+}
+.club_logo{
+    position: sticky;
+    top: 0%;
+    z-index: 10;
+    padding: 0.3rem;
+    @include flex_box($gap:0.1rem);
+    background-color: #2F3136;
+    box-shadow: rgba(0, 0, 0) -30px 15px 25px -20px;
+    height: 3rem;
+    border-bottom-color:#fff;
+    img{
+        padding: 0.2rem;
+        width: 2.2rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    h1{
+        text-transform: capitalize;
+        width: 100%;
+        @include textwrap(1);
+        // opacity: 0.9;
+        font-weight: 300;
+        font-size: 1.1rem;
+    }
+    svg{
+        opacity: 0.9;
+    }
+}
+
+// create channel ui 
+.create_channel{
+    margin: 0.5rem 0.1rem;
+    @include flex_box(row , flex-start , center , 0.1rem);
+    input{
+        font-size: 0.95rem;
+        background-color: inherit;
+        outline: none;
+        border: none;
+        padding: 0.3rem 0.2rem;
+        border-bottom: 2px solid rgba(var(--secondry-color-rgb) , 0.4);
+        width: 100%;
+    }
+    svg{
+        width: 1.7rem;
+        height: 1.7rem;
+        padding: 0.2rem;
+        border-radius: 50%;
+        background-color: rgba(var(--secondry-color-rgb) , 0.3);
+    }
+}
+
+// channel list ui
+.channel_list{
+    ul{
+        padding: 0.1rem 0.7rem;
+        @include flex_box(row , flex-start , center , 0.5rem);
+        list-style: none;
+        opacity: 0.9;
+        // transition: 0.30s ease;
+        font-size: 1.1rem;
+        margin:0.3rem 0.4rem;
+        cursor:pointer;
+        li{
+            @include textwrap();
+            list-style: none;
+            font-weight: 100;
+            opacity: 0.7;
+
+        }
+        &:hover:not(.active_channel){
+            opacity: 1;
+            background-color:rgba(169, 169, 169,0.2);
+            border-radius:10px
+        }
+
+    }
+}
+@media (max-width:$mobile) {
+    .sidebar_main{
+        flex-basis: 0;
+    }
+}

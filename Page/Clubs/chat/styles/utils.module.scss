@@ -1,0 +1,96 @@
+@import "../../../../styles/mixins";
+
+// input box ui 
+.send_message_input{
+    margin: 15px auto;
+    // margin-right:-0.02px;
+    padding: 0.3rem;
+    border-radius: 10px;
+    background-color: #40444B;
+    width: 95%;
+    margin-top: auto;
+    position: sticky;
+    bottom: -2px;
+    @include flex_box();
+    label{
+        @include flex_box();
+    }
+    input{
+        display: none;
+    }
+    textarea{
+        font-family: sans-serif;
+        padding: 0.5rem 0.2rem;
+        border: none;
+        outline: none;
+        width: 100%;
+        background-color: inherit;
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+        resize: none;
+        height: fit-content;
+        @include scrollbar();
+        &:focus{
+            &::placeholder{
+                padding-left: 0.5rem;
+        }
+            
+        }
+    }
+    svg{
+        // transition: 1s ease;
+        opacity: 0.7;
+        &:last-child{
+            transition: 0.30s ease;
+            transform: rotate(-20deg);
+            // color: rgba(var(--secondry-color-rgb),0.7);
+        }
+        cursor: pointer;
+        // &:hover{
+        //     transform: rotate(360deg) scale(1.1);
+        // }
+    }
+}
+
+
+
+// message box 
+.message_box_main{
+    margin: 0.6rem;
+    padding: 0.3rem;
+    width: min(80rem , 95%);
+    word-break: keep-all;
+    // background-color: rgba(186, 186, 186, 0.084);
+    border-radius: 0.3rem;
+    @include flex_box(row , flex-start , flex-start);
+    .sender_img{
+        width: 2.3rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+    }
+}
+.message_and_detail{
+  @include flex_box(column , flex-start , flex-start);
+    header{
+        @include flex_box(row , flex-start , center , 0.5rem);
+        p{
+            @include textwrap(1);
+            font-size: 1.2rem
+        }
+        span{
+            @include textwrap(1);
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+    }
+    div{
+        p{
+            line-height: 1.1rem;
+        }
+        img{
+            width: min(20rem , 100%);
+            border-radius: 0.2rem;
+            object-fit: contain;
+        }
+    }
+}

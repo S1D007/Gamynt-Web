@@ -1,0 +1,138 @@
+@import "../../../styles/mixins";
+
+
+// friends card and container
+.friends_container{
+    padding: 0.5rem;
+    @include gridwrap(220px);
+    gap: 1rem;
+}
+
+.friends_card{
+    max-width: 20rem;
+    padding: 0.2rem 0.5rem;
+    border: 2px solid rgba(238, 238, 238, 0.306);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    @include flex_box(row , space-between);
+    img{
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+    }
+    div{
+        width: 100%;
+        p{
+            @include textwrap(1);
+        }
+        span{
+            display: block;
+        }
+    }
+}
+
+// clubs card and container
+
+// post card and contaienr
+.post_container{
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax( 200px , 1fr));
+    gap: 0.5rem;
+}
+.post_box{
+    cursor: pointer;
+    position: relative;
+    max-width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    // aspect-ratio: 16/9;
+    img{
+        transform: scale(1.05);
+        transition: 0.30s ease;
+        width: 100%;
+        height: 100%;
+        opacity: 0.95;
+    }
+    div{
+        padding: 0.5rem;
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.477);
+        bottom: -100%;
+        transition: 0.30s ease;
+        backdrop-filter: blur(10px);
+    }
+    &:hover{
+        img{
+            transform: scale(1);
+            opacity: 0.5;
+        }
+        div{
+            bottom: -1px;
+            transition: 0.30s ease;
+            transform: scale(1);
+        }
+    }
+}
+
+// shorts card and container
+.shorts_container{
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax( 200px , 1fr));
+    gap: 0.5rem;
+}
+.shorts_box{
+    cursor: pointer;
+    position: relative;
+    max-width: 100%;
+    max-width: 20rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    // aspect-ratio: 16/9;
+    img{
+        transform: scale(1.05);
+        transition: 0.30s ease;
+        width: 100%;
+        height: 100%;
+        opacity: 0.95;
+    }
+    svg{
+        top: 1rem;
+       right: 1rem;
+        position: absolute;
+    }
+    div{
+        padding: 0.5rem;
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.477);
+        bottom: -100%;
+        transition: 0.30s ease;
+        backdrop-filter: blur(10px);
+    }
+    &:hover{
+        img{
+            transform: scale(1);
+            opacity: 0.5;
+        }
+        div{
+            bottom: -1px;
+            transition: 0.30s ease;
+            transform: scale(1);
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .friends_container{
+        @include flex_box(column);
+    }
+    .friends_card{
+        width: min(25rem , 90%);
+    }
+}

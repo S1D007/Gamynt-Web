@@ -1,0 +1,38 @@
+@import "../../../styles/mixins";
+
+.create_post_main{
+    padding: 0.5rem;
+    width: $post_container_width;
+    border-radius: 0.5rem;
+    border: 0.3px solid rgb(47, 47, 47);
+    @include flex_box(column , flex-start);
+    textarea{
+        // caret-color: rgb(92, 190, 255);
+        margin:0.5rem auto;
+        width: 98%;
+        border-radius: 0.5rem;
+        color: inherit;
+        @include scrollbar(5px , 0px);
+        font-size: 1rem;
+        line-height: 1.4rem;
+        padding: 0.5rem 0.3rem;
+        border: 3px solid rgba(111, 110, 110, 0.337);
+        background-color: #15151a;
+        outline: none;
+        resize: none;
+    }
+}
+.more_inputs{
+    text-transform: capitalize;
+    padding:0.1rem 0.5rem;
+    @include flex_box();
+    width: 100%;
+    div{
+        &:last-child{
+            margin-left: auto;
+            padding:0.1rem 1rem;
+            border-radius: 0.5rem;
+            background-color: var(--primary-color);
+        }
+    }
+}

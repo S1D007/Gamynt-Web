@@ -1,0 +1,86 @@
+@import "../../../../styles/mixins";
+
+
+.member_container_main{
+    flex: 0 0 15rem;
+    width: 15rem;
+    background-color: #202225;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    @include scrollbar(0px , 0px);
+    transition: 0.30s ease ;
+    // padding:10px;
+}
+.search_member_input{
+    padding: 0.3rem;
+    position: sticky;
+    top: 0rem;
+    margin:0.5rem auto;
+    width: 100%;
+    @include flex_box();
+    background-color: inherit;
+    input{
+        border: none;
+        outline: none;
+        background-color: rgb(70, 70, 70);
+        border-bottom: 2px solid rgba(var(--secondry-color-rgb) , 0.5);
+        padding: 0.4rem  2rem 0.4rem 0.4rem;
+        font-size: 1rem;
+        width: 100%;
+        border-radius: 0.2rem;
+    }
+    svg{
+        right: 0.3rem;
+        position: absolute;
+    }
+}
+
+.total_member{
+    position: sticky;
+    top: 2.4rem;
+    padding: 0.1rem  0.5rem;
+    @include flex_box(row , space-between);
+    background-color: inherit;
+    h1{
+        text-transform: capitalize;
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+    h2{
+        font-weight: 400;
+    }
+}
+
+
+.member_container{
+    padding:10px;
+    h2{
+        padding: 0.2rem;
+        text-transform: capitalize;
+        font-size: 1.1rem;
+        font-weight: 400;
+        // @include textgrad()
+    }
+    .member{
+        padding: 0.5rem;
+        @include flex_box(row , flex-start);
+        img{
+            width: 2rem;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+        }
+        p{
+            width: 100%;
+            @include textwrap(1)
+        }
+    }
+
+}
+
+@media (max-width:$tablet) {
+    .member_container_main{
+        flex-basis: 0;
+    }
+}

@@ -2,6 +2,7 @@ import React , { useState } from 'react'
 import Image from "next/image"
 import style from "./NavBar.module.scss"
 import Tooltip from '@mui/material/Tooltip';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/ClearAll';
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -14,7 +15,6 @@ import { useRouter } from 'next/router';
 const NavBar = () => {
     let router = useRouter();
     let path = router.pathname
-    // console.log(router.asPath) to get path loaction
     const [shrikclass, setshrikclass] = useState(null)
     const [shrinkNavAdjust, setShrinkNavAdjust] = useState(null)
     const sidebaradjust = ()=>{
@@ -38,13 +38,13 @@ const NavBar = () => {
 
             <li className={`${path =="/" && style.active_link}`} onClick={()=>router.push("/")} ><HomeIcon />  <p className={shrikclass}>home</p></li>
 
-            <li className={`${path =="/club" && style.active_link}`} onClick={()=>router.push("/club")}><GroupsIcon /> <p className={shrikclass}>club</p></li>
+            <li className={`${path =="/post" && style.active_link}`} onClick={()=>router.push("/post")}><DynamicFeedIcon /> <p className={shrikclass}>post</p></li>
 
             <li className={`${path =="/tournament" && style.active_link}`}  onClick={()=>router.push("/tournament")}><EmojiEventsIcon /> <p className={shrikclass}>tournament</p></li>
 
-            <li className={`${path =="/wallet" && style.active_link}`} onClick={()=>router.push("/wallet")}><WalletIcon /> <p className={shrikclass}>wallet</p></li>
+            <li className={`${path =="/club" && style.active_link}`} onClick={()=>router.push("/club")}><GroupsIcon /> <p className={shrikclass}>club</p></li>
 
-            <li className={`${path =="/subscription" && style.active_link}`} onClick={()=>router.push("/subscription")}><SubscriptionsIcon /> <p className={shrikclass}>subscriptions</p></li>
+            <li className={`${style.mob_hiden} ${path =="/subscription" && style.active_link}`} onClick={()=>router.push("/subscription")}><SubscriptionsIcon /> <p className={shrikclass}>subscriptions</p></li>
 
             <li className={`${path =="/account" && style.active_link}`} onClick={()=>router.push("/account")}><AccountCircleIcon /> <p className={shrikclass}>profile</p></li>
 

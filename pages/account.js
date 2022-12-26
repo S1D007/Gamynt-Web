@@ -1,15 +1,18 @@
 import React , {useState} from 'react'
-import NavBar from '../components/Navbar/NavBar'
+import Profile from '../Page/Account/Profile'
+import Authentication from '../Page/Account/Authentication'
 
 
 // if login is true then render profile component else render authentication component
 const account = () => {
-    const [logincheck, setlogincheck] = useState(true)
+    const [logincheck, setlogincheck] = new useState(false)
+
   return (
     <main>
-        {
-            logincheck == true ? <h1>logines</h1>:<h1>signup</h1>
-        }
+      {
+        logincheck === true ? <Profile /> : <Authentication />
+      }
+      
     </main>
   )
 }

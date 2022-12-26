@@ -1,0 +1,103 @@
+@import "../../../styles/mixins";
+
+
+// toop player ldr board
+.top_leaderboard_main{
+    border-radius: 0.5rem;
+    // background-color: rgba(255, 255, 255, 0.04);
+    margin: 1rem auto;
+    padding: 1rem 0.5rem;
+    @include flex_box(column , flex-start , flex-start , 0.1rem);
+    text-transform: capitalize;
+    header{
+        h2{
+            font-size: clamp(1.5rem , calc(1rem + 1vw) , 3rem);
+  background: linear-gradient(to right, #FFF 20%, rgb(0, 255, 89) 40%, rgb(0, 255, 89) 60%, #FFF 80%);
+  background-size: 200% auto;
+  
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+        }
+    }
+}
+.crausal_container{
+    padding: 1rem 0.5rem;
+    @include flex_box(row , flex-start , $gap:1.5rem);
+    width: 100%;
+    overflow-x: scroll;
+    @include scrollbar();
+}
+.player_box{
+    border-radius: 0.5rem;
+    position: relative;
+    flex: 0 0 10rem;
+    width: 10rem;
+    @include flex_box(column);
+    border: 2px solid rgba(69, 68, 68, 0.59);
+    background-color: var(--theme-card);
+    // backdrop-filter: blur(50px);
+    legend{
+        @include textgrad(180deg ,goldenrod , orange);
+        color: goldenrod;
+        line-height: 2.5rem;
+        text-align: center;
+        @include flex_box(row);
+        padding: 0.2rem;
+        font-size: 2.5rem;
+        letter-spacing: -3px;
+        span{
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+    }
+    div{
+        position: relative;
+        @include flex_box(column);
+        width: 100%;
+        img{
+            width: min(10rem , 80%);
+            height: fit-content;
+            border-radius: 50%;
+        }
+        h2{
+            @include textwrap(1);
+            width: 96%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.3rem;
+            border-radius: 0.3rem;
+            bottom: -10%;
+            position: absolute;
+            background-color: rgba(22, 22, 22, 0.42);
+            backdrop-filter: blur(2px);
+        }
+    }
+    p{
+        padding-top: 0.5rem;
+    }
+    button{
+        text-transform: capitalize;
+        color: #fff;
+        font-weight: 400;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        // outline: none;
+        border: none;
+        width: 90%;
+        padding: 0.3rem;
+        background-color: rgb(var(--primary-color-rgb) , 0.8);
+        font-size: 0.8rem;
+        border-radius: 0.4rem;
+        // backdrop-filter: blur(20px);
+    }
+}

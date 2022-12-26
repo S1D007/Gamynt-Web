@@ -1,20 +1,41 @@
 @import "./mixins";
 
+.model{
+@include flex_box();
+}
+
 .page_view{
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     height: 100vh;
     @include scrollbar();
-    @include mobile(){
-        gap: 1.5rem;
-    }
-    @include mobile400(){
-        gap: 1rem;
-    }
-
     .page_view_section{
         overflow-y: scroll;
         flex: 1 1 auto;
-        @include scrollbar();
+        @include scrollbar(0,0);
+        z-index: 2;
+        max-width: 100vw;
     }
+}
+@media (max-width:$mobile) {
+    .page_view{
+        .page_view_section{
+            padding: 4rem 0.4rem;
+            padding-bottom: 4rem;
+        }
+    }
+}
+
+
+// components
+
+button{
+    @include flex_box();
+    text-transform: capitalize;
+    background-color: var(--primary-color);
+    color: inherit;
+    border-radius: 0.3rem;
+    border: none;
+    outline: none;
+    // box-shadow: 2px 3px 5px rgba(252, 252, 252, 0.15) inset;
 }

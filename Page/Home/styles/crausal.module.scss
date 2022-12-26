@@ -1,0 +1,117 @@
+@import "../../../styles/mixins";
+
+// .main_crausal{
+// }
+.auto_scroll_crausal {
+    position: relative;
+    width: 100%;
+    // height: 10rem;
+    max-height: 60vh;
+    aspect-ratio: 16/9;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-top:10px;
+    img {
+        top: 1%;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    div {
+        padding: 1rem;
+        @include flex_box(column, $align: flex-start);
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 0, 0), rgba(0, 0, 0, 0.29));
+
+        p {
+            @include textwrap(3);
+            width: 60%;
+            @include mobile(){
+                line-height: 1.5rem
+            };
+        }
+        button{
+            @include primarybtn();
+            background-color: rgba(255, 255, 255, 0.31);
+            color: inherit;
+            backdrop-filter: blur(1px);
+            &:hover{
+                background-color: rgba(254, 254, 254, 0.35);
+                background-color: rgba(var(--primary-color-rgb));
+            }
+        }
+    }
+}
+
+
+
+.crausal_mini_scrollable {
+    margin-top: -2rem;
+    padding: 1rem;
+    @include flex_box($justify: flex-start, $align: flex-start , $gap : 1rem);
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: y mandatory;
+    background-color: transparent;
+    backdrop-filter: blur(3px);
+    @include scrollbar();
+    // overflow: hidden;
+
+    div {
+        scroll-snap-align: start;
+        flex: 0 0 20rem;
+        width: 20rem;
+        // height: 10rem;
+        aspect-ratio: 16/9;
+        border: 3px solid transparent;
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.781) ;
+
+        @include mobile800(){
+            flex: 0 0 15rem;
+            width: 15rem;
+        };
+
+        img {
+            top: 0%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            object-fit: cover;
+            z-index: 1;
+            transition: 0.60s ease;
+        }
+
+        p {
+            @include textwrap(3);
+            padding: 0.4rem;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.941), rgba(0, 0, 0, 0.01));
+            // visibility: hidden;
+            opacity: 0;
+            transition: 0.60s ease;
+        }
+        &:hover{
+            transition: 0.30s ease;
+            border: 3px solid #eee;
+            img{
+                transform: scale(1.1);
+            }
+            p{
+                opacity: 1;
+            }
+        }
+    }
+}
+.bg_game{
+    
+}

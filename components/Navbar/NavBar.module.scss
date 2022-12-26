@@ -2,9 +2,9 @@
 
 
 
-.navbar{
-    flex: 0 0 min(12rem , 70vw);
-    width: min(12rem , 70vw);
+.navbar {
+    flex: 0 0 min(12rem, 70vw);
+    width: min(12rem, 70vw);
     text-transform: capitalize;
     top: 0.5rem;
     left: 0.5rem;
@@ -12,88 +12,105 @@
     position: relative;
     background-color: var(--theme-nav);
     box-shadow: 0px 7px 21px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
     overflow-y: auto;
     @include scrollbar();
-    @include flex_box(column , flex-start , flex-start , 0.5rem);
+    @include flex_box(column, flex-start, flex-start, 0.5rem);
     padding: 1rem 0rem;
     border-radius: 0rem 1.5rem 1.5rem 0rem;
     border-radius: 0.7rem;
+    z-index: 50;
 
     transition: 0.30s ease;
     transform-origin: 0% 0%;
 
-    header{
+    header {
         padding: 0rem 1.2rem 0.6rem;
-        @include responsive(500px){
+
+        @include responsive(500px) {
             // padding: 0rem 0.4rem 0.6rem;
         }
-        @include flex_box($justify:space-between);
-        svg{
+
+        @include flex_box($justify: space-between);
+
+        svg {
             cursor: pointer;
         }
-        img{
-            width: min(10rem ,60%);
+
+        img {
+            width: min(10rem, 60%);
             height: fit-content;
         }
     }
 }
-.nav_link{
+
+.nav_link {
     width: 100%;
-    li{
+
+    li {
         list-style: none;
         padding: 0.5rem 1.3rem;
-        @include flex_box($justify:flex-start , $gap:1rem);
+        @include flex_box($justify: flex-start, $gap: 1rem);
         cursor: pointer;
         position: relative;
         transition: 0.30s ease;
-        p{
+
+        p {
             @include textwrap(1);
         }
-        &:not(.active_link){
+
+        &:not(.active_link) {
             opacity: 0.5;
         }
-        &:hover:not(.active_link){
+
+        &:hover:not(.active_link) {
             opacity: 0.9;
         }
 
-     
+
     }
 }
-.active_link{
-    &::before{
+
+.active_link {
+    &::before {
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         content: "";
         position: absolute;
-        border-left: 6px solid green;
-        background-color: rgba(0, 255, 38, 0.04);
+        border-left: 6px solid var(--primary-color);
+        background-color: rgba(var(--primary-color-rgb), 0.1);
         border-radius: 0.2rem;
     }
 }
 
-.my_clubs{
+.my_clubs {
     margin-top: 1rem;
     width: 100%;
-    div{
-        @include flex_box($justify:flex-start);
+
+    div {
+        @include flex_box($justify: flex-start);
         padding: 0.4rem 1rem;
-        h2{
+
+        h2 {
             @include textgrad();
             font-size: 1.2rem;
             font-weight: 600;
         }
     }
-    li{
+
+    li {
         list-style: none;
         padding: 0.4rem 1rem;
-        @include flex_box($justify:flex-start , $gap:0.5rem);
-        img{
-            width: min(2.5rem , 20%);
+        @include flex_box($justify: flex-start, $gap: 0.5rem);
+
+        img {
+            width: min(2.5rem, 20%);
             height: fit-content;
         }
-        p{
+
+        p {
             @include textwrap(1);
         }
     }
@@ -102,35 +119,97 @@
 
 // adjusting navbar
 
-.shrink_item{
+.shrink_item {
     transition: 0.30s ease;
     transform-origin: 0% 0%;
     transform: scale(0);
     display: none;
 }
-.navbar_adjust{
+
+.navbar_adjust {
     transition: 0.30s ease;
-    @include flex_box(column , $justify:flex-start);
+    @include flex_box(column, $justify: flex-start);
     width: fit-content;
     flex: 0 0 fit-content;
-    li{
+
+    li {
         list-style: none;
         padding: 0.7rem 0rem;
         @include flex_box(column);
-        p{
+
+        p {
             display: none
         }
 
     }
-    .my_clubs{
-        div{
+
+    .my_clubs {
+        div {
             @include flex_box(column);
         }
-        li{
+
+        li {
             padding: 0.4rem 0rem;
-            img{
-                width: min(2.5rem , 50%);
+
+            img {
+                width: min(2.5rem, 50%);
             }
         }
+    }
+}
+
+@media (max-width:$mobile) {
+    .navbar {
+        margin: 0;
+        padding: 0;
+        left: 0
+        ;
+        position: fixed;
+        top: auto;
+        bottom: 0%;
+        width: 100vw;
+        height: 3.5rem;
+        border-radius: 0.5rem 0.5rem 0rem 0rem;
+
+        header {
+            display: none;
+        }
+    }
+    .my_clubs {
+        display: none;
+    }
+
+    .nav_link {
+        @include flex_box($justify:space-between);
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+
+        li {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            @include flex_box(column , $gap:0.2rem);
+            p{
+                text-align: center;
+                font-size: 0.6rem;
+                display: block;
+                width: 100%;
+                overflow: visible;
+            }
+        }
+        .mob_hiden{
+            display: none;
+        }
+    }
+
+    .active_link {
+        &::before {
+            border: none;
+            top: auto;
+            bottom: 0;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
     }
 }

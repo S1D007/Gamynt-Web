@@ -1,26 +1,23 @@
+import React , { useState , useEffect }from 'react';
 import '../styles/globals.scss'
 import '../styles/app.scss'
 import NavBar from '../components/Navbar/NavBar'
 import TopNavBar from '../components/Navbar/TopNavBar'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { useEffect } from 'react'
+
+
 
 function MyApp({ Component, pageProps }) {
-  const [isnav, setisnav] = useState(0)
+  const [isnav, setisnav] = useState(1)
   let router = useRouter()
   let path = router.pathname;
   // condition for not showing nav
   useEffect(() => {
-    if (path == "/account") {
-      setisnav(1)
-    }
-    else{
-      setisnav(0)
-    }
+    {path == "/club/chat"?setisnav(1):setisnav(0)}
   }, [path])
   return (
     <>
+   {/* <Provider store={store}> */}
     {
       isnav === 0?
     <main className='page_view'>
@@ -32,7 +29,8 @@ function MyApp({ Component, pageProps }) {
 </main>
        :
        <Component {...pageProps} />
-    }
+      }
+      {/* </Provider> */}
     </>
   )
 }
