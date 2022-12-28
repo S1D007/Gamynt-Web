@@ -1,10 +1,10 @@
 @import "../../../../styles/mixins";
 
 
-.member_container_main{
+.member_container_main , .open_member{
     flex: 0 0 15rem;
-    width: 15rem;
-    background-color: #202225;
+    // width: 15rem;
+    background-color: #1A1C20;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -82,5 +82,15 @@
 @media (max-width:$tablet) {
     .member_container_main{
         flex-basis: 0;
+    }
+    .open_member{
+        z-index: 1;
+        flex: 0 0 100%;
+    }
+}
+
+@media (max-width:350px) {
+    .open_member{
+        flex: 0 0 80%;
     }
 }

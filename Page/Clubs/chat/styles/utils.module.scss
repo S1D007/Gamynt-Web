@@ -2,15 +2,13 @@
 
 // input box ui 
 .send_message_input{
-    margin: 15px auto;
-    // margin-right:-0.02px;
+    margin: auto auto 0rem;
     padding: 0.3rem;
     border-radius: 10px;
     background-color: #40444B;
     width: 95%;
-    margin-top: auto;
     position: sticky;
-    bottom: -2px;
+    bottom: 10px;
     @include flex_box();
     label{
         @include flex_box();
@@ -20,12 +18,12 @@
     }
     textarea{
         font-family: sans-serif;
-        padding: 0.5rem 0.2rem;
+        padding: 0.5rem 0.3rem;
         border: none;
         outline: none;
         width: 100%;
         background-color: inherit;
-        font-size: 0.9rem;
+        font-size: 0.96rem;
         line-height: 1.3rem;
         resize: none;
         height: fit-content;
@@ -52,17 +50,27 @@
     }
 }
 
-
+//  input box medea quires
+@media (max-width:$mobile) {
+    .send_message_input{
+        left: 50%;
+        translate: -50%;
+        bottom: 0.04rem;
+        position: fixed;
+        width: 99vw;
+    }
+}
 
 // message box 
 .message_box_main{
     margin: 0.6rem;
     padding: 0.3rem;
-    width: min(80rem , 95%);
+    width: min(80rem , 90%);
     word-break: keep-all;
     // background-color: rgba(186, 186, 186, 0.084);
     border-radius: 0.3rem;
     @include flex_box(row , flex-start , flex-start);
+    
     .sender_img{
         width: 2.3rem;
         aspect-ratio: 1/1;
@@ -75,17 +83,19 @@
         @include flex_box(row , flex-start , center , 0.5rem);
         p{
             @include textwrap(1);
-            font-size: 1.2rem
+            font-size: 1.1rem;
+            font-weight: 500
         }
         span{
             @include textwrap(1);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             opacity: 0.8;
         }
     }
     div{
         p{
             line-height: 1.1rem;
+            font-weight: 300;
         }
         img{
             width: min(20rem , 100%);

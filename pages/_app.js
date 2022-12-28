@@ -4,6 +4,8 @@ import '../styles/app.scss'
 import NavBar from '../components/Navbar/NavBar'
 import TopNavBar from '../components/Navbar/TopNavBar'
 import { useRouter } from 'next/router'
+import { store } from '../reduxstore/store'
+import { Provider } from 'react-redux'
 
 
 
@@ -17,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   }, [path])
   return (
     <>
-   {/* <Provider store={store}> */}
+   <Provider store={store}>
     {
       isnav === 0?
     <main className='page_view'>
@@ -30,7 +32,7 @@ function MyApp({ Component, pageProps }) {
        :
        <Component {...pageProps} />
       }
-      {/* </Provider> */}
+      </Provider>
     </>
   )
 }

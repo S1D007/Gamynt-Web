@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BannerAndTournamentInfo from '../../Page/Tournament/create-tournaments/BannerAndTournamentInfo/BannerAndTournamentInfo'
 import GetStarted from '../../Page/Tournament/create-tournaments/GetStarted/GetStarted'
-function createTournament() {
+function CreateTournament() {
   const [next, setNext] = useState(0)
   if(next === 0){
     return <GetStarted setNext={setNext} />
@@ -12,4 +12,4 @@ function createTournament() {
   }
 }
 
-export default createTournament
+export default CreateTournament

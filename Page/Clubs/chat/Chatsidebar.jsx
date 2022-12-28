@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from "./styles/sidebar.module.scss"
 import Clubnav from './utlis/Clubnav'
 import ArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AddIcon from '@mui/icons-material/Add';
 import TagIcon from '@mui/icons-material/Tag';
+import {closenav , opennav , opensidebar} from "../../../reduxstore/clubchatnavslice"
+import { useSelector , useDispatch} from 'react-redux';
+
 const Chatsidebar = () => {
-  return (
-    <main className={style.sidebar_main}>
+  let dispatch = useDispatch()
+  let handlenav = useSelector((store)=>store.handlenav)
+  let menumainref = useRef();
+
+  const [classtoggle, setclasstoggle] = new useState(style.sidebar_main)
+
+  useEffect(() => {
+    console.log("handle nav =>" , handlenav)
+    // {handlenav.includes("sidebar") == true ? menumainref.current.classList.toggle(style.open_nav):false}
+    {handlenav.includes("sidebar") == true ? setclasstoggle(style.open_nav):setclasstoggle(style.sidebar_main)}
+}, [handlenav])
+
+return (
+  <main  className={classtoggle}>
       <Clubnav />
       <section className={style.sidebar_container}>
         <header className={style.club_logo}>

@@ -1,3 +1,5 @@
+@import "../../../../styles/mixins";
+
 .container{
     margin: 1%;
     // background-color: rgba(43, 43, 43, 0.37);
@@ -57,14 +59,16 @@
         border-radius: 10px;
         box-shadow: 1px 1px 20px 14px rgb(5, 5, 5);
         background-color: rgba(130, 124, 124, 0.37);
+        position: relative;
         .tick{
             width: 30px;
             height: 30px;
             background-color: rgb(112, 112, 112);
-            position: fixed;
+            position: absolute;
             margin: 5px;
             border-radius: 50px;
-            display: none;
+            right: 0px;
+            // display: none;
         }
         h3{
             font-size: 1.2rem;
@@ -100,11 +104,12 @@
     }
 }
 
-@media (max-width:700px) {
+@media (max-width:$mobile) {
     .container{
         height: 100%;
     }
     .types_of_tournaments{
+        // background-color: red;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -113,7 +118,11 @@
             width: 300px;
             height: 180px;
             span{
-                display: none;
+                // display: none;
+                // display: block;
+                // width: 12rem;
+                // height: 12rem;
+                // background-color: red;
             }
         }
     }

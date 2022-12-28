@@ -1,0 +1,15 @@
+@import "../../../styles/mixins";
+
+
+.top_featured_tournament{
+    padding: 1rem;
+    @include flex_box(row , flex-start);
+    overflow-x: scroll;
+    @include scrollbar();
+}
+
+.tournament_card_container{
+    padding: 0.5rem;
+    @include flex_box(row , center , center , 1rem);
+    flex-wrap: wrap;
+}

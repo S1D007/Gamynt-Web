@@ -29,7 +29,8 @@ const TopNavbar = () => {
       </section>
 
       <section className={style.profile_section}>
-        <div className={style.coin_diamond_container}>
+
+        <div onClick={()=>{router.push("/wallet")}} className={style.coin_diamond_container}>
           <div className={style.coin_nav}>
             <img style={{
               width:"30px"

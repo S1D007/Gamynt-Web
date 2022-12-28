@@ -1,0 +1,36 @@
+@import "../../../styles/mixins";
+
+
+.history_card_user{
+    border-radius: 0.3rem;
+    margin: 0.3rem;
+    padding: 0.5rem;
+    @include flex_box(row , space-between , center , 1rem);
+    background-color: rgb(33, 33, 33);
+    img{
+        width: 2.5rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    h1{
+        font-weight: 500;
+        font-size: 1.2rem
+    }
+    div{
+        margin: auto;
+        width: 95%;
+        @include flex_box(column , flex-start,flex-start,0rem);
+        p{
+            font-size: 1rem;
+            @include textwrap();
+        }
+        small{
+            display: block;
+            @include textwrap(1);
+            line-height: 1rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+    }
+}

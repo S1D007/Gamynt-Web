@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from "./styles/member.module.scss"
 import SearchIcon from '@mui/icons-material/Search';
+import {closenav , opennav , opensidebar} from "../../../reduxstore/clubchatnavslice"
+import { useSelector , useDispatch} from 'react-redux';
 
 const Memberstatus = () => {
+  let dispatch = useDispatch()
+  let handlenav = useSelector((store)=>store.handlenav)
+  const [classtoggle, setclasstoggle] = new useState(style.member_container_main)
+
+  useEffect(() => {
+    console.log("handle nav =>" , handlenav)
+    {handlenav.includes("member") == true ? setclasstoggle(style.open_member):setclasstoggle(style.member_container_main)}
+}, [handlenav])
+
   return (
-    <main className={style.member_container_main}>
+    <main className={classtoggle}>
       {/* <header className={style.search_member_input}>
         <input type="text" placeholder='search'/>
         <SearchIcon/>

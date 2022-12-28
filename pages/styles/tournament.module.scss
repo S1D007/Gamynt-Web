@@ -1,0 +1,54 @@
+@import "../../styles/mixins";
+
+.tournament_nav{
+    @include stickynav();
+    @include flex_box($gap:0rem);
+    width: 100%;
+    ul{
+        position: relative;
+        cursor: pointer;
+        padding: 0.5rem 0.8rem;
+        @include flex_box(row , $gap:0.5rem);
+        list-style: none;
+        color: var(--theme-color-dark);
+        &:last-child{
+            margin-left: auto;
+            border: 1px solid #eee;
+        }
+        li{
+            font-size: 0.8rem;
+            list-style: none;
+        }
+        &:hover:not(.active_link){
+            color: var(--theme-color);
+        }
+        
+    }
+}
+.active_link {
+    &::before {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        border-bottom: 5px solid var(--primary-color);
+        background-color: rgba(var(--primary-color-rgb), 0.1);
+        border-radius: 0.2rem;
+    }
+}
+@media (max-width:$mobile) {
+    .tournament_nav{
+        top: 0rem;
+        justify-content: space-between;
+        ul{
+            padding: 0.5rem;
+            width: 100%;
+        @include flex_box(column , $gap:0rem);
+        li{
+            font-size: 0.7rem;
+        }
+    }
+}
+}

@@ -4,14 +4,14 @@ import Chatbox from '../../Page/Clubs/chat/Chatbox'
 import style from "../styles/clubchat.module.scss"
 
 const chat = () => {
-  const [h, seth] = new useState(0)
+//   const [h, seth] = new useState(0)
   
-  new useEffect(() => {
-  let hg = window.innerHeight;
-  console.log(h)
-  seth(hg)
-  console.log("hello world")
-}, [h])
+//   new useEffect(() => {
+//   let hg = window.innerHeight;
+//   console.log(h)
+//   seth(hg)
+//   console.log("hello world")
+// }, [h])
 
 
   return (

@@ -1,26 +1,42 @@
-import React , {Fragment} from 'react'
+import React , {Fragment, useEffect, useState} from 'react'
 import style from "../styles/club.module.scss"
 import Topfeaturedclubs from "../../Page/Clubs/Topfeaturedclubs"
 import Exploreclub from "../../Page/Clubs/Exploreclub"
+import { useRouter } from 'next/router'
 
 const Club = () => {
+  let router = useRouter();
+  const [pageroute, setpageroute] = useState(1)
+  const [pagecompo, setpagecompo] = useState("loading .. ")
+  useEffect(() => {
+    switch (pageroute) {
+      case 2:
+        setpagecompo(<Exploreclub />)
+        break;
+    
+      default:
+        setpagecompo("page not found")
+        break;
+    }
+  }, [pageroute])
+  
+
   return (
     <Fragment>
       <Topfeaturedclubs/>
       <nav className={style.club_nav}>
-          <ul className={style.active_link}>
+          <ul onClick={()=>{setpageroute(1)}} className={`${pageroute==1 && style.active_link}`}>
             joined
           </ul>
-          <ul>
+          <ul onClick={()=>{setpageroute(2)}} className={`${pageroute==2 && style.active_link}`}>
             explore
           </ul>
-          <ul>
+          <ul onClick={()=>{setpageroute(3)}} className={`${pageroute==3 && style.active_link}`}>
             <li>club</li>
           </ul>
         </nav>
-      
-      {/* <Joindclub /> */}
-   <Exploreclub />
+      {pagecompo}
+   {/* <Exploreclub /> */}
     </Fragment>
   )
 }

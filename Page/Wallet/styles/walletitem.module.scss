@@ -1,0 +1,26 @@
+@import "../../../styles/mixins";
+
+.wallet_nav{
+    border-radius: 0.5rem;
+    padding:1rem 0.2rem;
+    position: sticky;
+    top: $navheight;
+    backdrop-filter: blur(20px);
+    background:var(--wallet-grad);
+    @include flex_box(row , space-between , center , 1rem);
+    z-index: 10;
+    svg{
+        cursor: pointer;
+    }
+    h1{
+        font-weight: 500;
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+}
+
+@media (max-width:$mobile) {
+    .wallet_nav{
+        top: 0;
+    }
+}

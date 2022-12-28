@@ -40,7 +40,7 @@ const NavBar = () => {
 
             <li className={`${path =="/post" && style.active_link}`} onClick={()=>router.push("/post")}><DynamicFeedIcon /> <p className={shrikclass}>post</p></li>
 
-            <li className={`${path =="/tournament" && style.active_link}`}  onClick={()=>router.push("/tournament")}><EmojiEventsIcon /> <p className={shrikclass}>tournament</p></li>
+            <li className={`${path =="/tournaments" && style.active_link}`}  onClick={()=>router.push("/tournaments")}><EmojiEventsIcon /> <p className={shrikclass}>tournaments</p></li>
 
             <li className={`${path =="/club" && style.active_link}`} onClick={()=>router.push("/club")}><GroupsIcon /> <p className={shrikclass}>club</p></li>
 

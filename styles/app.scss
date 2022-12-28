@@ -3,7 +3,17 @@
 .model{
 @include flex_box();
 }
-
+.no-scroll{
+    overflow: hidden;
+}
+.modal_main{
+    margin: 2rem;
+    padding: 4rem;
+    border: 5px solid #eee;
+    position: fixed;
+    z-index: 200;
+    background-color: rgb(16, 13, 13);
+}
 .page_view{
     display: flex;
     gap: 1.5rem;
