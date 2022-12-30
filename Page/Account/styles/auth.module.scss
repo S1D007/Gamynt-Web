@@ -3,12 +3,16 @@
 .auth_main_container{
     margin: 0rem auto;
     height: calc(100vh - var(--nav-height) - 2rem);
-    @include flex_box()
+    // @include flex_box();
+    display: grid;
+    place-items: center;
+    overflow-y: auto;
+    @include scrollbar();
 }
 .auth_card_ui{
     border-radius: 0.5rem;
     transition: 0.30s ease;
-    width: min(25rem ,80%);
+    width: min(25rem ,90%);
     height: max-content;
     position: relative;
     overflow: hidden;
@@ -20,13 +24,13 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        background: linear-gradient( 180deg,transparent , var(--secondry-color) , var(--primary-color),#fff);
+        background: linear-gradient(1deg , rgba(var(--primary-color-rgb) , 0.3) , black);
         pointer-events: none;
         // transform: rotate(45deg) ;
         transform: rotate(0deg);    
         transform-origin: bottom right;
         transition: 1s ease;
-        animation: animate 6s linear infinite;
+        animation: animate 5s linear infinite;
     }
     &::before{
         transform: rotate(180deg);
@@ -48,21 +52,29 @@
     padding: 0.5rem;
     border-radius: 0.5rem;
     z-index: 10;
-    background-color: var(--theme-card);
+    // background-color: var(--theme-card);
+    background: linear-gradient(0deg , rgba(0 , 0 , 0 , .2) , black);
+backdrop-filter: blur(150px);
     header{
+        text-transform: capitalize;
         @include flex_box();
-        img{
-            width:100px;
-        }
+        margin: 1rem auto;
+    img{
+        width: min(3rem , 30%);
+    }
+    h1{
+        font-weight: 500;
+        font-size: 1.1rem;
+    }
     }
     nav{
         list-style: none;
         padding: 0.3rem 1rem;
         @include flex_box($gap:5rem);
         li{
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
             transition: 0.30s ease;
-            font-weight: 800;
             cursor: pointer;
             text-transform: capitalize;
             &:not(.active){
@@ -76,10 +88,8 @@
             }
         }
         .active{
-            padding: 0.3rem 1rem;
-            border-radius: 10px;
-            // border-bottom: 2px solid var(--primary-color);
-            background-color: rgb(67, 66, 66);
+            padding: 0rem 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
         }
     }
 }
@@ -93,11 +103,10 @@
     animation: fade 1s ease;
     button{
         margin: 1rem auto;
-        padding: 0.5rem;
-        font-size: 1.2rem;
+        padding: 0.3rem;
         background-color: transparent;
         backdrop-filter: blur(20px);
-        background-color:var(--primary-color);
+        background-color:rgba(var(--primary-color-rgb) , 0.4);
         width: min(10rem , 90%);
     }
 }
@@ -109,6 +118,7 @@
         opacity: 1;
     }
 }
+
 
 .form_input_box{
     width: 90%;
@@ -122,10 +132,10 @@
         outline: none;
         border: none;
         border-radius: 0.2rem;
-        font-size: 1.2rem;
-        font-weight: 200;
-        // border-bottom: 2px solid var(--primary-color);
-        background-color: rgb(67, 66, 66);
+        font-size: 1rem;
+        border-bottom: 2px solid var(--primary-color);
+        background-color: inherit;
+        // background-color: rgba(255, 255, 255, 0.1);
         &::placeholder{
             text-transform: capitalize;
         }
@@ -133,7 +143,7 @@
 }
 
 .otp_box{
-    @include flex_box();
+    @include flex_box(row);
     input{
         border: none;
         outline: none;

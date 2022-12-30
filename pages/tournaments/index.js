@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import ExploreTournament from '../../Page/Tournament/ExploreTournament'
 import TopFeaturedtournament from '../../Page/Tournament/TopFeaturedtournament'
+import Trendingtournament from '../../Page/Tournament/Trendingtournament'
 import style from "../styles/tournament.module.scss"
 
 function index() {
@@ -8,6 +9,9 @@ function index() {
   const [pagecompo, setpagecompo] = new useState("loading .. ")
   new useEffect(() => {
     switch (pageroute) {
+      case 1:
+        setpagecompo(<Trendingtournament/>)
+        break;
       case 2:
         setpagecompo(<ExploreTournament/>)
         break;

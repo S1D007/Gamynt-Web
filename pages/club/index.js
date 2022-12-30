@@ -3,6 +3,7 @@ import style from "../styles/club.module.scss"
 import Topfeaturedclubs from "../../Page/Clubs/Topfeaturedclubs"
 import Exploreclub from "../../Page/Clubs/Exploreclub"
 import { useRouter } from 'next/router'
+import Joinedclub from '../../Page/Clubs/Joinedclub'
 
 const Club = () => {
   let router = useRouter();
@@ -10,6 +11,9 @@ const Club = () => {
   const [pagecompo, setpagecompo] = useState("loading .. ")
   useEffect(() => {
     switch (pageroute) {
+      case 1:
+        setpagecompo(<Joinedclub/>)
+        break;
       case 2:
         setpagecompo(<Exploreclub />)
         break;

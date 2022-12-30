@@ -24,8 +24,10 @@
         // border-bottom: 2px solid rgba(168, 168, 168, 0.589);
         background-color: inherit;
         backdrop-filter: blur(50px);
-        @include flex_box(row , space-between);
+        @include flex_box(row , flex-start);
         h1{
+            font-size: 1.5rem;
+            font-weight: 500;
             text-transform: capitalize;
             // @include textgrad();
             // @include fontsize();

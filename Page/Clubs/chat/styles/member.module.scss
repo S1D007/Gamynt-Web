@@ -4,7 +4,7 @@
 .member_container_main , .open_member{
     flex: 0 0 15rem;
     // width: 15rem;
-    background-color: #1A1C20;
+    background-color: #202225;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -84,8 +84,8 @@
         flex-basis: 0;
     }
     .open_member{
-        z-index: 1;
-        flex: 0 0 100%;
+        z-index: 10;
+        flex: 0 0 15rem;
     }
 }
 

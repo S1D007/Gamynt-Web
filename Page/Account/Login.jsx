@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useRef } from 'react'
 import style from "./styles/auth.module.scss"
 import PhoneIcon from '@mui/icons-material/Phone';
+import MailIcon from '@mui/icons-material/Mail';
+
 
 const Login = () => {
   let btntxt = "next";
@@ -21,10 +23,9 @@ const Login = () => {
   return (
     <Fragment>
       <form className={style.auth_form} onSubmit={formsubmit}>
-        <div className={`${style.form_input_box}`} ref={inptdiv}>
-          <PhoneIcon />
-          <input type="text" placeholder='phone number'
-            ref={phonenumber} />
+      <div className={`${style.form_input_box}`} ref={inptdiv}>
+          <MailIcon />
+          <input type="text" placeholder='email@gamil.com' ref={phonenumber} />
         </div>
         <div className={`${style.nexttoggle}`} ref={otpdiv}>
           <input type="text" placeholder='0' />

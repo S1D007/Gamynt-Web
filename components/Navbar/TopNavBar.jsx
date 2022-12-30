@@ -59,7 +59,7 @@ const TopNavbar = () => {
         onClose={handleClose}
         className="model"
       >
-        <Notifiaction/>
+        <Notifiaction handleClose={handleClose}/>
       </Modal>
     </nav>
   )

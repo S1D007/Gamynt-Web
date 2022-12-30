@@ -5,12 +5,13 @@ import style from "./styles/auth.module.scss"
 
 
 const Authentication = () => {
+  
   const [navnumber, setnavnumber] = useState(0)
   const [compo, setcompo] = useState(<Signup/>)
 
-  useEffect(() => {
-    {navnumber === 0 ? setcompo(<Signup/>) : setcompo(<Login/>)}
-  }, [navnumber])
+  // useEffect(() => {
+  //   {navnumber === 0 ? setcompo(<Signup/>) : setcompo(<Login/>)}
+  // }, [navnumber])
   
 
   return (
@@ -18,7 +19,7 @@ const Authentication = () => {
             <section className={style.auth_card_ui}>
                 <section className={style.auth_card}>
                     <header>
-                        <img src="/logo_mini.png" alt="" />
+                <img src="/logo_mini.png" alt="" />
                     </header>
                     <nav>
                         <li className={`${navnumber == 0 && style.active}`} onClick={()=>{setnavnumber(0)}}>Sign up</li>

@@ -57,7 +57,6 @@
 
         p {
             @include textwrap(1);
-            font-weight: 500;
         }
 
         &:not(.active_link) {
@@ -95,9 +94,9 @@
         padding: 0.4rem 1rem;
 
         h2 {
-            // @include textgrad();
+            @include textgrad();
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 600;
         }
     }
 
@@ -113,7 +112,6 @@
 
         p {
             @include textwrap(1);
-            font-weight: 500;
         }
     }
 }
@@ -195,7 +193,6 @@
             p{
                 text-align: center;
                 font-size: 0.6rem;
-                font-weight: 400;
                 display: block;
                 width: 100%;
                 overflow: visible;

@@ -4,7 +4,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import TagIcon from '@mui/icons-material/Tag';
 import MenuIcon from '@mui/icons-material/ClearAll';
 import { useDispatch , useSelector } from 'react-redux';
-import {closenav , opennav , opensidebar , openmember} from "../../../../reduxstore/clubchatnavslice"
+import {closenav , opennav , opensidebar , openmember} from "../../../../suppliers/reduxstore/reducers/clubchatnavslice"
 
 const Chatnav = () => {
   let dispatch = useDispatch()

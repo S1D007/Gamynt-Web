@@ -6,6 +6,9 @@
     @include flex_box(row , flex-start);
     overflow-x: scroll;
     @include scrollbar();
+    main{
+        flex: 0 0 18rem;
+    }
 }
 
 .tournament_card_container{

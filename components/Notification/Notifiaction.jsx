@@ -2,11 +2,13 @@ import React from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import style from "./notify.module.scss"
 import data from "../data/update.json"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const Notifiaction = () => {
+const Notifiaction = ({handleClose}) => {
   return (
     <main className={style.notification_main_container}>
         <header>
+        <ArrowBackIcon onClick={()=>handleClose()}/>
             <h1>notification</h1>
         </header>
         {

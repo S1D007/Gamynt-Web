@@ -1,0 +1,139 @@
+@import "../../../styles/mixins";
+
+.register_main_page_container{
+    // border: 1px solid #eee;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+.bg{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: var(--wallet-grad);
+    z-index: 1;
+        img{
+            opacity: 0.15;
+        width: 100%;
+        height: 95%;
+        object-fit: cover;
+        border-radius: 0rem 0rem 3rem 3rem;
+        z-index: -1;
+    }
+}
+    .back_btn{
+    height: 2.1rem;
+    width:7rem;
+    margin: 0.3rem;
+    position: relative;
+    z-index: 5;
+}
+.hero_section{
+    margin: 0rem auto;
+    padding: 0.5rem;
+    position: relative;
+    z-index: 5;
+    gap: 1rem;
+    display: flex;
+    height: calc(100% - 5rem);
+    // @include flex_box();
+    width: min(60rem , 100%);
+}
+.register_button{
+    position: sticky;
+    bottom: 2rem;
+    margin: 0.3rem auto;
+    height: 2.5rem;
+    // position: relative;  
+    // width: min(20rem , 90%);
+    z-index: 5;
+    opacity: 1;
+    &:hover{
+        box-shadow: 0px 7px 20px rgba(255, 255, 255, 0.199);
+    }
+}
+
+.organizer_info{
+    flex: 1;
+    margin: 0rem  auto;
+    @include flex_box(column);
+    // width: (35rem , 95%);
+    img{
+        // width: min(5rem , 100%);
+        width: 5rem;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    
+}
+
+
+.tournament_info_container{
+    flex: 1;
+    margin: 0rem  auto;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    // width: (35rem , 95%);
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    @include flex_box(column , flex-start);
+    text-transform: capitalize;
+    overflow-y: auto;
+    @include scrollbar();
+    header{
+        width: 100%;
+        text-align: center;
+        h1{
+            font-weight: 400;
+        }
+    }
+    // info container section
+    section{
+        padding: 0.5rem;
+        width: 100%;
+        // display: flex;
+        @include flex_box();
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        div{
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            background:
+            linear-gradient(165deg , rgba(var(--primary-color-rgb) , 0.4) , rgba(18, 18, 18, 0.744), rgb(9, 9, 9));
+
+            box-shadow: 1px 4px 10px rgba(var(--primary-color-rgb) , 0.2);
+            b{
+                font-size: 1rem;
+                color: red;
+            }
+        }
+        .big_info_div{
+            width: calc(90% + 1rem);
+        }
+        .mini_info_div{
+            width: 45%;
+        }
+    }
+}
+
+.register_btn{
+    padding: 0.5rem;
+    width: min(10rem , 90%);
+}
+
+
+@media  (max-width:$mobile) {
+    .hero_section{
+        flex-direction: column;
+    }
+    .organizer_info{
+        width: 100%;
+    }
+    .tournament_info_container{
+        width: 100%;
+        overflow: visible;
+    }
+}

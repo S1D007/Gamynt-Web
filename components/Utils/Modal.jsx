@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Modal({closeModal , children}) {
+function Modal({closeModal}) {
   const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -16,7 +16,6 @@ function Modal({closeModal , children}) {
   return (
     <main className='modal_main'>
         <button>goodi n d iv</button>
-         {children}
          {
             isOpen === true?<div>hello ok</div>:<div>closed div</div> 
          }

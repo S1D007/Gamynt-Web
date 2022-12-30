@@ -1,8 +1,17 @@
 import React from 'react'
+import Tournamentcard from './Tournamentcard'
+import style from "./styles/tournamentitem.module.scss"
 
 const ExploreTournament = () => {
   return (
-    <div>ExploreTournament</div>
+           <main className={style.tournament_card_container}>
+           <Tournamentcard />
+           <Tournamentcard />
+           <Tournamentcard />
+           <Tournamentcard />
+           <Tournamentcard />
+           <Tournamentcard />
+           </main>
   )
 }
 
