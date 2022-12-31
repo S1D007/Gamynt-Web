@@ -1,4 +1,5 @@
-import React , { useState , useEffect }from 'react';
+import { CookiesProvider } from "react-cookie";
+import React, { useState, useEffect } from 'react';
 import '../styles/globals.scss'
 import '../styles/app.scss'
 import NavBar from '../components/Navbar/NavBar'
@@ -9,7 +10,7 @@ import { Provider } from 'react-redux'
 
 import "nprogress/nprogress.css";
 import NProgress from 'nprogress';
-NProgress.configure({showSpinner:false})
+NProgress.configure({ showSpinner: false })
 
 
 function MyApp({ Component, pageProps }) {
@@ -27,7 +28,7 @@ function MyApp({ Component, pageProps }) {
       case ("/tournaments/register"):
         setisnav(1);
         break;
-    
+
       default:
         setisnav(0)
         break;
@@ -35,27 +36,30 @@ function MyApp({ Component, pageProps }) {
   }, [path])
 
   useEffect(() => {
-    router.events.on('routeChangeStart', () =>  NProgress.start());
-    router.events.on('routeChangeComplete', () =>  NProgress.done());
-    router.events.on('routeChangeError', () =>  NProgress.done());
+    router.events.on('routeChangeStart', () => NProgress.start());
+    router.events.on('routeChangeComplete', () => NProgress.done());
+    router.events.on('routeChangeError', () => NProgress.done());
   }, []);
 
   return (
     <>
-   <Provider store={store}>
-    {
-      isnav === 0?
-    <main className='page_view'>
-    <NavBar/>
-    <section className="page_view_section">
-      <TopNavBar/>
-      <Component {...pageProps} />
-    </section>
-</main>
-       :
-       <Component {...pageProps} />
-      }
+    <CookiesProvider>
+
+      <Provider store={store}>
+        {
+          isnav === 0 ?
+            <main className='page_view'>
+              <NavBar />
+              <section className="page_view_section">
+                <TopNavBar />
+                <Component {...pageProps} />
+              </section>
+            </main>
+            :
+            <Component {...pageProps} />
+        }
       </Provider>
+    </CookiesProvider>
     </>
   )
 }

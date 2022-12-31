@@ -8,17 +8,16 @@ const useSendOTP = create(
         verifyEmail: (values) => {
             // console.log(values)
             axios.get(`${url}/otp-verify?email=${values.email}&otp=${values.otp}`).then((e) => {
-                // console.log(e.data)
                 set(() => ({
                     verified: e.data.verified,
-                    uid: e.data.userData.uid
+                    uid: e.data?.userData?.uid
                 }))
             })
         },
         sendEmail: (values) => {
             if (values.btnClicked) {
                 axios.get(`${url}/otp?email=${values.email}`).then((e) => {
-                    // console.log(e)
+                    console.log(e)
                 })
             }
         }
@@ -32,6 +31,7 @@ const useUserData = create(
         sendDetailstoServer: (values) => {
             if(values.loaded = true){
                 axios.get(`${url}/get-user?uid=${values.uid}`).then((e)=>{
+                    // console.log(e.data)
                     set(()=>({
                         result:e.data
                     }))

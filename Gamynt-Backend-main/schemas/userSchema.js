@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     email:{
         type:String
     },
+    bio:String,
     joinedClubs:{
         type:mongoose.Schema.Types.Array
     },
@@ -38,6 +39,8 @@ const userSchema = new mongoose.Schema({
         type:Number
     },
     followers:[],
+    followCount:Number,
+    followingCount:Number,
     following:[],
     post:[
         {
@@ -58,6 +61,13 @@ const userSchema = new mongoose.Schema({
             ]
         }
     ],
+    notifications:[
+        {
+            date:String,
+            message:String,
+            callToActionLink:String
+        }
+    ]
 })
 
 module.exports = userSchema

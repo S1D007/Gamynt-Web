@@ -4,10 +4,12 @@ const path = require('path')
 const OTP = require("../models/OtpVerification")
 const User = require("../models/User.js")
 const { v4: uuidv4 } = require('uuid');
+const {AvatarGenerator} = require('random-avatar-generator')
 var randomAvatar = require('random-avatar');
 // initialize nodemailer
 const { uniqueNamesGenerator, Config, adjectives, colors, animals, names, starWars } = require("unique-names-generator")
 // usernames
+
 const customConfig = {
     dictionaries: [adjectives, colors],
     separator: ' ',
@@ -83,6 +85,7 @@ module.exports.verifyOTP = async (req, res) => {
     const otpAvailable = await OTP.findOne({ email })
     const username = uniqueNamesGenerator(customConfig);
     const userExist = await User.findOne({ email })
+    const generatorAvatar = new AvatarGenerator()
     if (otpAvailable && otp === otpAvailable.otp.toString()) {
         if (userExist) {
             res.send({
@@ -94,12 +97,9 @@ module.exports.verifyOTP = async (req, res) => {
             const doc = new User({
                 username,
                 email,
+                bio:"I love Gamynt",
                 joinedClubs: [],
-                avatar: randomAvatar({
-                    prtocol: "https",
-                    extention: "png",
-                    email: email
-                }),
+                avatar: generatorAvatar.generateRandomAvatar(username),
                 banner: "",
                 joinedTournaments: [],
                 uid: uuidv4(),
@@ -114,8 +114,11 @@ module.exports.verifyOTP = async (req, res) => {
                 balance: 0,
                 followers: [],
                 following: [],
+                followCount:0,
+                followingCount:0,
                 post: [],
-                directMessage: []
+                directMessage: [],
+                notifications:[]
             })
             await doc.save()
             res.send({
@@ -124,10 +127,6 @@ module.exports.verifyOTP = async (req, res) => {
             })
             await OTP.findOne({ email }).remove()
         }
-    }else{
-        res.send({
-            verified: false
-        })
     }
 
 }

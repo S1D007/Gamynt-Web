@@ -1,31 +1,43 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import style from "./styles/auth.module.scss"
+import PhoneIcon from '@mui/icons-material/Phone';
 import MailIcon from '@mui/icons-material/Mail';
+import OtpField from 'react-otp-field';
 import { useSendOTP } from "../../suppliers/zustand/store"
-import { useRouter } from 'next/router'
 import { useCookies } from 'react-cookie';
+import {useRouter} from 'next/router'
 const Signup = () => {
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie] = useCookies(['UserInfo']);
   const route = useRouter()
-  // useEffect(() => {
-  //   if (cookies.zxcvbn === 'true') {
-  //     route.push("/account")
-  //   }
-  // }, [cookies.zxcvbn, route])
-  const sendEmail = useSendOTP((e) => e.sendEmail)
-  const verifyEmail = useSendOTP((e) => e.verifyEmail)
-  useSendOTP((e) => e.verified && setCookie('zxcvbn', e.verified, { path: '/', maxAge: 2.628e+6 }))
-  useSendOTP((e) => e.uid && setCookie('qlmna', e.uid, {
-    maxAge: 2.628e+6
-  }))
-  // verified?route.push("/account"):null
   let btntxt = "next";
   let inptdiv = useRef()
   let otpdiv = useRef()
   let email = useRef()
-  const [otp, setOtp] = useState([])
+  const [value, setValue] = useState('');
   const [emailDone, setEmailDone] = useState(false)
-  // console.log(process.env.API_URL)
+  const uid = useSendOTP((e)=>btoa(e.uid));
+  const verified = useSendOTP((e)=>e.verified)
+  // useEffect(()=>{
+  //   verified === 'true' && route.push("/account")
+  // },[verified])
+  useEffect(()=>{
+    if(uid){
+      setCookie('UserID',window.btoa(uid),{
+        secure:true,
+        maxAge:2.628e+6
+      })
+      setCookie('LoggedIN',true,{
+        secure:true,
+        maxAge:2.628e+6
+      })
+      route.reload()
+    }
+  },[uid])
+
+  const sendEmail = useSendOTP((e) => e.sendEmail)
+  const verifyEmail = useSendOTP((e) => e.verifyEmail)
+
+
   const formsubmit = (e) => {
     e.preventDefault();
     // inptdiv
@@ -35,7 +47,7 @@ const Signup = () => {
       if (emailDone) {
         verifyEmail({
           email: email.current.value,
-          otp: otp.join("")
+          otp: value
         })
       } else {
         sendEmail({
@@ -45,37 +57,29 @@ const Signup = () => {
         setEmailDone(true)
       }
     }
-    else {
-      console.log("please enter correct number")
-    }
-    // console.log(email.current.value)
+    console.log(email.current.value)
   }
   return (
     <Fragment>
       <form className={style.auth_form} onSubmit={formsubmit}>
         <div className={`${style.form_input_box}`} ref={inptdiv}>
           <MailIcon />
-          {/* <EmailIcon /> */}
-          <input type="text" placeholder='Email Address'
-            ref={email} />
+          <input type="text" placeholder='email@gamil.com' ref={email} />
         </div>
         <div className={`${style.nexttoggle}`} ref={otpdiv}>
-          <input onChange={(e) => {
-            setOtp([...otp, e.target.value])
-          }} type="text" placeholder='0' />
-          <input onChange={(e) => {
-            setOtp([...otp, e.target.value])
-          }} type="text" placeholder='0' />
-          <input onChange={(e) => {
-            setOtp([...otp, e.target.value])
-          }} type="text" placeholder='0' />
-          <input onChange={(e) => {
-            setOtp([...otp, e.target.value])
-          }} type="text" placeholder='0' />
-          <input onChange={(e) => {
-            setOtp([...otp, e.target.value])
-          }} type="text" placeholder='0' />
-          {/* {result} */}
+          <div style={{
+          }} >
+            <OtpField
+              value={value}
+              onChange={setValue}
+              numInputs={5}
+              onChangeRegex={/^([0-9]{0,})$/}
+              autoFocus
+              separator={<span></span>}
+              isTypeNumber
+              inputProps={{ className: 'otp-field__input', disabled: false }}
+            />
+          </div>
         </div>
         <button>{btntxt}</button>
       </form>

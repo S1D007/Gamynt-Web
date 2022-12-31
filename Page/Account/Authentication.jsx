@@ -9,10 +9,9 @@ const Authentication = () => {
   const [navnumber, setnavnumber] = useState(0)
   const [compo, setcompo] = useState(<Signup/>)
 
-  // useEffect(() => {
-  //   {navnumber === 0 ? setcompo(<Signup/>) : setcompo(<Login/>)}
-  // }, [navnumber])
-  
+  useEffect(() => {
+    {navnumber === 0 ? setcompo(<Signup/>) : setcompo(<Login/>)}
+  }, [navnumber])
 
   return (
     <main className={style.auth_main_container}>

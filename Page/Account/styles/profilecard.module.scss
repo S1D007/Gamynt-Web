@@ -26,11 +26,11 @@
     @include flex_box(row ,space-between , center, 1rem);
     img{
         cursor: pointer;
-        width: 5rem;
-        height: 5rem;
+        width: 6rem;
+        height: 6rem;
         object-fit: cover;
         border-radius: 50%;
-        outline: 2px solid red;
+        outline: 2px solid var(--primary-color);
         outline-offset: 3px;
     }
     div{

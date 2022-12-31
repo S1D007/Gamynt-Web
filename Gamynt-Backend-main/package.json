@@ -20,6 +20,7 @@
     "nodemailer": "^6.8.0",
     "nodemailer-express-handlebars": "^6.0.0",
     "random-avatar": "^1.0.1",
+    "random-avatar-generator": "^2.0.0",
     "socket.io": "^4.5.3",
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.0"
