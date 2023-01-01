@@ -21,10 +21,11 @@ const Authentication = () => {
                 <img src="/logo_mini.png" alt="" />
                     </header>
                     <nav>
-                        <li className={`${navnumber == 0 && style.active}`} onClick={()=>{setnavnumber(0)}}>Sign up</li>
-                        <li className={`${navnumber == 1 && style.active}`} onClick={()=>{setnavnumber(1)}}>Log in</li>
+                        <h1>Welcome Mynter!</h1>
+                        <h4>Let us Verify You.😊</h4>
                     </nav>
                     {compo}
+                    <span>Need Help?</span>
                 </section>
             </section>
     </main>

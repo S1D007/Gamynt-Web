@@ -1,89 +1,54 @@
 @import "../../../styles/mixins";
 
-.profile_container{
-    header{
-        padding: 0.5rem 1rem;
-        @include flex_box(row , flex-end);
-        width: 100%;
-        button{
-            padding: 0rem 1rem;
-            font-size: 0.9rem;
-            background-color: var(--primary-color);
-            border-radius: 10.5rem;
-            svg{
-                width: 1rem;
-            }
-        }
-    }
-}
-.user_info{
-    padding: 0.5rem;
-    @include flex_box(column , flex-start);
-}
-.user_img_follow{
-    padding: 0rem 1rem;
+.profile_container {
+  header {
+    padding: 0.5rem 1rem;
+    @include flex_box(row, flex-end);
     width: 100%;
-    @include flex_box(row ,space-between , center, 1rem);
-    img{
-        cursor: pointer;
-        width: 6rem;
-        height: 6rem;
-        object-fit: cover;
-        border-radius: 50%;
-        outline: 2px solid var(--primary-color);
-        outline-offset: 3px;
+    button {
+      padding: 0rem 1rem;
+      font-size: 0.9rem;
+      background-color: var(--primary-color);
+      border-radius: 10.5rem;
+      svg {
+        width: 1rem;
+      }
     }
-    div{
-        text-transform: capitalize;
-        @include flex_box();
-        gap: 1rem;
-        width: 90%;
-        ul{
-            @include flex_box(row , $gap:0.5rem);
-            font-size: 1.4rem;
-            font-weight: 600;
-            list-style: none;
-            line-height: 1.8rem;
-            li{
-                line-height: 1rem;
-                font-size: 0.8rem;
-                font-weight: 400;
-                list-style: none;
-            }
-        }
+  }
+}
+.container {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    // background-color: aliceblue;
+    // height:100%;
+  .stats {
+    display: flex;
+    gap: 1rem;
+    // background-color: aliceblue;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      // margin-right: 20%;
+      width: 6rem;
+      margin-right: 1rem;
+      outline: 4px solid var(--primary-color);
+      box-shadow: 0px 0px 60px var(--primary-color);
+      outline-offset: 2px;
+      border-radius: 100px;
+    //   margin-bottom: 100px;
+    }
+    h1 {
+      text-align: center;
+      // margin-top: 10px
+    };
+}
+.userInfo{
+    h2{
+      margin-top:10px;
+      text-transform: capitalize;
+    }p{
+      text-transform: capitalize;
+      margin-top:10px
     }
 }
-.user_name_bio{
-    h1{
-        width: min(30rem ,100%);
-        @include textwrap(1);
-    }
-    p{
-        width: min(30rem ,100%);
-        @include textwrap(3);
-        font-weight: 300;
-        line-height: 1.4rem;
-    }
-}
-
-@media (max-width:$mobile) {
-        .user_name_bio{
-            h1{
-                width: 100%;
-            }
-            p{
-                width: 100%;
-            }
-        }
-        .user_img_follow{
-            div{
-                text-transform: capitalize;
-                @include flex_box();
-                gap: 1rem;
-                width: 90%;
-                ul{
-                    @include flex_box(column , $gap:0rem);
-                }
-            }
-        }
 }

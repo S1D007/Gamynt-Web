@@ -6,6 +6,8 @@ import OtpField from 'react-otp-field';
 import { useSendOTP } from "../../suppliers/zustand/store"
 import { useCookies } from 'react-cookie';
 import {useRouter} from 'next/router'
+
+
 const Signup = () => {
   const [cookies, setCookie] = useCookies(['UserInfo']);
   const route = useRouter()
@@ -64,7 +66,7 @@ const Signup = () => {
       <form className={style.auth_form} onSubmit={formsubmit}>
         <div className={`${style.form_input_box}`} ref={inptdiv}>
           <MailIcon />
-          <input type="text" placeholder='email@gamil.com' ref={email} />
+          <input type="text" placeholder='Email' ref={email} />
         </div>
         <div className={`${style.nexttoggle}`} ref={otpdiv}>
           <div style={{
@@ -78,7 +80,8 @@ const Signup = () => {
               separator={<span></span>}
               isTypeNumber
               inputProps={{ className: 'otp-field__input', disabled: false }}
-            />
+              classNames={style.div_otp}
+              />
           </div>
         </div>
         <button>{btntxt}</button>

@@ -1,37 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from "../styles/profilecard.module.scss"
 import CreateIcon from '@mui/icons-material/Create';
-
+import { useRouter } from 'next/router';
+import millify from "millify"
 const Profilecard = ({username,followers,following,posts,avatar,bio}) => {
+    let router = useRouter()
   return (
     <main className={style.profile_container}>
         <header>
-            <button><CreateIcon/> edit</button>
+            <button onClick={()=>{router.push("/account/editprofile")}}><CreateIcon/> edit</button>
         </header>
-        <section className={style.user_info}>
-            <div className={style.user_img_follow}>
+        <div className={style.container} >
+            <section>
+            <div className={style.stats} >
             <img src={avatar} alt="" />
-            <div>
-                <ul>
-                    {posts?.length}
-                    <li>Post</li>
-                </ul>
-                <ul>
-                    {followers}
-                    <li>Followers</li>
-                </ul>
-                <ul>
-                    {following}
-                    <li>Following</li>
-                </ul>
-            </div>
-            </div>
-            <div className={style.user_name_bio}>
-                <h1>{username}</h1>
-                <p>{bio}</p>
-            </div>
-        </section>
+            <span>
+                    <h1>{millify(followers)}</h1>
+                        Followers
+                    </span>
+                    <span>
+                    <h1>{millify(following)}</h1>
+                        Following
+                    </span>
+                    <span>
+                    <h1>{millify(posts?.length)}</h1>
+                        Posts
+                    </span>
+                </div>
+        <div className={style.userInfo} >
+            <h2>{username}</h2>
+            <p>{bio}</p>
+        </div>
+            </section>
+        </div>
     </main>
+
   )
 }
 

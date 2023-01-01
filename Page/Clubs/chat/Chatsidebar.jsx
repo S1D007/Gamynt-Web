@@ -16,7 +16,7 @@ const Chatsidebar = () => {
 
   useEffect(() => {
     // {handlenav.includes("sidebar") == true ? menumainref.current.classList.toggle(style.open_nav):false}
-    {handlenav.includes("sidebar") == true ? setclasstoggle(style.open_nav):setclasstoggle(style.sidebar_main)}
+    {handlenav?.includes("sidebar") == true ? setclasstoggle(style.open_nav):setclasstoggle(style.sidebar_main)}
 }, [handlenav])
 
 return (

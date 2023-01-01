@@ -28,6 +28,9 @@ function MyApp({ Component, pageProps }) {
       case ("/tournaments/register"):
         setisnav(1);
         break;
+      case ("/account/editprofile"):
+        setisnav(1);
+        break;
 
       default:
         setisnav(0)

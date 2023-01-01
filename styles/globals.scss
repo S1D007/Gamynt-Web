@@ -16,26 +16,28 @@
   // --wallet-grad:linear-gradient(165deg , rgba(0, 128, 0, 0.562) , black, black);
   --wallet-grad:linear-gradient(165deg , rgba(var(--primary-color-rgb) , 0.562) , black, black);
   --gradient-shadow: linear-gradient(
-		45deg,
-		#fb0094,
-		#0000ff,
-		#00ff00,
-		#ffff00,
-		#ff0000,
-		#fb0094,
-		#0000ff,
-		#00ff00,
-		#ffff00,
-		#ff0000
+		145deg,
+		#0000ff5a,
+		#00ff0090,
+		#ffff0096,
+		#ff00007e,
+		#0000ff5a,
+		#ffff0096,
+		#ff00007e
 	);
   
   --black-rgb: 1, 1, 1;
 
-  // --primary-color:rgb(4, 172, 198);
-  --primary-color:rgb(68, 116, 195,0.8);
-  --primary-color-rgb: 74, 138, 241;
+  --primary-color:rgb(33, 118, 160);
+  --primary-color-rgb:33, 118,160;
 
-  --secondry-color: rgb(15, 234, 198);
+  // --primary-color:rgb(68, 116, 195,0.9);
+  // --primary-color-rgb: 74, 138, 241;
+
+  // --primary-color:rgb(68, 116, 195,0.9);
+  // --primary-color-rgb: 74, 138, 241;
+
+  --secondry-color: rgb(33, 118, 160)
   --secondry-color-rgb: 15, 234, 198;
 
   --link-color: rgb(35, 112, 254);
@@ -71,7 +73,7 @@ html{
   height: -webkit-fill-available;
 }
 body{
-  font-family: 'Changa', sans-serif;
+  font-family: sans-serif;
   background-color: var(--theme-bg);
   color: var(--theme-color);
   width: 100vw;

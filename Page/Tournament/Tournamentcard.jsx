@@ -18,10 +18,10 @@ const Tournamentcard = () => {
     </div>
       <div className={style.tournament_info}>
       
-     <p> <img src="/images/freefire.jpeg" alt="" width={25} height={25}/>  free fire</p>
+     <p> <img src="/images/freefire.jpeg" alt="" width={25} height={25}/>free fire</p>
      <p><img src="/util/prize.webp" alt="" width={35} height={35}/>₹ 250</p>
      <p> <img src="/util/member.png" alt="" width={35} height={35}/>7/14</p>
-     <p><GroupIcon/> duo</p>
+     <p><GroupIcon/> Duo</p>
       </div>
       <button onClick={()=>{router.push("/tournaments/register")}}>join tournament</button>
       </main>
