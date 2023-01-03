@@ -46,12 +46,14 @@ function MyApp({ Component, pageProps }) {
   const [cookie, setCookie] = useCookies(['UserInfo'])
   const sendData = useUserData((e) => e.sendDetailstoServer)
   useEffect(() => {
-    const uid1 = atob(cookie.UserID)
-    const uid = atob(uid1)
-    sendData({
-      loaded: true,
-      uid
-    })
+if(cookie.UserID){
+  const uid1 = atob(cookie.UserID)
+  const uid = atob(uid1)
+  sendData({
+    loaded: true,
+    uid
+  })
+}
     console.log(".......")
   }, [cookie.UserID,sendData])
   return (
