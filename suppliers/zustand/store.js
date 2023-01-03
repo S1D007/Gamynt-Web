@@ -64,7 +64,7 @@ const useCashfree = create(
             axios.get(`${url}/get-order?orderID=${values.link_id}`).then((e)=>{
                 console.log(e)
                 if(e.data.link_amount === e.data.link_amount_paid){
-                    axios.get(`http://localhost:8080/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e)=>{
+                    axios.get(`${url}/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e)=>{
                         location.reload();
                     })
                 }
