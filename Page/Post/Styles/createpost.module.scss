@@ -31,7 +31,8 @@
     div{
         &:last-child{
             margin-left: auto;
-            padding:0.1rem 1rem;
+            padding:0.5rem 1rem;
+            font-weight: 600;
             border-radius: 0.5rem;
             background-color: var(--primary-color);
         }

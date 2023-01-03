@@ -6,7 +6,7 @@
     margin: 0.3rem;
     padding: 0.5rem;
     @include flex_box(row , space-between , center , 1rem);
-    background-color: rgb(33, 33, 33);
+    background-color: var(--theme-card);
     img{
         width: 2.5rem;
         aspect-ratio: 1/1;

@@ -59,7 +59,7 @@ const Signup = () => {
         setEmailDone(true)
       }
     }
-    console.log(email.current.value)
+    // console.log(email.current.value)
   }
   return (
     <Fragment>

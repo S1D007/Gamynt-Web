@@ -28,16 +28,48 @@ const useUserData = create(
     
     (set) => ({
         result:{},
+        diamond:0,
+        coin:0,
         sendDetailstoServer: (values) => {
             if(values.loaded = true){
                 axios.get(`${url}/get-user?uid=${values.uid}`).then((e)=>{
                     // console.log(e.data)
                     set(()=>({
-                        result:e.data
+                        result:e.data,
+                        diamond:e.data.diamonds,
+                        coin:e.data.coins
                     }))
                 })
             }
         },
     })
 )
-export { useSendOTP,useUserData }
+const useCashfree = create(
+    
+    (set) => ({
+        result:{},
+        // diamond:0,
+        // coin:0,
+        isPaid:false,
+        createOrder: (values) => {
+            // amount,username,phone,email,details
+                axios.get(`${url}/create-order?amount=${values.amount}&username=${values.username}&phone=${values.phone}&email=${values.email}&details=${values.details}`).then((e)=>{
+                    console.log(e.data)
+                    set(()=>({
+                        result:e.data,
+                    }))
+                })
+        },
+        getOrder: (values) => {
+            axios.get(`${url}/get-order?orderID=${values.link_id}`).then((e)=>{
+                console.log(e)
+                if(e.data.link_amount === e.data.link_amount_paid){
+                    axios.get(`http://localhost:8080/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e)=>{
+                        location.reload();
+                    })
+                }
+            })
+        }
+    })
+)
+export { useSendOTP,useUserData,useCashfree }

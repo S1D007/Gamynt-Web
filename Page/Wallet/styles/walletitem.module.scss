@@ -6,7 +6,7 @@
     position: sticky;
     top: $navheight;
     backdrop-filter: blur(20px);
-    background:var(--wallet-grad);
+    // background:var(--wallet-grad);
     @include flex_box(row , space-between , center , 1rem);
     z-index: 10;
     svg{

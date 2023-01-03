@@ -1,23 +1,25 @@
 import React from 'react'
 import style from "./styles/walletcard.module.scss"
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddIcon from '@mui/icons-material/Add';
 import TransferIcon from '@mui/icons-material/IosShare';
 import HistoryIcon from '@mui/icons-material/History';
 
 import { useRouter } from 'next/router';
-
+import millify from "millify"
+import {useUserData} from "../../suppliers/zustand/store"
 const Walletcard = () => {
     let router = useRouter();
+    const diamonds = useUserData((e)=>e.diamond)
+    const coins = useUserData((e)=>e.coin)
   return (
     <main className={style.wallet_card}>
         <header>
-            <small>total balance</small>
+            <small>Balance</small>
             <div className={style.money_div}>
-                <CurrencyRupeeIcon/>
-                <h1>522,3434</h1>
-                <div><VisibilityIcon/></div>
+            <img src={"./coin.gif"} alt="" />
+                <h1>{millify(coins)}</h1>
+            <img src={"./diamond.gif"} alt="" />
+                <h1>{millify(diamonds)}</h1>
             </div>
         </header>
 

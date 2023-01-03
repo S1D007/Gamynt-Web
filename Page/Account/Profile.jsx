@@ -11,18 +11,8 @@ import { useCookies } from 'react-cookie';
 const Profile = () => {
   const [pageroute, setpageroute] = new useState(1)
   const [pagecompo, setpagecompo] = new useState("loading .. ")
-  const [cookie, setCookie] = useCookies(['UserInfo'])
-  const sendData = useUserData((e) => e.sendDetailstoServer)
   const result = useUserData((e) => e.result)
-  console.log(result)
-  const uid1 = atob(cookie.UserID)
-  const uid = atob(uid1)
-  new useEffect(() => {
-    sendData({
-      loaded: true,
-      uid
-    })
-  }, [])
+  // console.log(result)
 
   new useEffect(() => {
     switch (pageroute) {

@@ -97,6 +97,11 @@
 .profile_section{
     @include flex_box($gap:23rem);
 }
+.store{
+    // @include laptop(){
+    //     display: none;
+    // }
+}
 
 .notification{
     margin: 0rem 1rem;

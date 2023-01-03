@@ -7,14 +7,17 @@ import { useRouter } from 'next/router';
 import Modal from '@mui/material/Modal';
 import Notifiaction from '../Notification/Notifiaction';
 import update from "../data/update.json"
-
+import {useUserData} from "../../suppliers/zustand/store"
+import WalletIcon from '@mui/icons-material/Store';
+import millify from "millify"
 const TopNavbar = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   let router = useRouter();
   let path = router.pathname;
-
+  const diamonds = useUserData((e)=>e.diamond)
+  const coins = useUserData((e)=>e.coin)
   return (
     <nav className={style.top_navbar}>
 
@@ -35,16 +38,20 @@ const TopNavbar = () => {
             <img style={{
               width:"30px"
             }} src={"/coin.gif"} />
-            <p>23</p>
+            <p>{millify(coins)}</p>
           </div>
           <div className={style.coin_nav}>
           <img style={{
               width:"30px"
             }} src={"/diamond.gif"} />
-            <p>23</p>
+            <p>{millify(diamonds)}</p>
           </div>
         </div>
-
+        <div className={style.store} >
+        <WalletIcon onClick={()=>{
+          router.push("/store")
+        }} />
+        </div>
         <div className={style.notification} onClick={()=>{handleOpen()}}>
           <NotificationsIcon />
           <p>{update.length}</p>

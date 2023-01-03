@@ -11,8 +11,8 @@ import { Provider } from 'react-redux'
 import "nprogress/nprogress.css";
 import NProgress from 'nprogress';
 NProgress.configure({ showSpinner: false })
-
-
+import {useUserData} from "../suppliers/zustand/store"
+import {useCookies} from "react-cookie"
 function MyApp({ Component, pageProps }) {
   const [isnav, setisnav] = useState(1)
   let router = useRouter()
@@ -43,11 +43,20 @@ function MyApp({ Component, pageProps }) {
     router.events.on('routeChangeComplete', () => NProgress.done());
     router.events.on('routeChangeError', () => NProgress.done());
   }, []);
-
+  const [cookie, setCookie] = useCookies(['UserInfo'])
+  const sendData = useUserData((e) => e.sendDetailstoServer)
+  useEffect(() => {
+    const uid1 = atob(cookie.UserID)
+    const uid = atob(uid1)
+    sendData({
+      loaded: true,
+      uid
+    })
+    console.log(".......")
+  }, [cookie.UserID,sendData])
   return (
     <>
     <CookiesProvider>
-
       <Provider store={store}>
         {
           isnav === 0 ?

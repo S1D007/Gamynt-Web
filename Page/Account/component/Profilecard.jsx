@@ -15,15 +15,15 @@ const Profilecard = ({username,followers,following,posts,avatar,bio}) => {
             <div className={style.stats} >
             <img src={avatar} alt="" />
             <span>
-                    <h1>{millify(followers)}</h1>
+                    <h1>{millify(+followers)}</h1>
                         Followers
                     </span>
                     <span>
-                    <h1>{millify(following)}</h1>
+                    <h1>{millify(+following)}</h1>
                         Following
                     </span>
                     <span>
-                    <h1>{millify(posts?.length)}</h1>
+                    <h1>{millify(+posts?.length)}</h1>
                         Posts
                     </span>
                 </div>
