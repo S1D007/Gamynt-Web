@@ -1,6 +1,6 @@
 import React from 'react'
 import Walletnav from '../../Page/Wallet/Walletnav'
-import wallet from "./styles/wallet.module.scss"
+import wallet from "./styles/store.module.scss"
 import style from "./styles/walletitem.module.scss"
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 

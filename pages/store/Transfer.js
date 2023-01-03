@@ -1,6 +1,6 @@
 import React from 'react'
 import Walletnav from '../../Page/Wallet/Walletnav'
-import style from "./styles/wallet.module.scss"
+import style from "./styles/store.module.scss"
 
 const Transfer = () => {
   return (

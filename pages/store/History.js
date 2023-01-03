@@ -1,7 +1,7 @@
 import React from 'react'
 import Historyusercard from '../../Page/Wallet/Historyusercard'
 import Walletnav from '../../Page/Wallet/Walletnav'
-import style from "./styles/wallet.module.scss"
+import style from "./styles/store.module.scss"
 
 const history = () => {
   return (
