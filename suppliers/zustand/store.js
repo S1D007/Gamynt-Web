@@ -1,6 +1,6 @@
 import axios from "axios"
 import create from "zustand"
-const url = `https://gamynt-backend.onrender.com/`
+const url = `https://gamynt-backend.onrender.com`
 const useSendOTP = create(
     (set) => ({
         verified: false,
