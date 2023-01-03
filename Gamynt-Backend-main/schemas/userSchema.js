@@ -67,7 +67,9 @@ const userSchema = new mongoose.Schema({
             message:String,
             callToActionLink:String
         }
-    ]
+    ],
+    coins:Number,
+    diamonds:Number
 })
 
 module.exports = userSchema

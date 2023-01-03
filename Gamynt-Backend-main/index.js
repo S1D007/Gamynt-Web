@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 io.on('connection',(socket)=>{
     socket.on("club-chat",async (payloads)=>{
         io.emit("chats",payloads)
-        console.log(payloads)
+        // console.log(payloads)
         const club = await ClubServer.findOne({
             clubID:payloads.uuid
         })
@@ -42,7 +42,7 @@ io.on('connection',(socket)=>{
             date:payloads.date
         })
         await club.save()
-        console.log(club)
+        // console.log(club)
         // console.log(club.channelList[0].messages)
     })
 })
