@@ -1,7 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from "./get_started.module.scss"
-function GetStarted({setNext}) {
-    const [tick, setTick] = useState(0)
+import { useCashfree, useUserData } from '../../../../suppliers/zustand/store';
+function GetStarted({ setNext }) {
+  const [tick, setTick] = useState(0);
+  const { createOrder,resultFromCashfree } = useCashfree()
+  const { result } = useUserData()
+//   useEffect((e)=>{
+//     document.addEventListener('visibilitychange', function(){
+//       // console.log(document.visibilityState)  
+//       if(resultFromCashfree.link_url && document.visibilityState === "visible"){
+//         getOrder({
+//           link_id:resultFromCashfree.link_id,
+//           email:result.email,
+//           amount:80
+//         })
+//       }
+// });
+//   },[resultFromCashfree])
+      
   return (
     <div className={style.container}>
       <div className={style.club_details}>
@@ -70,8 +86,40 @@ function GetStarted({setNext}) {
           </div>
         </div>
         <div className={style.next} >
-          <button onClick={()=>{
+          <button onClick={() => {
             setNext(1)
+            // switch (tick) {
+            //   case 1:{
+            //     createOrder({
+            //       username: result.username,
+            //       email: result.email,
+            //       amount: 60,
+            //       phone: "9905833824",
+            //       details:""
+            //     })
+            //   }
+            //     case 2:{
+            //       createOrder({
+            //       username: result.username,
+            //       email: result.email,
+            //       amount: 30,
+            //       phone: "9905833824",
+            //       details:""
+            //     })
+            //     }
+            //     case 3:{
+            //       createOrder({
+            //       username: result.username,
+            //       email: result.email,
+            //       amount: 420,
+            //       phone: "9905833824",
+            //       details:""
+            //     })
+            //     }
+            //     default:{
+            //       setNext(1)
+            //     }
+            // }
           }} >Get Started</button>
         </div>
       </div>

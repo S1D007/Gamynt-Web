@@ -55,7 +55,7 @@ if(cookie.UserID){
   })
 }
     console.log(".......")
-  }, [cookie.UserID,sendData])
+  }, [])
   return (
     <>
     <CookiesProvider>

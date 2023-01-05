@@ -57,7 +57,7 @@
 
         p {
             @include textwrap(1);
-            font-weight: 600;
+            font-weight: 500;
         }
 
         &:not(.active_link) {
@@ -113,7 +113,7 @@
 
         p {
             @include textwrap(1);
-            font-weight: 600;
+            font-weight: 500;
         }
     }
 }

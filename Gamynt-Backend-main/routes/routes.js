@@ -8,11 +8,11 @@ cdn.config({
     api_secret: "sqTD-thpTcu7OmrjUC7FvFvFmuI",
 });
 const {createOrder,getOrder} = require("../controllers/cashfree")
+const {createPost, getPosts}  = require("../controllers/post")
 const {tournamentRegistration,tournamentAll,getTournament} = require("../controllers/tournamentRegistration")
-const {getUser, getUsers,addDiamonds} = require("../controllers/User")
+const {getUser, getUsers,addDiamonds, editProfile} = require("../controllers/User")
 const {createClub,getAllClubs,getClubByUID,getChats,createChannel,getChannel,addMember,getMember} = require("../controllers/clubServer")
 const {otp,verifyOTP} = require("../controllers/otp.js")
-routes.post("/register-tournament",tournamentRegistration)
 routes.post("/create-club",createClub)
 routes.post("/upload",(req,res)=>{
     const files = req.files.img
@@ -22,6 +22,7 @@ routes.post("/upload",(req,res)=>{
         })
     })
 })
+routes.get("/register-tournament",tournamentRegistration)
 routes.get("/otp",otp)
 routes.get("/otp-verify",verifyOTP)
 routes.get("/all-tournament",tournamentAll)
@@ -38,5 +39,8 @@ routes.get("/users",getUsers)
 routes.get("/create-order",createOrder)
 routes.get("/get-order",getOrder)
 routes.get("/add-diamonds",addDiamonds)
+routes.get("/create-post",createPost)
+routes.get("/get-posts",getPosts)
+routes.get("/edit-profile",editProfile)
 module.exports = routes
     

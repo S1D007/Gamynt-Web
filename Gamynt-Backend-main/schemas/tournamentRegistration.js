@@ -39,9 +39,14 @@ const TournamentRegistrationSchema = mongoose.Schema({
     PrizePool:{
         type:Number
     },
-    // schedule:{
-    //     type:String
-    // },
+    schedule:{
+        type:String
+    },
+    advance:[{
+        advanceType:String,
+        advanceAmount:Number,
+        duration:String
+    }]
 })
 
 module.exports = TournamentRegistrationSchema
