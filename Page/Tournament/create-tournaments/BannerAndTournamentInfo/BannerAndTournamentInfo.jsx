@@ -10,25 +10,17 @@ function BannerAndTournamentInfo() {
   const [disable,setDisable] = useState(false)
   const route = useRouter()
   const [data,setData] = useState({ game:"",title:"",banner:"", mode:"", slot:0, EntryFees:"",description:"",PrizePool:0,tags:[],bannerImgUrl:"",schedule:"" })
-  // console.log(data)
+  // console.log(image)
   const {createTournament} = useTournament()
   const handleImageUpload = e => {
-    setImage(e.target.files[0]);
+    // setImage(e.target.files[0]);
     uploadImage({
       image:e.target.files[0]
     })
   };
-useEffect(()=>{
-    if(image){
-    setData({
-      ...data,
-      bannerImgUrl:image
-    })
-  }
-},[image])
   const handleClick = () => {
-    const { game, title, banner, mode, slot, EntryFees, description, PrizePool, tags,schedule } = data
-    createTournament({ game, title, banner, mode, slot, EntryFees, description, PrizePool, tags,schedule })
+    const { game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags,schedule } = data
+    createTournament({ game, title, bannerImgUrl:image, mode, slot, EntryFees, description, PrizePool, tags,schedule })
     route.push("/tournaments")
   }
   return (

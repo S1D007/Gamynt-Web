@@ -2,11 +2,16 @@ import React, { Fragment, useEffect, useState } from 'react'
 import ExploreTournament from '../../Page/Tournament/ExploreTournament'
 import TopFeaturedtournament from '../../Page/Tournament/TopFeaturedtournament'
 import Trendingtournament from '../../Page/Tournament/Trendingtournament'
+import { useTournament } from '../../suppliers/zustand/store'
 import style from "../styles/tournament.module.scss"
 
-function index() {
+function Index() {
   const [pageroute, setpageroute] = new useState(1)
   const [pagecompo, setpagecompo] = new useState("loading .. ")
+  const {getTournament} = useTournament()
+  useEffect(()=>{
+    getTournament()
+  },[])
   new useEffect(() => {
     switch (pageroute) {
       case 1:
@@ -40,4 +45,4 @@ function index() {
   )
 }
 
-export default index
+export default Index

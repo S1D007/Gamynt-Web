@@ -115,19 +115,28 @@ const useImageUpload = create(set => ({
                 set(() => ({
                     image: data.result
                 }))
-                // console.log(data)
+                console.log(data)
                 // TODO: Handle the response from the server
             });
     }
 }));
 const useTournament = create(set => ({
     done: false,
-    createTournament: ({ game, title, banner, mode, slot, EntryFees, description, PrizePool, tags,schedule }) => {
-        console.log({ game, title, banner, mode, slot, EntryFees, description, PrizePool, tags })
-        axios.get(`${url}/register-tournament?game=${game}&title=${title}&banner=${banner}&mode=${mode}&slot=${slot}&EntryFees=${EntryFees}&descriptions=${description}&PrizePool=${PrizePool}&tags=${tags}&schedule=${schedule}`).then(() => {
+    createTournament: ({ game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags,schedule }) => {
+        console.log({ game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags })
+        axios.get(`${url}/register-tournament?game=${game}&title=${title}&bannerImgUrl=${bannerImgUrl}&mode=${mode}&slot=${slot}&EntryFees=${EntryFees}&descriptions=${description}&PrizePool=${PrizePool}&tags=${tags}&schedule=${schedule}`).then(() => {
             console.log("done")
             set(() => ({
                 done: true
+            }))
+        })
+    },
+    result:[],
+    getTournament: ()=>{
+        axios.get(`${url}/all-tournament`).then((e)=>{
+            console.log(e.data)
+            set(()=>({
+                result:e.data
             }))
         })
     }

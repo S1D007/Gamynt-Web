@@ -21,7 +21,7 @@ module.exports.addDiamonds = async (req, res) => {
   // res.send(doc)
   // console.log(updatedDiamonds)
   await User.updateOne({ email }, {
-
+    diamonds:updatedDiamonds
   }).then((e) => {
     res.send(e)
   })
