@@ -69,13 +69,8 @@ const useCashfree = create(
         getOrder: (values) => {
             axios.get(`${url}/get-order?orderID=${values.link_id}`).then((e) => {
                 console.log(e)
-<<<<<<< HEAD
                 if (e.data.link_amount === e.data.link_amount_paid) {
                     axios.get(`${url}/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e) => {
-=======
-                if(e.data.link_amount === e.data.link_amount_paid){
-                    axios.get(`${url}/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e)=>{
->>>>>>> 13ee1573f2839fc7bb7cda5a3f288f8c4c0c0651
                         location.reload();
                     })
                 }
@@ -83,7 +78,6 @@ const useCashfree = create(
         }
     })
 )
-<<<<<<< HEAD
 const usePost = create(
     (set) => ({
         result: [],
@@ -128,9 +122,9 @@ const useImageUpload = create(set => ({
 }));
 const useTournament = create(set => ({
     done: false,
-    createTournament: ({ game, title, banner, mode, slot, EntryFees, description, PrizePool, tags,schedule,advanceType,advanceAmount,duration }) => {
+    createTournament: ({ game, title, banner, mode, slot, EntryFees, description, PrizePool, tags,schedule }) => {
         console.log({ game, title, banner, mode, slot, EntryFees, description, PrizePool, tags })
-        axios.get(`${url}/register-tournament?game=${game}&title=${title}&banner=${banner}&mode=${mode}&slot=${slot}&EntryFees=${EntryFees}&descriptions=${description}&PrizePool=${PrizePool}&tags=${tags}&schedule=${schedule}&advanceType=${advanceType}&advanceAmount=${advanceAmount}&duration=${duration}`).then(() => {
+        axios.get(`${url}/register-tournament?game=${game}&title=${title}&banner=${banner}&mode=${mode}&slot=${slot}&EntryFees=${EntryFees}&descriptions=${description}&PrizePool=${PrizePool}&tags=${tags}&schedule=${schedule}`).then(() => {
             console.log("done")
             set(() => ({
                 done: true
@@ -139,6 +133,3 @@ const useTournament = create(set => ({
     }
 }));
 export { useSendOTP, useUserData, useCashfree, usePost, useImageUpload, useTournament }
-=======
-export { useSendOTP,useUserData,useCashfree }
->>>>>>> 13ee1573f2839fc7bb7cda5a3f288f8c4c0c0651
