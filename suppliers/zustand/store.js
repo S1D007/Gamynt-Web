@@ -1,6 +1,6 @@
 import axios from "axios"
 import create from "zustand"
-const url = `http://localhost:8080`
+const url = `https://gamynt-backend.onrender.com`
 const useSendOTP = create(
     (set) => ({
         verified: false,
@@ -69,8 +69,13 @@ const useCashfree = create(
         getOrder: (values) => {
             axios.get(`${url}/get-order?orderID=${values.link_id}`).then((e) => {
                 console.log(e)
+<<<<<<< HEAD
                 if (e.data.link_amount === e.data.link_amount_paid) {
                     axios.get(`${url}/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e) => {
+=======
+                if(e.data.link_amount === e.data.link_amount_paid){
+                    axios.get(`${url}/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e)=>{
+>>>>>>> 13ee1573f2839fc7bb7cda5a3f288f8c4c0c0651
                         location.reload();
                     })
                 }
@@ -78,6 +83,7 @@ const useCashfree = create(
         }
     })
 )
+<<<<<<< HEAD
 const usePost = create(
     (set) => ({
         result: [],
@@ -133,3 +139,6 @@ const useTournament = create(set => ({
     }
 }));
 export { useSendOTP, useUserData, useCashfree, usePost, useImageUpload, useTournament }
+=======
+export { useSendOTP,useUserData,useCashfree }
+>>>>>>> 13ee1573f2839fc7bb7cda5a3f288f8c4c0c0651
