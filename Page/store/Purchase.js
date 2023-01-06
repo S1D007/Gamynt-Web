@@ -6,7 +6,7 @@ function Purchase() {
   return (
     <div className={style.container}>
         <div className={style.coinsAndDiamonds} >
-        <DiamondCard/>
+        {/* <DiamondCard/> */}
         <CoinCard/>
         </div>
     </div>

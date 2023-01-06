@@ -7,12 +7,12 @@ import CommentIcon from '@mui/icons-material/ModeCommentOutlined';
 import ShareIcon from '@mui/icons-material/Share';
 import SaveOutline from '@mui/icons-material/BookmarkBorder';
 import SavedIcon from '@mui/icons-material/Bookmark';
-function PostCard({username,date,uid,message,image}) {
+function PostCard({username,date,uid,message,image,avatar}) {
     return (
         <section className={style.post_card}>
             <header>
                 <div className={style.header_user_info}>
-                    <img src="/images/freefire.jpeg" alt="img" />
+                    {avatar && <img src={avatar} alt="img" />}
                     <div>
                         <h2>{username}</h2>
                         <span>{date}</span>
@@ -24,7 +24,7 @@ function PostCard({username,date,uid,message,image}) {
                 </section>
             </header>
             <section className={style.post_action}>
-                {image === ""?"":<img src="/images/freefire.jpeg" alt="" />}
+                {image && <img src={image} alt="" />}
                 <p>{message}</p>
                 <div>
                     <LikeOutline />

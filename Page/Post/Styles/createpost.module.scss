@@ -6,6 +6,11 @@
     border-radius: 0.5rem;
     border: 0.3px solid rgb(47, 47, 47);
     @include flex_box(column , flex-start);
+    img{
+        width:15rem;
+        height:15rem;
+        background-color:#fff
+    }
     textarea{
         // caret-color: rgb(92, 190, 255);
         margin:0.5rem auto;
@@ -28,6 +33,7 @@
     padding:0.1rem 0.5rem;
     @include flex_box();
     width: 100%;
+
     div{
         &:last-child{
             margin-left: auto;

@@ -32,16 +32,26 @@ const userSchema = new mongoose.Schema({
     gamesIPlay:{
         type:[]
     },
-    crew:{
+    team:{
         type:[]
     },
     balance:{
         type:Number
     },
-    followers:[],
+    followers:[
+        {
+            username:String,
+            email:String,
+        }
+    ],
     followCount:Number,
     followingCount:Number,
-    following:[],
+    following:[
+        {
+            username:String,
+            email:String,
+        }
+    ],
     post:[
         {
             type:String,
@@ -69,7 +79,18 @@ const userSchema = new mongoose.Schema({
         }
     ],
     coins:Number,
-    diamonds:Number
+    diamonds:Number,
+    name:String,
+    isVerified:Boolean, 
+    subscription:[
+        {
+            name:String,
+            duration:String
+        }
+    ],
+    phone:"",
+    ip_address:"",
+    state:""
 })
 
 module.exports = userSchema

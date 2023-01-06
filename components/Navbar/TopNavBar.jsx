@@ -40,12 +40,12 @@ const TopNavbar = () => {
             }} src={"/coin.gif"} />
             <p>{millify(coins)}</p>
           </div>
-          <div className={style.coin_nav}>
+          {/* <div className={style.coin_nav}>
           <img style={{
               width:"30px"
             }} src={"/diamond.gif"} />
             <p>{millify(diamonds)}</p>
-          </div>
+          </div> */}
         </div>
         <div className={style.store} >
         <WalletIcon onClick={()=>{

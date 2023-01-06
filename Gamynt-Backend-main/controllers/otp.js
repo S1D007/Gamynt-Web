@@ -12,13 +12,12 @@ const { uniqueNamesGenerator, Config, adjectives, colors, animals, names, starWa
 
 const customConfig = {
     dictionaries: [adjectives, colors],
-    separator: ' ',
+    separator: '_',
     length: 2,
 };
 const randomName = uniqueNamesGenerator({
     dictionaries: [adjectives, colors, animals, starWars, names]
 });
-
 
 module.exports.otp = async (req, res) => {
     var transporter = nodemailer.createTransport(
@@ -118,7 +117,15 @@ module.exports.verifyOTP = async (req, res) => {
                 followingCount:0,
                 post: [],
                 directMessage: [],
-                notifications:[]
+                notifications:[],
+                coins:0,
+                diamonds:0,
+                name:"",
+                isVerified:false,
+                subscription:[],
+                phone:"",
+                ip_address:"",
+                state:""
             })
             await doc.save()
             res.send({

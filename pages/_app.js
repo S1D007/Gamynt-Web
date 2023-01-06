@@ -7,12 +7,11 @@ import TopNavBar from '../components/Navbar/TopNavBar'
 import { useRouter } from 'next/router'
 import { store } from '../suppliers/reduxstore/store'
 import { Provider } from 'react-redux'
-
 import "nprogress/nprogress.css";
 import NProgress from 'nprogress';
 NProgress.configure({ showSpinner: false })
-import {useUserData} from "../suppliers/zustand/store"
-import {useCookies} from "react-cookie"
+import { usePost, useTournament, useUserData } from "../suppliers/zustand/store"
+import { useCookies } from "react-cookie"
 function MyApp({ Component, pageProps }) {
   const [isnav, setisnav] = useState(1)
   let router = useRouter()
@@ -45,35 +44,46 @@ function MyApp({ Component, pageProps }) {
   }, []);
   const [cookie, setCookie] = useCookies(['UserInfo'])
   const sendData = useUserData((e) => e.sendDetailstoServer)
+  const getUsers = useUserData((e) => e.getUsers)
   useEffect(() => {
-if(cookie.UserID){
-  const uid1 = atob(cookie.UserID)
-  const uid = atob(uid1)
-  sendData({
-    loaded: true,
-    uid
-  })
-}
+    if (cookie.UserID) {
+      const uid1 = atob(cookie.UserID)
+      const uid = atob(uid1)
+      sendData({
+        loaded: true,
+        uid
+      })
+    }
     console.log(".......")
   }, [])
+  const { getTournament } = useTournament()
+  // const { getTournament } = useUserData()
+  useEffect(() => {
+    getTournament()
+    getUsers()
+  }, [])
+  const getPosts = usePost((e) => e.getPosts)
+  useEffect((e) => {
+    getPosts()
+  })
   return (
     <>
-    <CookiesProvider>
-      <Provider store={store}>
-        {
-          isnav === 0 ?
-            <main className='page_view'>
-              <NavBar />
-              <section className="page_view_section">
-                <TopNavBar />
-                <Component {...pageProps} />
-              </section>
-            </main>
-            :
-            <Component {...pageProps} />
-        }
-      </Provider>
-    </CookiesProvider>
+      <CookiesProvider>
+        <Provider store={store}>
+          {
+            isnav === 0 ?
+              <main className='page_view'>
+                <NavBar />
+                <section className="page_view_section">
+                  <TopNavBar />
+                  <Component {...pageProps} />
+                </section>
+              </main>
+              :
+              <Component {...pageProps} />
+          }
+        </Provider>
+      </CookiesProvider>
     </>
   )
 }

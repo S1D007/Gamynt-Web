@@ -8,10 +8,6 @@ import style from "../styles/tournament.module.scss"
 function Index() {
   const [pageroute, setpageroute] = new useState(1)
   const [pagecompo, setpagecompo] = new useState("loading .. ")
-  const {getTournament} = useTournament()
-  useEffect(()=>{
-    getTournament()
-  },[])
   new useEffect(() => {
     switch (pageroute) {
       case 1:

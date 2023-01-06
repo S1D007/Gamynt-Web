@@ -30,24 +30,47 @@ const useUserData = create(
         result: {},
         diamond: 0,
         coin: 0,
+        loaded:false,
         sendDetailstoServer: (values) => {
-            if (values.loaded = true) {
+            // if () {
                 axios.get(`${url}/get-user?uid=${values.uid}`).then((e) => {
                     // console.log(e.data)
                     set(() => ({
                         result: e.data,
                         diamond: e.data.diamonds,
-                        coin: e.data.coins
+                        coin: e.data.coins,
+                        loaded:values.loaded
                     }))
                 })
-            }
+            // }
         },
-        editProfile: ({ username, bio, email }) => {
-            // console.log(username,bio,email)
-            axios.get(`${url}/edit-profile?username=${username}&bio=${bio}&email=${email}`).then((e) => {
+        done:false,
+        editProfile: ({ username, bio, email,name,avatar }) => {
+            console.log(avatar)
+            axios.get(`${url}/edit-profile?username=${username}&bio=${bio}&email=${email}&name=${name}&avatar=${avatar}`).then((e) => {
+                set(()=>({
+                    done:true
+                }))
                 // window.location.href = "/account"
             })
         },
+        users:[],
+        getUsers: () => {
+            axios.get(`${url}/users`).then((e)=>{
+                set(()=>({
+                    users:e.data
+                }))
+            })
+        },
+        reload:false,
+        followOrUnFollow: ({value,email,username,myUsername,myEmail}) => {
+            console.log({value,email,username,myUsername,myEmail})
+            axios.get(`${url}/add-followers?email=${email}&value=${value}&myEmail=${myEmail}&myUsername=${myUsername}&username=${username}`).then((e)=>{
+                set(()=>({
+                    reload:e.data.done
+                }))
+            })
+        }
     })
 )
 const useCashfree = create(
@@ -82,11 +105,11 @@ const usePost = create(
     (set) => ({
         result: [],
         posted: false,
-        createPost: ({ username, type, uid, message, avatar }) => {
-            axios.get(`${url}/create-post?username=${username}&uid=${uid}&type=${type}&message=${message}&avatar=${avatar}`).then((e) => {
+        createPost: ({ username, type, uid, message, avatar,image }) => {
+            axios.get(`${url}/create-post?username=${username}&uid=${uid}&type=${type}&message=${message}&avatar=${avatar}&image=${image}`).then((e) => {
                 console.log(e.data)
                 set(() => ({
-                    posted: true,
+                    posted: e.data.done,
                 }))
             })
         },
@@ -102,7 +125,6 @@ const usePost = create(
 )
 const useImageUpload = create(set => ({
     image: null,
-    setImage: image => set({ image }),
     uploadImage: ({ image }) => {
         const formData = new FormData();
         formData.append('img', image);
