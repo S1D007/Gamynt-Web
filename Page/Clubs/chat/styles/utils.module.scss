@@ -8,15 +8,15 @@
     background-color: #40444B;
     width: 95%;
     position: sticky;
-    bottom: -0px;
+    bottom: 0.5rem;
     @include flex_box();
     label{
         @include flex_box();
     }
+    // input{
+    //     display: none;
+    // }
     input{
-        display: none;
-    }
-    textarea{
         font-family: sans-serif;
         padding: 0.5rem 0.3rem;
         border: none;
@@ -31,8 +31,7 @@
         &:focus{
             &::placeholder{
                 padding-left: 0.5rem;
-        }
-            
+            }
         }
     }
     svg{
@@ -63,37 +62,41 @@
 
 // message box 
 .message_box_main{
-    margin: 0.6rem;
-    padding: 0.3rem;
+    margin: 1rem;
+    padding: 0.1rem;
     width: min(80rem , 90%);
     word-break: keep-all;
     // background-color: rgba(186, 186, 186, 0.084);
     border-radius: 0.3rem;
-    @include flex_box(row , flex-start , flex-start);
-    
+    @include flex_box(row , flex-start , flex-end);
     .sender_img{
-        width: 2.3rem;
+        width: min(2rem);
         aspect-ratio: 1/1;
-        border-radius: 50%;
+        object-fit: cover;
+        border-radius:100px;
     }
 }
 .message_and_detail{
+    margin-bottom: 0.4rem;
   @include flex_box(column , flex-start , flex-start);
     header{
-        @include flex_box(row , flex-start , center , 0.5rem);
+        @include flex_box(row , flex-start , center , 0.8rem);
         p{
             @include textwrap(1);
-            font-size: 1.2rem
+            font-size: 1rem;
+            // font-weight: bold;
+            opacity: 1;
         }
         span{
             @include textwrap(1);
             font-size: 0.8rem;
-            opacity: 0.8;
+            opacity: 0.7;
         }
     }
     div{
         p{
-            line-height: 1.1rem;
+            line-height: 1rem;
+            opacity: 0.8;
         }
         img{
             width: min(20rem , 100%);

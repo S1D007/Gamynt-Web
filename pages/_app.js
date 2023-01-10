@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
   // http://localhost:3000/club/chat
   useEffect(() => {
     switch (path) {
-      case ("/club/chat"):
+      case ("/club/chat/[id]"):
         setisnav(1);
         break;
       case ("/tournaments/register"):
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
         setisnav(0)
         break;
     }
-  }, [path])
+  }, [path])  
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => NProgress.start());

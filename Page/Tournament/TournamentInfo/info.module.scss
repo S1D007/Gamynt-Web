@@ -1,0 +1,35 @@
+.container{
+    .info{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+        flex-direction:column;
+        margin-top:4px;
+        .desc{
+            font-size: 0.9rem;
+            color:rgba(245, 245, 220, 0.708);
+            text-align:center
+        };
+        .tagsContainer{
+            background-color:#000;
+            width:100%;
+            height: 3.5rem;
+            border-radius:10px;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            padding:5px;
+            gap:4px;
+            span{
+                background-color:#1f1f1f;
+                padding:5px;
+                font-size: 1rem;
+                padding:5px 10px;
+                border-radius:6px;
+                font-weight:bold;
+            }
+            // margin-top: 10px;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 @import "../../../../styles/mixins";
 
 .chat_container_main{
-    // width: 100%;
+    width: 100%;
     background-color: #36393F;
     color: #fff;
     // opacity: 0.9;
@@ -19,7 +19,8 @@
     // width: 100%;
     height: 3rem;
     position: sticky;
-    box-shadow: rgba(0, 0, 0) -10px 15px 25px -20px;
+    box-shadow: rgba(0, 0, 0,0.5) 0px 1px 10px;
+
     top: 0%;
     background-color: #36393F;
     z-index: 10;
@@ -48,26 +49,20 @@
     @include flex_box(row , flex-start , flex-start);
 }
 
-
-
-
 // chat container 
 .chat_container{
     width: 100%;
     height: 100%;
+    // height: calc(100% - 3rem);
     word-break: break-all;
     overflow-y: auto;
-    @include scrollbar(0px , 0px);
+    @include scrollbar(0px , 3px);
     position: relative;
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-weight:100;
 }
-
-
-
-
 @media (max-width:$mobile) {
     .menu_icon{
         display: flex;

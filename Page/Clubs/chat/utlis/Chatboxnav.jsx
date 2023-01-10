@@ -6,7 +6,7 @@ import MenuIcon from '@mui/icons-material/ClearAll';
 import { useDispatch , useSelector } from 'react-redux';
 import {closenav , opennav , opensidebar , openmember} from "../../../../suppliers/reduxstore/reducers/clubchatnavslice"
 
-const Chatnav = () => {
+const Chatnav = ({channelName}) => {
   let dispatch = useDispatch()
   let handlenav = useSelector((store)=>store.handlenav)
   const sidebarmenuhandle = ()=>{
@@ -29,7 +29,7 @@ const Chatnav = () => {
         <div className={style.menu_icon} onClick={()=>{sidebarmenuhandle()}} >
         <MenuIcon/>
         </div>
-      <p><span><TagIcon/></span>channel name</p>
+      <p><span><TagIcon/></span>{channelName}</p>
       </section>
       <section>
       {/* .open_member */}

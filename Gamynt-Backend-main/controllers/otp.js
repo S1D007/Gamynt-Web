@@ -46,7 +46,7 @@ module.exports.otp = async (req, res) => {
     const d = new Date().toLocaleDateString()
     var mailOptions = {
         from: '"Siddhant" <birendrakumarsingh137@gmail.com>', // sender address
-        to: email, // list of receivers
+        to: email.toLowerCase(), // list of receivers
         subject: 'Welcome, OTP for Authentcation in Gamynt',
         template: 'email', // the name of the template file i.e email.handlebars
         context: {
@@ -62,13 +62,13 @@ module.exports.otp = async (req, res) => {
             return console.log(error);
         } else {
             const emailThere = await OTP.findOne({ email })
-            console.log(emailThere)
+            // console.log(emailThere)
             if (emailThere) {
                 emailThere.otp = password
                 await emailThere.save()
             } else {
                 const doc = new OTP({
-                    email,
+                    email:email.toLowerCase(),
                     otp: password
                 })
                 await doc.save()
@@ -87,11 +87,11 @@ module.exports.verifyOTP = async (req, res) => {
     const generatorAvatar = new AvatarGenerator()
     if (otpAvailable && otp === otpAvailable.otp.toString()) {
         if (userExist) {
+            await OTP.findOne({ email }).remove()
             res.send({
                 verified: true,
                 userData:userExist
             })
-            await OTP.findOne({ email }).remove()
         }else{
             const doc = new User({
                 username,
@@ -127,12 +127,12 @@ module.exports.verifyOTP = async (req, res) => {
                 ip_address:"",
                 state:""
             })
+            await OTP.findOne({ email }).remove()
             await doc.save()
             res.send({
                 verified: true,
                 userData: doc
             })
-            await OTP.findOne({ email }).remove()
         }
     }
 

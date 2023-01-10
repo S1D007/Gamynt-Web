@@ -9,9 +9,9 @@ function DiamondCard() {
   const getOrder  = useCashfree((e)=>e.getOrder)
   const result  = useUserData((e)=>e.result)
   const resultFromCashfree  = useCashfree((e)=>e.result)
-  console.log(resultFromCashfree.link_url)
+  // console.log(resultFromCashfree.link_url)
   if(resultFromCashfree.link_url){
-    console.log('present')
+    // console.log('present')
     window.open(resultFromCashfree.link_url, '_blank');
     // route.push(resultFromCashfree.link_url)
   }

@@ -7,7 +7,7 @@ import UserRecommend from './UserRecommend';
 
 const Postfeed = () => {
   const result = usePost((e)=>e.result)
-  console.log(result)
+  // console.log(result)
   return (
     <main className={style.post_main_container}>
     <UserRecommend/>

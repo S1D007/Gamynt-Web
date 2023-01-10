@@ -46,9 +46,10 @@
     h1{
         text-transform: capitalize;
         font-size: 1.1rem;
-        font-weight: 400;
+        font-weight: bold;
     }
     h2{
+        font-weight: bold;
         font-weight: 400;
     }
 }
@@ -60,7 +61,7 @@
         padding: 0.2rem;
         text-transform: capitalize;
         font-size: 1.1rem;
-        font-weight: 400;
+        font-weight: bold;
         // @include textgrad()
     }
     .member{
@@ -69,7 +70,8 @@
         img{
             width: 2rem;
             aspect-ratio: 1/1;
-            border-radius: 50%;
+            border-radius: 100px;
+            object-fit: cover;
         }
         p{
             width: 100%;

@@ -14,16 +14,7 @@ const Index = () => {
     },[])
   return (
     <>
-    {
-      loading && <ReactLoading style={{
-        display:"flex",
-        justifyContent:"center",
-        aligntItems:"center"
-      }} type={"spin"} color={"blue"} height={67} width={35} />
-    }
-    <Suspense fallback={<div>Loading...</div>}>
-      {logincheck === true ? <Profile /> : <Authentication />}
-    </Suspense>
+      {loading ? <h1></h1>:logincheck === true ? <Profile /> : <Authentication />}
     </>
   )
 }

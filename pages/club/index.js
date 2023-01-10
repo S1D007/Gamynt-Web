@@ -4,18 +4,20 @@ import Topfeaturedclubs from "../../Page/Clubs/Topfeaturedclubs"
 import Exploreclub from "../../Page/Clubs/Exploreclub"
 import { useRouter } from 'next/router'
 import Joinedclub from '../../Page/Clubs/Joinedclub'
-
+import {useClub} from "../../suppliers/zustand/store"
 const Club = () => {
+  const {getClubs,result} = useClub()
   let router = useRouter();
   const [pageroute, setpageroute] = useState(1)
   const [pagecompo, setpagecompo] = useState("loading .. ")
   useEffect(() => {
+    getClubs()
     switch (pageroute) {
       case 1:
         setpagecompo(<Joinedclub/>)
         break;
       case 2:
-        setpagecompo(<Exploreclub />)
+        setpagecompo(<Exploreclub data={result} />)
         break;
     
       default:
@@ -23,8 +25,6 @@ const Club = () => {
         break;
     }
   }, [pageroute])
-  
-
   return (
     <Fragment>
       <Topfeaturedclubs/>
@@ -46,3 +46,15 @@ const Club = () => {
 }
 
 export default Club
+
+// export const getServerSideProps = async (context) =>{
+//   // const username = context.params.id;
+//   const res = await fetch(`http://localhost:8080/all-clubs`)
+//   const result = await res.json()
+//   console.log(result)
+//   return {
+//     props: {
+//       result:result
+//     }
+//   }
+// }

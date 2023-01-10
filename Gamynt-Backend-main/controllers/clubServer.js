@@ -1,8 +1,9 @@
 const ClubServer = require("../models/ClubServer")
 // const ClubServer = require('../models/ClubServer')
+const User = require("../models/User")
 const { v4: uuidv4 } = require('uuid');
 module.exports.createClub = async (req, res) => {
-    const { clubName, clubOwner, clubLogo, clubBanner, description } = req.body
+    const { clubName, clubOwner, clubLogo, clubBanner, description } = req.query
     const doc = new ClubServer({
         clubName, clubID: uuidv4(), clubOwner, clubLogo, description,
         clubBanner, membersList: [
@@ -24,41 +25,44 @@ module.exports.createClub = async (req, res) => {
         ],
         isPaid: false,
         isVerified: false
-
     })
     await doc.save()
-    res.send("Done")
+    res.send({
+        result:true
+    })
 }
 
 // Get
 
 module.exports.getAllClubs = async (req,res) => {
-    const data = await ClubServer.find()
+    const data = await ClubServer.find({})
     res.send(data)
 }
 
-module.exports.getClubByUID = async(req,res)=>{
-    const {uuid} = req.query
-    const data = await ClubServer.find({
-        clubID:uuid
+module.exports.getClubByID = async(req,res)=>{
+    const {_id} = req.query
+    // console.log()
+    const data = await ClubServer.findOne({
+        _id
     })
     res.send(data)
 }
 
 module.exports.getChats = async(req,res)=>{
-    const {uuid,index} = req.query
+    const {_id,index} = req.query;
+    // console.log(_id,index)
     const data = await ClubServer.findOne({
-        clubID:uuid
+        _id
     })
     const chats = data.channelList[index].messages
-    console.log(chats)
+    // console.log(chats)
     res.send(chats)
 }
 
 module.exports.createChannel = async(req,res)=>{
-    const {id,name} = req.query
+    const {_id,name} = req.query
     const club = await ClubServer.findOne({
-        clubID:id
+        _id
     })
 
     club.channelList.push({
@@ -73,38 +77,40 @@ module.exports.createChannel = async(req,res)=>{
     })
     await club.save()
     res.send(club)
-    console.log(club)
+    // console.log(club)
 }
 
 module.exports.getChannel = async (req,res) =>{
-    const {id} = req.query
+    const {_id} = req.query
     const club = await ClubServer.findOne({
-        clubID:id
+        _id
     })
     const channels = club.channelList
     res.send(channels)
 }
 
 module.exports.addMember = async (req,res)=>{
-    const {username,avatar,uuid} = req.query;
-    const club = await ClubServer.findOne({
-        clubID:uuid,
-        username,
-        avatar
+    const {username,avatar,_id} = req.query;
+    const user = await User.findOne({
+        username
     })
-    if (!club){
+    const club = await ClubServer.findOne({
+        _id
+    })
+    // console.log(club)
+    console.log()
+    if (!club.membersList.some(e => e.username === username)){
+        // console.log(!club.membersList.includes(username)
         club.membersList.push({
             username,
             avatar
         })
+        user.joinedClubs.push({
+            clubID:_id,
+            logo:club.clubLogo,
+            banner:club.clubBanner
+        })
+        await user.save()
+        await club.save()
     }
-    await club.save()
-}
-module.exports.getMember = async (req,res)=>{
-    const {uuid} = req.query;
-    const club = await ClubServer.findOne({
-        clubID:uuid
-    })
-    const members = club.membersList
-    res.send(members)
 }

@@ -7,17 +7,27 @@ import CommentIcon from '@mui/icons-material/ModeCommentOutlined';
 import ShareIcon from '@mui/icons-material/Share';
 import SaveOutline from '@mui/icons-material/BookmarkBorder';
 import SavedIcon from '@mui/icons-material/Bookmark';
-function PostCard({username,date,uid,message,image,avatar}) {
+import { useUserData } from '../../suppliers/zustand/store';
+import { useRouter } from 'next/router';
+function PostCard({ username, date, uid, message, image, avatar }) {
+    const { result } = useUserData()
+    const router = useRouter()
+    // const [like,setLike] = useState()
     return (
         <section className={style.post_card}>
             <header>
                 <div className={style.header_user_info}>
-                    {avatar && <img src={avatar} alt="img" />}
+                    {avatar && <img onClick={() => {
+                        router.push(`mynter/${username}`)
+                    }} src={avatar} alt="img" />}
                     <div>
                         <h2>{username}</h2>
                         <span>{date}</span>
                     </div>
-                    <p>Follow</p>
+                    {result?.followers?.some((e) => e.username !== username) ? <p onClick={() => {
+                        router.push(`mynter/${username}`)
+                    }} >View Profile</p> : <p>Following</p>}
+
                 </div>
                 <section className={style.more_option}>
                     <MoreIcon />
@@ -27,10 +37,10 @@ function PostCard({username,date,uid,message,image,avatar}) {
                 {image && <img src={image} alt="" />}
                 <p>{message}</p>
                 <div>
-                    <LikeOutline />
+                    {/* <LikeOutline />
                     <CommentIcon />
                     <ShareIcon />
-                    <SaveOutline />
+                    <SaveOutline /> */}
                 </div>
             </section>
         </section>

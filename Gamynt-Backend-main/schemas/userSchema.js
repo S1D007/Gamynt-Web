@@ -90,7 +90,13 @@ const userSchema = new mongoose.Schema({
     ],
     phone:"",
     ip_address:"",
-    state:""
+    state:"",
+    likedPost:[
+        {
+            username:String,
+            email:String,
+        }  
+    ]
 })
 
 module.exports = userSchema

@@ -13,20 +13,20 @@ const otpSlice = createSlice({
         send_OTP(state,action){
             state = action.payload
             fetch(`${url}/otp?email=${action.payload.email}`).then((e)=>{
-                console.log(e.json())
+                // console.log(e.json())
                 // state.result = true
             }).then((e)=>{
-                console.log(e)
+                // console.log(e)
             })
             // console.log({state,action}) 
         },
         VERIFY_OTP(state,action){
             state = action.payload
             fetch(`${url}/otp-verify?email=${action.payload.email}&otp=${action.payload.otp}`).then((e)=>{
-                console.log(e)
+                // console.log(e)
             }).then((e)=>{
             })
-            console.log({state,action}) 
+            // console.log({state,action}) 
             return state
         }
     }

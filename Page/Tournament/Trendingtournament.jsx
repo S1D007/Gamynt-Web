@@ -5,15 +5,15 @@ import { useTournament } from '../../suppliers/zustand/store'
 
 const Trendingtournament = () => {
   const {result} = useTournament()
-  console.log({
-    res:result
-  })
+  // console.log({
+  //   res:result
+  // })
   return (
            <main className={style.tournament_card_container}>
            {
-            result.map(({date,game,PrizePool,slot,bannerImgUrl,mode})=>{
+            result.map(({date,game,PrizePool,slot,bannerImgUrl,mode,id})=>{
               return <>
-              <Tournamentcard date={date} game={game} PrizePool={PrizePool} slots={slot} bannerImgUrl={bannerImgUrl} mode={mode} />
+              <Tournamentcard date={date} game={game} PrizePool={PrizePool} slots={slot} bannerImgUrl={bannerImgUrl} mode={mode} id={id} />
               </>
             })
            }

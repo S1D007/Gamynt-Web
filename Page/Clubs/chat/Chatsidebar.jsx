@@ -4,18 +4,20 @@ import Clubnav from './utlis/Clubnav'
 import ArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AddIcon from '@mui/icons-material/Add';
 import TagIcon from '@mui/icons-material/Tag';
-// import {closenav , opennav , opensidebar} from "../../../reduxstore/clubchatnavslice"
+import {closenav , opennav , opensidebar} from "../../../suppliers/reduxstore/reducers/clubchatnavslice"
+import { useClub } from '../../../suppliers/zustand/store';
 import { useSelector , useDispatch} from 'react-redux';
-
-const Chatsidebar = () => {
+import { useRouter } from 'next/router';
+import DoneIcon from '@mui/icons-material/Done';
+const Chatsidebar = ({clubName,channels,id,avatar}) => {
   let dispatch = useDispatch()
   let handlenav = useSelector((store)=>store.handlenav)
   let menumainref = useRef();
-
+  const [name,setName] = useState("")
   const [classtoggle, setclasstoggle] = new useState(style.sidebar_main)
-
+  const route = useRouter()
+  const {createChannel} = useClub()
   useEffect(() => {
-    // {handlenav.includes("sidebar") == true ? menumainref.current.classList.toggle(style.open_nav):false}
     {handlenav?.includes("sidebar") == true ? setclasstoggle(style.open_nav):setclasstoggle(style.sidebar_main)}
 }, [handlenav])
 
@@ -24,28 +26,31 @@ return (
       <Clubnav />
       <section className={style.sidebar_container}>
         <header className={style.club_logo}>
-          <img src="/images/freefire.jpeg" alt="" />
-          <h1>club name is name</h1>
+          <img src={avatar} alt="" />
+          <h1>{clubName}</h1>
           <ArrowDownIcon />
         </header>
-
-        {/* create new channel */}
-          {/* <header className={style.create_channel}>
-            <input type="text" placeholder='new channel' />
-            <AddIcon />
-          </header> */}
-
-        {/* channel list */}
-
         <main className={style.channel_list}>
-          <ul><TagIcon/><li>genrel chat</li></ul>
-          <ul><TagIcon/><li>diccusion hub</li></ul>
-          <ul><TagIcon/><li>group hub</li></ul>
-          <ul><TagIcon/><li>annoucment</li></ul>
-          <ul><TagIcon/><li>genrel</li></ul>
-          <ul><TagIcon/><li>genrel</li></ul>
+        <div className={style.addChannel} >
+        <input onChange={(e)=>{
+          setName(e.target.value)
+        }} type="text" />
+          <DoneIcon onClick={()=>{
+            name&&createChannel({
+              _id:route.query.id,
+              name:name
+            })
+            setName("")
+          }} />
+        </div>
+          {
+            channels?.map(({name,_id},i)=>{
+              return <ul onClick={()=>{
+                route.push(`${id}?cid=${i}`)
+              }} key={name} ><TagIcon/><li>{name}</li></ul>
+            })
+          }
         </main>
-
       </section>
     </main>
   )

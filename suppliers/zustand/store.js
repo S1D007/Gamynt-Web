@@ -1,13 +1,14 @@
 import axios from "axios"
 import create from "zustand"
-const url = `https://gamynt-backend.onrender.com`
+const url = `https://gamynt-backend.onrender.com
+import io from 'socket.io-client'
 const useSendOTP = create(
     (set) => ({
         verified: false,
         uid: "",
         verifyEmail: (values) => {
             // console.log(values)
-            axios.get(`${url}/otp-verify?email=${values.email}&otp=${values.otp}`).then((e) => {
+            axios.get(`${url}/otp-verify?email=${values.email.toLowerCase()}&otp=${values.otp}`).then((e) => {
                 set(() => ({
                     verified: e.data.verified,
                     uid: e.data?.userData?.uid
@@ -16,8 +17,8 @@ const useSendOTP = create(
         },
         sendEmail: (values) => {
             if (values.btnClicked) {
-                axios.get(`${url}/otp?email=${values.email}`).then((e) => {
-                    console.log(e)
+                axios.get(`${url}/otp?email=${values.email.toLowerCase()}`).then((e) => {
+                    // console.log(e)
                 })
             }
         }
@@ -46,7 +47,7 @@ const useUserData = create(
         },
         done:false,
         editProfile: ({ username, bio, email,name,avatar }) => {
-            console.log(avatar)
+            // console.log(avatar)
             axios.get(`${url}/edit-profile?username=${username}&bio=${bio}&email=${email}&name=${name}&avatar=${avatar}`).then((e) => {
                 set(()=>({
                     done:true
@@ -64,7 +65,7 @@ const useUserData = create(
         },
         reload:false,
         followOrUnFollow: ({value,email,username,myUsername,myEmail}) => {
-            console.log({value,email,username,myUsername,myEmail})
+            // console.log({value,email,username,myUsername,myEmail})
             axios.get(`${url}/add-followers?email=${email}&value=${value}&myEmail=${myEmail}&myUsername=${myUsername}&username=${username}`).then((e)=>{
                 set(()=>({
                     reload:e.data.done
@@ -83,7 +84,7 @@ const useCashfree = create(
         createOrder: ({amount,phone,details,email,username}) => {
             // amount,username,phone,email,details
             axios.get(`${url}/create-order?amount=${amount}&username=${username}&phone=${phone}&email=${email}&details=${details}`).then((e) => {
-                console.log(e.data)
+                // console.log(e.data)
                 set(() => ({
                     result: e.data,
                 }))
@@ -91,7 +92,7 @@ const useCashfree = create(
         },
         getOrder: (values) => {
             axios.get(`${url}/get-order?orderID=${values.link_id}`).then((e) => {
-                console.log(e)
+                // console.log(e)
                 if (e.data.link_amount === e.data.link_amount_paid) {
                     axios.get(`${url}/add-diamonds?email=${values.email}&amount=${values.amount}`).then((e) => {
                         location.reload();
@@ -107,7 +108,7 @@ const usePost = create(
         posted: false,
         createPost: ({ username, type, uid, message, avatar,image }) => {
             axios.get(`${url}/create-post?username=${username}&uid=${uid}&type=${type}&message=${message}&avatar=${avatar}&image=${image}`).then((e) => {
-                console.log(e.data)
+                // console.log(e.data)
                 set(() => ({
                     posted: e.data.done,
                 }))
@@ -120,12 +121,16 @@ const usePost = create(
                     result: e.data,
                 }))
             })
+        },
+        like:({value,username})=>{
+            axios.get(`${url}/like?value=${value}&username=${username}`)
         }
     })
 )
 const useImageUpload = create(set => ({
     image: null,
-    uploadImage: ({ image }) => {
+    imageFor:"",
+    uploadImage: ({ image,imageFor }) => {
         const formData = new FormData();
         formData.append('img', image);
         fetch(`${url}/upload`, {
@@ -135,9 +140,10 @@ const useImageUpload = create(set => ({
             .then(response => response.json())
             .then(data => {
                 set(() => ({
-                    image: data.result
+                    image: data.result,
+                    imageFor:!imageFor?"":imageFor
                 }))
-                console.log(data)
+                // console.log(data)
                 // TODO: Handle the response from the server
             });
     }
@@ -145,9 +151,9 @@ const useImageUpload = create(set => ({
 const useTournament = create(set => ({
     done: false,
     createTournament: ({ game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags,schedule }) => {
-        console.log({ game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags })
+        // console.log({ game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags })
         axios.get(`${url}/register-tournament?game=${game}&title=${title}&bannerImgUrl=${bannerImgUrl}&mode=${mode}&slot=${slot}&EntryFees=${EntryFees}&descriptions=${description}&PrizePool=${PrizePool}&tags=${tags}&schedule=${schedule}`).then(() => {
-            console.log("done")
+            // console.log("done")
             set(() => ({
                 done: true
             }))
@@ -156,11 +162,80 @@ const useTournament = create(set => ({
     result:[],
     getTournament: ()=>{
         axios.get(`${url}/all-tournament`).then((e)=>{
-            console.log(e.data)
+            // console.log(e.data)
             set(()=>({
                 result:e.data
             }))
         })
     }
 }));
-export { useSendOTP, useUserData, useCashfree, usePost, useImageUpload, useTournament }
+
+const useClub = create(set => ({
+    isCreated:false,
+    result:[],
+    createClub: ({ clubName, clubOwner, clubLogo, clubBanner, description }) => {
+        axios.get(`${url}/create-club?clubName=${clubName}&clubOwner=${clubOwner}&clubLogo=${clubLogo}&clubBanner=${clubBanner}&description=${description}`).then((e)=>{
+            // console.log(e);
+            set(()=>({
+                isCreated:e.data.result
+            }))
+        })
+    },
+    getClubs: () => {
+        axios.get(`${url}/all-clubs`).then((e)=>{
+            set(()=>({
+                result:e.data
+            }))
+        })
+    },
+    clubResult:[],
+    getClubByID: ({_id}) => {
+        // console.log(_id)
+        axios.get(`${url}/club?_id=${_id}`).then((e)=>{
+            // console.log(e)
+            set(()=>({
+                clubResult:e.data
+            }))
+        })
+    },
+    chats:[],
+    getChats: ({_id,index}) => {
+        // console.log(_id)
+        axios.get(`${url}/get-chats?_id=${_id}&index=${index}`).then((e)=>{
+            // console.log(e)
+            set(()=>({
+                chats:e.data
+            }))
+        })
+    },
+    channelCreated:"",
+    createChannel:({_id,name})=>{
+        axios.get(`${url}/create-channel?_id=${_id}&name=${name}`).then(()=>{
+            set(()=>({
+                channelCreated:name
+            }))
+        })
+    },
+    clubSocket:{},
+    clubIO: () => {
+        const socket = io.connect(url)
+        // console.log(socket)
+        set(()=>({
+            clubSocket:socket
+        }))
+    },
+    channels:[],
+    getChannels:({_id})=>{
+        axios.get(`${url}/get-channels?_id=${_id}`).then((e)=>{
+            set(()=>({
+                channels:e.data
+            }))
+        })
+    },
+    addMember: ({username,avatar,_id}) => {
+        // console.log(username,avatar,_id)
+        axios.get(`${url}/add-member?_id=${_id}&username=${username}&avatar=${avatar}`)
+    }
+}));
+
+export { useSendOTP, useUserData, useCashfree, usePost, useImageUpload, useTournament,useClub }

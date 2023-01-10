@@ -2,9 +2,9 @@ import React from 'react'
 import style from "./styles/tournamentcard.module.scss"
 import GroupIcon from '@mui/icons-material/Group';
 import { useRouter } from 'next/router';
+import millify from "millify"
 
-
-const Tournamentcard = ({date,game,PrizePool,slots,bannerImgUrl,mode}) => {
+const Tournamentcard = ({date,game,PrizePool,slots,bannerImgUrl,mode,id}) => {
   let router = useRouter()
   return (
     <main className={style.tournament_item}>
@@ -18,12 +18,14 @@ const Tournamentcard = ({date,game,PrizePool,slots,bannerImgUrl,mode}) => {
       </div>
       <div className={style.tournament_info}>
 
-        <p> <img src="/images/freefire.jpeg" alt="" width={25} height={25} />{game}</p>
-        <p><img src="/util/prize.webp" alt="" width={35} height={35} />₹ {PrizePool}</p>
+        <p> <img src="/images/freefire.jpeg" alt="" width={25} height={25} />{game === "ff"&& "Free Fire" ||
+        game === "pubg"&& "PUBG"
+        }</p>
+        <p><img src="/util/prize.webp" alt="" width={35} height={35} />₹ {millify(PrizePool)}</p>
         <p> <img src="/util/member.png" alt="" width={35} height={35} />{slots}</p>
         <p><GroupIcon /> {mode}</p>
       </div>
-      <button onClick={() => { router.push("/tournaments/register") }}>join tournament</button>
+      <button onClick={() => { router.push(`/tournaments/${id}`) }}>join tournament</button>
     </main>
 
   )
