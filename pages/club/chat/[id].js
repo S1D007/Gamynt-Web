@@ -20,7 +20,7 @@ const Index = () => {
       _id:id,
       index:cid
     })
-  },[cid])  
+  },[cid,id])  
   useEffect(()=>{
     id&&getChannels({
       _id:id
