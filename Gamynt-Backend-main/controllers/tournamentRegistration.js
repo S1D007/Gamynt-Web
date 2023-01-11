@@ -37,7 +37,8 @@ module.exports.tournamentRegistration = async (req, res) => {
 
 module.exports.tournamentAll = async (req, res) => {
     const data = await TournamentRegistration.find()
-    res.send(data)
+    const randomTournaments = data.sort(() => Math.random() - 0.5);
+    res.send(randomTournaments)
 }
 
 module.exports.getTournament = async (req, res) => {

@@ -10,9 +10,11 @@ import WalletIcon from '@mui/icons-material/Store';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DynamicFeedIcon from '@mui/icons-material/Stream';
 import { useRouter } from 'next/router';
+import { useUserData } from '../../suppliers/zustand/store';
 
 const NavBar = () => {
     let router = useRouter();
+    const {result} = useUserData()
     let path = router.pathname
     const [shrikclass, setshrikclass] = useState(null)
     const [shrinkNavAdjust, setShrinkNavAdjust] = useState(null)
@@ -54,8 +56,11 @@ const NavBar = () => {
                     <GroupsIcon />
                     <h2 className={shrikclass}>my clubs</h2>
                 </div>
-                <li> <Image src="/logo_mini.png" alt="" width={50} height={50} /> <p className={shrikclass}>pandey ji ka chai ka dhaba esports</p></li>
-                <li> <Image src="/logo_mini.png" alt="" width={50} height={50} />  <p className={shrikclass}>tournament hub</p></li>
+                {
+                    result?.joinedClubs?.map(({name,clubID,logo},i)=>{
+                        return <li onClick={()=>router.push(`club/chat/${clubID}?cid=0`)} key = {i} > <img src={logo} alt="" width={50} height={50} /> <p className={shrikclass}>{name}</p></li>
+                    })
+                }
             </section>
 
         </nav>

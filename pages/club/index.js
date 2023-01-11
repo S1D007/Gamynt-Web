@@ -11,7 +11,7 @@ const Club = () => {
   const [pageroute, setpageroute] = useState(1)
   const [pagecompo, setpagecompo] = useState("loading .. ")
   useEffect(() => {
-    getClubs()
+   
     switch (pageroute) {
       case 1:
         setpagecompo(<Joinedclub/>)
@@ -19,7 +19,6 @@ const Club = () => {
       case 2:
         setpagecompo(<Exploreclub data={result} />)
         break;
-    
       default:
         setpagecompo("page not found")
         break;
@@ -27,7 +26,7 @@ const Club = () => {
   }, [pageroute])
   return (
     <Fragment>
-      <Topfeaturedclubs/>
+      {/* <Topfeaturedclubs/> */}
       <nav className={style.club_nav}>
           <ul onClick={()=>{setpageroute(1)}} className={`${pageroute==1 && style.active_link}`}>
             joined
@@ -36,7 +35,7 @@ const Club = () => {
             explore
           </ul>
           <ul onClick={()=>{setpageroute(3)}} className={`${pageroute==3 && style.active_link}`}>
-            <li>club</li>
+            <li></li>
           </ul>
         </nav>
       {pagecompo}

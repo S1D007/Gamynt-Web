@@ -10,13 +10,13 @@ import { Provider } from 'react-redux'
 import "nprogress/nprogress.css";
 import NProgress from 'nprogress';
 NProgress.configure({ showSpinner: false })
-import { usePost, useTournament, useUserData } from "../suppliers/zustand/store"
+import { usePost, useTournament, useUserData,useClub } from "../suppliers/zustand/store"
 import { useCookies } from "react-cookie"
 function MyApp({ Component, pageProps }) {
   const [isnav, setisnav] = useState(1)
   let router = useRouter()
   let path = router.pathname;
-
+  const {getClubs} = useClub() 
   // condition for not showing nav
   // http://localhost:3000/club/chat
   useEffect(() => {
@@ -53,19 +53,20 @@ function MyApp({ Component, pageProps }) {
         loaded: true,
         uid
       })
+    }else{
+      router.push("/account")
     }
     console.log(".......")
   }, [])
   const { getTournament } = useTournament()
   // const { getTournament } = useUserData()
-  useEffect(() => {
-    getTournament()
-    getUsers()
-  }, [])
   const getPosts = usePost((e) => e.getPosts)
   useEffect((e) => {
     getPosts()
-  })
+    getClubs()
+    getTournament()
+    getUsers()
+  },[router])
   return (
     <>
       <CookiesProvider>

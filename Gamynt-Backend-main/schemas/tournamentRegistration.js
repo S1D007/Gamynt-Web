@@ -46,7 +46,8 @@ const TournamentRegistrationSchema = mongoose.Schema({
         advanceType:String,
         advanceAmount:Number,
         duration:String
-    }]
+    }],
+    
 })
 
 module.exports = TournamentRegistrationSchema

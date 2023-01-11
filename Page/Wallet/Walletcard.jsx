@@ -18,7 +18,10 @@ const Walletcard = () => {
             <div className={style.money_div}>
             <img src={"./coin.gif"} alt="" />
                 <h1>{millify(coins)}</h1>
-            <img src={"./diamond.gif"} alt="" />
+                <h1 style={{
+                    fontSize:"2rem"
+                }} >₹</h1>
+            {/* <img src={"./diamond.gif"} alt="" /> */}
                 <h1>{millify(diamonds)}</h1>
             </div>
         </header>

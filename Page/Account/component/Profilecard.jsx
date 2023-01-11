@@ -11,8 +11,10 @@ const Profilecard = ({ email, username, followers, following, posts, avatar, bio
     const { result, reload } = useUserData()
     // console.log()
     let router = useRouter()
-    const [follow, setFollow] = useState(followersList?.some(user => user.username !== username) ? -1 : 1)
-    // console.log(follow)
+    // const [follow, setFollow] = useState(followersList?.some(user => user.username === username) ? -1 : 1)
+    const [follow,setFollow] = useState(followersList?.some(user => user.username !== result.username) ? -1 : 1)
+    console.log(followersList)
+    const [disable,setDisable] = useState(false)
     useEffect(() => {
         if (reload) {
             router.reload()
@@ -58,10 +60,9 @@ const Profilecard = ({ email, username, followers, following, posts, avatar, bio
                             borderRadius: "10px"
                             // textAlign:"center"
                         }} >
-                            <button onClick={() => {
-                                setFollow((e) => {
-                                    return follow === 1 ? -1 : 1
-                                })
+                            <button disabled={disable}  onClick={() => {
+                                setFollow(follow === 1 ? -1 : 1)
+                                setDisable(true)
                                 followOrUnFollow({
                                     value: follow,
                                     email,

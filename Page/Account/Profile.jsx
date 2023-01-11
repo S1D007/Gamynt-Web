@@ -39,22 +39,17 @@ const Profile = () => {
     <main className={style.profile_main}>
       <Profilecard username={result.username} followers={result.followCount} posts={result.post} following={result.followingCount} avatar={result.avatar} bio={result.bio} name={result.name} verified={result.isVerified} />
       <nav className={style.nav}>
+      <ul onClick={() => { setpageroute(3) }} className={`${pageroute == 4 && style.active_link}`}>
+          <Diversity2Icon />
+          <li>Team</li>
+        </ul>
         <ul onClick={() => { setpageroute(1) }} className={`${pageroute == 1 && style.active_link}`}>
           <DynamicFeedIcon posts={result.post} />
           <li>Posts</li>
         </ul>
-
-        <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 2 && style.active_link}`}>
-          <PlayCircleIcon />
-          <li>Shorts</li>
-        </ul>
-        <ul onClick={() => { setpageroute(3) }} className={`${pageroute == 3 && style.active_link}`}>
+        <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 3 && style.active_link}`}>
           <FriendsIcon />
           <li>Clubs</li>
-        </ul>
-        <ul onClick={() => { setpageroute(4) }} className={`${pageroute == 4 && style.active_link}`}>
-          <Diversity2Icon />
-          <li>Team</li>
         </ul>
       </nav>
       {pagecompo}

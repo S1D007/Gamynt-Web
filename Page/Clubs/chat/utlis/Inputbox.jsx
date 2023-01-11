@@ -9,7 +9,7 @@ const Inputbox = () => {
   const {clubSocket} = useClub()
   const {result} = useUserData()
   const router = useRouter()
-  let clubname = "gamynt"
+  let clubname = "gamynt" 
   const [sendMessage, setSendMessage] = useState("")
   // console.log(sendMessage)
   const handleKeyDown = (event) => {
@@ -38,7 +38,7 @@ const Inputbox = () => {
   <EmojiIcon/>
   <input value={sendMessage} onKeyDown={handleKeyDown} type="text" onChange={(e)=>{
     setSendMessage(e.target.value)
-  }} rows={"1"} placeholder={`message  ${clubname}`}/> 
+  }} rows={"1"} placeholder={`message ${clubname}`}/> 
   <SendIcon/>
 </main>
   )

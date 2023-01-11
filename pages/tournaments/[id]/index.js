@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import style from "./tournament_id.module.scss"
 import InfoIcon from '@mui/icons-material/Info';
 import KeyIcon from '@mui/icons-material/Key';
@@ -7,8 +7,34 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Info from './../../../Page/Tournament/TournamentInfo/Info';
 import GroupIcon from '@mui/icons-material/Group';
 import millify from "millify"
+import Rule from './../../../Page/Tournament/TournamentInfo/Rule';
+import Creds from '../../../Page/Tournament/TournamentInfo/Creds';
 function index({result}) {
   // const [] = useState(<Info/>)
+  const [pageroute, setpageroute] = new useState(1)
+  // console.log(pageroute)
+  const [pagecompo, setpagecompo] = new useState("loading .. ")
+  // const result = useUserData((e) => e.result)
+  new useEffect(() => {
+    switch (pageroute) {
+      case 1:
+        setpagecompo(<Info />)
+        break;
+      case 2:
+        setpagecompo(<Rule />)
+        break;
+      case 3:
+        setpagecompo(<Creds />)
+        break;
+      case 4:
+        // setpagecompo(<Friends />)
+        break;
+
+      default:
+        setpagecompo("page not found")
+        break;
+    }
+  }, [pageroute])
   return (
     <div className={style.container} >
 
@@ -20,20 +46,21 @@ function index({result}) {
         <div className={style.items} >
           <div className={style._1} >
           <nav className={style.nav}>
-        <ul>
-          <InfoIcon />
+        <ul onClick={()=>{setpageroute(1)}}>
+          <InfoIcon  />
         </ul>
-        <ul>
-          <GavelIcon />
+        <ul onClick={()=>{setpageroute(2)}}>
+          <GavelIcon  />
         </ul>
-        <ul>
-          <KeyIcon />
+        <ul onClick={()=>{setpageroute(3)}}>
+          <KeyIcon  />
         </ul>
         <ul>
           <EmojiEventsIcon />
         </ul>
       </nav>
-        <Info desc={result.desc} />
+      {pagecompo}
+        {/* <Info desc={result.desc} /> */}
           </div>
           <div className={style._2} >
           <div className={style.organizer} >
@@ -62,7 +89,7 @@ export default index
 
 export const getServerSideProps = async (context) =>{
   const id = context.params.id;
-  const res = await fetch(`http://localhost:8080/get-tournament?id=${id}`)
+  const res = await fetch(`https://gamynt-backend-production.up.railway.app/get-tournament?id=${id}`)
   const result = await res.json()
   // console.log(result)
   return {

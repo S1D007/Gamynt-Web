@@ -36,7 +36,8 @@ module.exports.createClub = async (req, res) => {
 
 module.exports.getAllClubs = async (req,res) => {
     const data = await ClubServer.find({})
-    res.send(data)
+    const randomClub = data.sort(() => Math.random() - 0.5);
+    res.send(randomClub)
 }
 
 module.exports.getClubByID = async(req,res)=>{
@@ -108,7 +109,8 @@ module.exports.addMember = async (req,res)=>{
         user.joinedClubs.push({
             clubID:_id,
             logo:club.clubLogo,
-            banner:club.clubBanner
+            banner:club.clubBanner,
+            name:club.clubName
         })
         await user.save()
         await club.save()

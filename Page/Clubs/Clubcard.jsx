@@ -27,7 +27,7 @@ const Clubcard = (props) => {
       _id:props.uid,
       avatar:result.avatar
     })
-    router.push(`/club/chat/${props.uid}`)
+    router.push(`/club/chat/${props.uid}?cid=0`)
   }}>join</button>
 </section>
   )

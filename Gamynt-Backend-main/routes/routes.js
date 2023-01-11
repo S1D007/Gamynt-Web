@@ -7,7 +7,7 @@ cdn.config({
     api_key: "363211158946923",
     api_secret: "sqTD-thpTcu7OmrjUC7FvFvFmuI",
 });
-const {createOrder,getOrder} = require("../controllers/cashfree")
+// const {createOrder,getOrder} = require("../controllers/payment")
 const {createPost, getPosts, like}  = require("../controllers/post")
 const {tournamentRegistration,tournamentAll,getTournament} = require("../controllers/tournamentRegistration")
 const {getUser,getUserByUsername, getUsers,addDiamonds, editProfile,addFollowers} = require("../controllers/User")
@@ -39,8 +39,8 @@ routes.get("/create-channel",createChannel)
 routes.get("/add-member",addMember)
 // routes.get("/get-members",getMember)
 routes.get("/users",getUsers)
-routes.get("/create-order",createOrder)
-routes.get("/get-order",getOrder)
+// routes.get("/create-order",createOrder)
+// routes.get("/get-order",getOrder)
 routes.get("/add-diamonds",addDiamonds)
 routes.get("/create-post",createPost)
 routes.get("/get-posts",getPosts)
