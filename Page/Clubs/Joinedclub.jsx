@@ -12,10 +12,10 @@ const Joinedclub = () => {
   return (
     <main className={style.club_card_container}>
   {
-    result?.joinedClubs?.map(({banner,logo,clubID,name})=>{
-      console.log(banner)
-      return <Clubcard key={clubID} banner={banner} logo={logo} name={name} uid={clubID}/>
-    })
+    result?.joinedClubs?.map((e,i)=>{
+        {/* console.log(e) */}
+          return <Clubcard key={i} logo={e?.club?.clubLogo} banner={e?.club?.clubBanner} description={e?.club?.description} membersList={e?.club?.membersList} tournaments={e?.club?.tournaments} _id={e?.club?._id} btn={"View Club"} />
+        })
   }
     </main>
   )

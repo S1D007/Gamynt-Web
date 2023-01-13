@@ -19,10 +19,11 @@ const Memberstatus = ({members}) => {
       <section className={style.member_container}>
         <h2>Online</h2>
         {
-          members?.map(({username,avatar},i)=>{
+          members?.map(({user},i)=>{
+            {/* console.log(e) */}
             return <div key={i} className={style.member}>
-          <img src={avatar} alt="" />
-          <p>{username}</p>
+          <img src={user?.avatar} alt="" />
+          <p>{user?.username}</p>
           <div className={style.online_member}></div>
         </div>
           })

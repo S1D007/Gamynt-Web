@@ -11,9 +11,9 @@ const Trendingtournament = () => {
   return (
            <main className={style.tournament_card_container}>
            {
-            result.map(({date,game,PrizePool,slot,bannerImgUrl,mode,id})=>{
+            result.map(({date,game,PrizePool,slot,bannerImgUrl,mode,id,participiants})=>{
               return <>
-              <Tournamentcard date={date} game={game} PrizePool={PrizePool} slots={slot} bannerImgUrl={bannerImgUrl} mode={mode} id={id} />
+              <Tournamentcard date={date} game={game} PrizePool={PrizePool} slots={slot} bannerImgUrl={bannerImgUrl} mode={mode} id={id} left={participiants.length} />
               </>
             })
            }

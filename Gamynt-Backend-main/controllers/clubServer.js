@@ -1,25 +1,22 @@
 const ClubServer = require("../models/ClubServer")
 // const ClubServer = require('../models/ClubServer')
+const { ObjectId } = require("mongoose");
 const User = require("../models/User")
 const { v4: uuidv4 } = require('uuid');
 module.exports.createClub = async (req, res) => {
-    const { clubName, clubOwner, clubLogo, clubBanner, description } = req.query
+    const { clubName, clubLogo, clubBanner, description,userID,clubOwner } = req.query
     const doc = new ClubServer({
-        clubName, clubID: uuidv4(), clubOwner, clubLogo, description,
+        clubName, clubOwner, clubLogo, description,
         clubBanner, membersList: [
             {
-                username: clubOwner,
-                avatar: "https://media.discordapp.net/attachments/1036217871212216320/1036488069672603668/unknown.png"
+                user:userID
             }
         ], channelList: [{
             name: "general",
-            // type:"Text",
             messages: [{
-                username: "Gamynt-Bot",
+                user: userID,
                 date: "",
-                message: `Welcome to ${clubName}`, 
-                avatar: "https://media.discordapp.net/attachments/1036217871212216320/1036488069672603668/unknown.png",
-                userID: uuidv4()
+                message: `Welcome to ${clubName}`
             }]
         }
         ],
@@ -35,29 +32,37 @@ module.exports.createClub = async (req, res) => {
 // Get
 
 module.exports.getAllClubs = async (req,res) => {
-    const data = await ClubServer.find({})
-    const randomClub = data.sort(() => Math.random() - 0.5);
-    res.send(randomClub)
+    const data = ClubServer.find({}).then((e)=>{
+        res.json(e)
+        // console.log(e)
+    })
+    // const randomClub = data.sort(() => Math.random() - 0.5);
 }
-
 module.exports.getClubByID = async(req,res)=>{
     const {_id} = req.query
-    // console.log()
     const data = await ClubServer.findOne({
         _id
+    }).populate({
+        path:"membersList.user",
+        select:"username avatar"
+    }).then((e)=>{
+        res.send(e)
     })
-    res.send(data)
 }
 
 module.exports.getChats = async(req,res)=>{
     const {_id,index} = req.query;
-    // console.log(_id,index)
-    const data = await ClubServer.findOne({
-        _id
-    })
-    const chats = data.channelList[index].messages
-    // console.log(chats)
-    res.send(chats)
+    ClubServer.findOne({ _id: _id }).populate({
+        path:"channelList.messages.user",
+        select:"username avatar isVerified"
+    }).sort({ createdAt: -1 }).limit(10).exec((err, messages) => {
+        if (err) {
+          // handle error
+        } else {
+            const chats = messages.channelList[index].messages;
+                res.send(chats)
+        }
+      });
 }
 
 module.exports.createChannel = async(req,res)=>{
@@ -68,19 +73,12 @@ module.exports.createChannel = async(req,res)=>{
 
     club.channelList.push({
         name,
-        messages: [{
-            username: "Gamynt-Bot",
-            date: Date.now(),
-            message: `Welcome to #${name}`, 
-            avatar: "https://media.discordapp.net/attachments/1036217871212216320/1036488069672603668/unknown.png",
-            userID: uuidv4()
-        }]
+        messages: []
     })
     await club.save()
     res.send(club)
     // console.log(club)
 }
-
 module.exports.getChannel = async (req,res) =>{
     const {_id} = req.query
     const club = await ClubServer.findOne({
@@ -89,30 +87,14 @@ module.exports.getChannel = async (req,res) =>{
     const channels = club.channelList
     res.send(channels)
 }
-
 module.exports.addMember = async (req,res)=>{
-    const {username,avatar,_id} = req.query;
-    const user = await User.findOne({
-        username
-    })
+    const {userID,_id} = req.query;
     const club = await ClubServer.findOne({
         _id
     })
-    // console.log(club)
-    console.log()
-    if (!club.membersList.some(e => e.username === username)){
-        // console.log(!club.membersList.includes(username)
-        club.membersList.push({
-            username,
-            avatar
-        })
-        user.joinedClubs.push({
-            clubID:_id,
-            logo:club.clubLogo,
-            banner:club.clubBanner,
-            name:club.clubName
-        })
-        await user.save()
-        await club.save()
+    // console.log(club.membersList[0].user._id.toHexString() === userID)
+    if (!club.membersList[0].user._id.toHexString() === userID){
+        User.findByIdAndUpdate(userID, {$push: {joinedClubs: {club:_id}}}, {new: true}, function (err, user) {});
+        ClubServer.findByIdAndUpdate(_id, {$push: {membersList: {user:userID}}}, {new: true}, function (err, club) {});
     }
 }

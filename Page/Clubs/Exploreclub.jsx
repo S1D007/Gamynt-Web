@@ -6,7 +6,7 @@ import { useUserData } from '../../suppliers/zustand/store';
 
 const Exploreclub = ({data}) => {
     const {result} = useUserData()
-    // console.log(result)
+    console.log(data)
     const [clubs,setClubs] = useState([])
     // useEffect(()=>{
     //   const filtered = result?.joinedClubs.filter((e)=>{
@@ -18,9 +18,10 @@ const Exploreclub = ({data}) => {
   return (
     <main className={style.club_card_container}>
     {
-      data?.map(({clubName,description,_id,clubBanner,clubLogo})=>{
-        return <Clubcard key={_id} uid={_id} banner={clubBanner} logo={clubLogo} name={clubName} description={description} batch={<VerifiedIcon/>} />
-      })
+      data?.map((e,i)=>{
+        {/* console.log(e) */}
+          return <Clubcard key={i} logo={e?.clubLogo} banner={e?.clubBanner} description={e?.description} membersList={e?.membersList} tournaments={e?.tournaments} _id={e?._id} btn={"Join Club"} />
+        })
     }
     </main>
   )

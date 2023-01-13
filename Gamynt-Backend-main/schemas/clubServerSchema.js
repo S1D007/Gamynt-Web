@@ -4,7 +4,6 @@ const ClubServerSchema = mongoose.Schema({
     clubName: {
         type: String
     },
-    clubID: String,
     clubOwner: {
         type: String
     },
@@ -23,27 +22,35 @@ const ClubServerSchema = mongoose.Schema({
     channelList: [
         {
             name: String,
-            // type:String,
             messages: [
                 {
-                    username: String,
+                    user: {
+                        type:mongoose.Schema.Types.ObjectId,
+                        ref:"User"
+                    },
                     date: String,
                     message: String,
-                    avatar: String,
-                    userID: String
                 }
             ]
         }
     ],
     membersList: [
         {
-            username: String,
-            avatar: String
+            user:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }
         }
     ],
     description: {
         type: String
-    }
+    },
+    tournaments:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"TournamentRegistration"
+        }
+    ]
 })
 
 module.exports = ClubServerSchema

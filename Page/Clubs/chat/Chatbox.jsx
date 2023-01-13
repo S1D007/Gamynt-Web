@@ -5,19 +5,21 @@ import Memberstatus from "./Memberstatus"
 import Welcomechat from './utlis/Welcomechat'
 import Inputbox from './utlis/Inputbox'
 import Message from './utlis/Message'
-import { useRouter } from "next/router"
+import Router, { useRouter } from "next/router"
 import { useClub } from '../../../suppliers/zustand/store'
 import io from 'socket.io-client'
 // import ScrollToBottom from 'react-scroll-to-bottom';
 const Chatbox = ({ channelName }) => {
   const route = useRouter()
   const messagesEndRef = useRef(null)
-  const { chats, clubResult } = useClub()
+  const {clubResult,chats } = useClub()
+  // console.log(chats)
   // console.log(clubResult)
-  const socket = io.connect("https://gamynt-backend-production.up.railway.app")
+  const socket = io.connect("http://localhost:8080")
   // console.log(route.query.cid)
   // const [currChats,setCurrChats] = useState([])
   const [newChats, setNewChats] = useState([]); // new chats from Socket.io
+  // const [chats,setChats] = useState([])
   const handleNewChat = useCallback((payload) => {
     setNewChats((prevChats) => [...prevChats, payload]);
   }, []);
@@ -36,12 +38,14 @@ const Chatbox = ({ channelName }) => {
       <main className={style.member_chat_container}>
         <section className={style.chat_container}>
           {
-            chats?.map(({ username, date, message, avatar, userID }, i) => {
-              return <Message key={i} username={username} date={date} message={message} avatar={avatar} />
+            chats?.map(({user,message,date}, i) => {
+              {/* console.log(e) */}
+              return <Message key={i} username={user?.username} date={date} message={message} avatar={user?.avatar} />
             })
           }
           {
-            newChats?.map(({ username, date, message, avatar, userID }, i) => {
+            newChats?.map(({username,message,date,avatar}, i) => {
+              {/* console.log(e) */}
               return <Message key={i} username={username} date={date} message={message} avatar={avatar} />
             })
           }

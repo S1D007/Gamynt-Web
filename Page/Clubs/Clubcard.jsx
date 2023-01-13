@@ -3,6 +3,8 @@ import style from "./styles/clubcard.module.scss"
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { useRouter } from 'next/router';
 import { useClub,useUserData } from '../../suppliers/zustand/store';
+import GroupsIcon from '@mui/icons-material/Groups';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 
 const Clubcard = (props) => {
@@ -20,15 +22,18 @@ const Clubcard = (props) => {
   </div>
   <div className={style.club_info}>
     <p>{props.description}</p>
+    <div className={style.user} >
+      <p><GroupsIcon/>{props?.membersList?.length}</p>
+      <p><EmojiEventsIcon/>{props?.tournaments?.length}</p>
+    </div>
   </div>
   <button onClick={()=>{
     addMember({
-      username:result.username,
-      _id:props.uid,
-      avatar:result.avatar
+      userID:result._id,
+      _id:props._id,
     })
-    router.push(`/club/chat/${props.uid}?cid=0`)
-  }}>join</button>
+    router.push(`/club/chat/${props._id}?cid=0`)
+  }}>{props.btn}</button>
 </section>
   )
 }

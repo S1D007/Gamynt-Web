@@ -10,8 +10,8 @@ const Club = () => {
   let router = useRouter();
   const [pageroute, setpageroute] = useState(1)
   const [pagecompo, setpagecompo] = useState("loading .. ")
+  // console.log(result)
   useEffect(() => {
-   
     switch (pageroute) {
       case 1:
         setpagecompo(<Joinedclub/>)

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import millify from "millify"
 import VerifiedIcon from "../../../public/verified.png"
 import { useUserData } from '../../../suppliers/zustand/store';
-const Profilecard = ({ email, username, followers, following, posts, avatar, bio, name, verified, followersList }) => {
+const Profilecard = ({ email, username, followers, following, posts, avatar, bio, name, verified, followersList,hisUid }) => {
     // console.log(followersList)
     const { followOrUnFollow } = useUserData()
     const { result, reload } = useUserData()
@@ -65,12 +65,9 @@ const Profilecard = ({ email, username, followers, following, posts, avatar, bio
                                 setDisable(true)
                                 followOrUnFollow({
                                     value: follow,
-                                    email,
-                                    username,
-                                    myEmail: result.email,
-                                    myUsername: result.username
+                                    hisUid,
+                                    myUid:result._id
                                 })
-                                // router.reload()
                             }} style={{
                                 padding: "5px 10px",
                                 alignself: "center",

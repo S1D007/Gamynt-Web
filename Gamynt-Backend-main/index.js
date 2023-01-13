@@ -13,7 +13,7 @@ const io = require("socket.io")(server,{
 const cors = require("cors");
 const User = require("./models/User");
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 connectToDatabase();
 app.use(fileUpload({
@@ -28,25 +28,16 @@ app.get("/", (req, res) => {
 })
 
 
-io.on('connection',(socket)=>{
-    socket.on("club-chat",async (payloads)=>{
-        io.emit("chats",payloads)
-        // console.log(payloads)
-        const club = await ClubServer.findOne({
-            _id:payloads.uuid
-        })
-        club.channelList[payloads.index].messages.push({
-            message:payloads.message,
-            avatar:payloads.avatar,
-            username:payloads.username,
-            userID:payloads.uid,
-            date:payloads.date
-        })
-        await club.save()
-        // console.log(club)
-        // console.log(club.channelList[0].messages)
-    })
-})
+io.on('connection', (socket) => {
+    socket.on("club-chat", async (payloads) => {
+        // First, use emit to broadcast the message to all connected clients
+        io.emit("chats", payloads);
+
+        // Then, use findOneAndUpdate to update the messages array in one query
+        await ClubServer.updateOne({ _id: payloads._id }, 
+            { $push: { ['channelList.' + payloads.index + '.messages']: { message: payloads.message, user: payloads.user, date: payloads.date } } });
+    });
+});
 
 // function nti (){
 //     User.updateMany({}, { $set: { likedPost: [{}] } }, function(error, result) {

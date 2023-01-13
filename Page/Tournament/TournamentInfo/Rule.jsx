@@ -1,11 +1,20 @@
 import React from 'react'
 import style from "./info.module.scss"
-function Rule() {
+function Rule({rules}) {
+  console.log(rules)
   return (
     <div className={style.container} >
         <div className={style.info} >
-            <p className={style.desc} >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit delectus doloribus natus sint non a, odit maxime labore dignissimos vitae. Perspiciatis qui illo culpa vero voluptatum fugiat pariatur aut nihil quia enim?
+            <p className={style.rules} >
+                {
+                  rules? rules : <div>
+                    <ul>
+                      <li><span>➥ </span>Be Ready 10 min before Match Starts because ID and Password will be Given</li>
+                      <li><span>➥ </span>Dont use Any type of Hack</li>
+                      <li><span>➥ </span>Dont leave the Match before it Ends.Our Mods will Watch you</li>
+                    </ul>
+                  </div>
+                }
             </p>
         </div>
     </div>

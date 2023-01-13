@@ -3,8 +3,9 @@
     justify-content: center;
     align-items: center;
     // flex-direction:column ;
-    gap: 4rem;
+    gap: 2rem;
     // margin-top: 10%;
+    padding: 10px;
     .upload{
         background-color: rgba(35, 35, 35, 0.5);
         height: 20rem;
@@ -34,10 +35,18 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        height: 42rem;
+        min-height: 48rem;
         width: 40rem;
         border-radius: 20px;
         box-shadow: -1px -1px 40px 2px #000;
+        p{
+            margin:10px;
+            font-size: 14px;
+            font-weight:500;
+            span{
+                font-weight:bold
+            }
+        }
         h1{
             text-align: center;
             font-size: 2rem;
@@ -52,7 +61,7 @@
             margin-top: 10px;
             font-size: 1.2rem;
             padding-left:10px ;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 10px;
         }
         textarea{
@@ -82,7 +91,7 @@
             color: #fff;
             margin-top: 10px;
             border: 0;
-            box-shadow: 1px 1px 10px 1px rgb(195, 90, 237,0.7);
+            box-shadow: 1px 1px 10px 1px var(--primary-color);
             padding-left: 10px;
             margin-bottom: 10px;
         }
@@ -91,10 +100,10 @@
             border:0;
         }
         button{
-            font-size: 1.5rem;
-        padding: 10px 25px;
+            font-size: 1.3rem;
+        padding: 5px 35px;
         margin-top: 5px;
-        font-weight: 600;
+        font-weight: 400;
         }
     }
 }
@@ -105,17 +114,17 @@
         flex-direction: column;
         .upload{
             img{
-                // width: 5rem;
-            // margin-top: 15px;
-            // height: 15rem;
             }
             width: 20rem;
-            margin-top: 15px;
+            margin-top: 10px;
             height: 15rem;
-            // padding:10px
         }
         .details{
             width: 20rem;
+            height: 45rem;
+            p{
+                font-size:12px;
+            }
             h1{
                 font-size: 1.5rem;
             }

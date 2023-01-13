@@ -8,9 +8,8 @@ const Index = () => {
   const router = useRouter()
   const {getClubByID,clubResult,getChats,clubIO,channelCreated,getChannels,channels} = useClub()
   const { id,cid } = router.query
-  // console.log(channelCreated)
+  // console.log(">>",clubResult)
   useEffect(()=>{
-    clubIO()
     id && getClubByID({
       _id:id
     })
@@ -20,7 +19,7 @@ const Index = () => {
       _id:id,
       index:cid
     })
-  },[cid])  
+  },[router,cid,id])  
   useEffect(()=>{
     id&&getChannels({
       _id:id
@@ -28,7 +27,7 @@ const Index = () => {
   },[channelCreated,id])
   return (
     <main className={style.chat_page_container_main}>
-        <Chatsidebar clubName={clubResult.clubName} id={id} channels={channels} avatar={clubResult.clubLogo} />
+        <Chatsidebar clubName={clubResult?.clubName} id={id} channels={channels} avatar={clubResult.clubLogo} />
         <Chatbox channelName={channels[cid]?.name} />
     </main>
   )

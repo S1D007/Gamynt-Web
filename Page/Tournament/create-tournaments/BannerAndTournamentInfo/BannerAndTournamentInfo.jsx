@@ -91,6 +91,7 @@ function BannerAndTournamentInfo() {
       }} type="number" placeholder='Entry Fees' />
       </div>
       <button onClick={handleClick}>Post</button>
+      <p>*Note: You can <span>Edit</span> or <span>Delete</span> the Tournament in <span>GPanel</span></p>
       </div>
     </div>
   )

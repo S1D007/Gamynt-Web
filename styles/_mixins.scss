@@ -30,7 +30,7 @@
     overflow: hidden;
   }
 
-  @mixin  primarybtn($bg:var(--primary-color),$color:inherit){
+  @mixin primarybtn($bg:var(--primary-color),$color:inherit){
     padding: 0.5rem 0.5rem;
     @include flex_box();
     text-transform: capitalize;
@@ -60,9 +60,9 @@
   }
 
   @mixin stickynav(){
-    padding:1rem  0.5rem;
+    padding:0.5rem  0.5rem;
     position: sticky;
-    top: calc($navheight - 1px);
+    // top: calc($navheight);
     background-color: var(--theme-bg);
     text-transform: capitalize;
     z-index: 10;

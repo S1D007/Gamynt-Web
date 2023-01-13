@@ -4,7 +4,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import { useRouter } from 'next/router';
 import millify from "millify"
 
-const Tournamentcard = ({date,game,PrizePool,slots,bannerImgUrl,mode,id}) => {
+const Tournamentcard = ({date,game,PrizePool,slots,bannerImgUrl,mode,id,left}) => {
   let router = useRouter()
   return (
     <main className={style.tournament_item}>
@@ -22,7 +22,7 @@ const Tournamentcard = ({date,game,PrizePool,slots,bannerImgUrl,mode,id}) => {
         game === "pubg"&& "PUBG"
         }</p>
         <p><img src="/util/prize.webp" alt="" width={35} height={35} />₹ {millify(PrizePool)}</p>
-        <p> <img src="/util/member.png" alt="" width={35} height={35} />{slots}</p>
+        <p> <img src="/util/member.png" alt="" width={35} height={35} />{left}/{slots}</p>
         <p><GroupIcon /> {mode}</p>
       </div>
       <button onClick={() => { router.push(`/tournaments/${id}`) }}>join tournament</button>

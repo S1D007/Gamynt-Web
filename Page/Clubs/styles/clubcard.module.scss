@@ -51,10 +51,29 @@ button{
 }
 .club_info{
     padding: 0.8rem;
-    height:5rem;
+    max-height:15rem;
     // @include flex_box(row , space-between);
     // display: grid;
     // grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    p{
+        padding: 0.2rem 0.5rem;
+        max-height:15rem;
+        min-height:2.5rem;
+        @include textwrap(1);
+        @include flex_box(row , flex-start);
+        background-color: #1f1f25;
+        border-radius: 0.4rem;
+        text-transform: capitalize;
+    }
+    .user{
+        padding: 0.3rem;
+    // max-height:15rem;
+    @include flex_box(row , space-between);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
     align-items: center;
     justify-content: center;
@@ -64,5 +83,6 @@ button{
         @include flex_box(row , flex-start);
         background-color: #1f1f25;
         border-radius: 0.4rem;
+    }
     }
 }

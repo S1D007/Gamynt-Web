@@ -90,6 +90,7 @@
             // font-family: sans-serif;
             font-family: 'Open Sans', sans-serif;
             opacity: 0.9;
+            text-decoration:underline;
         }
         span{
             @include textwrap(1);

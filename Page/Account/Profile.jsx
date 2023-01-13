@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Profilecard from './component/Profilecard'
 import style from "./styles/profile.module.scss"
 import FriendsIcon from '@mui/icons-material/Diversity3';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import Friends from "./component/Post"
-import Diversity2Icon from '@mui/icons-material/Diversity2';
-import DynamicFeedIcon from '@mui/icons-material/Stream';
-import Post from "./component/Post"
+import Friends from "./component/Tournaments"
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import Tournaments from "./component/Tournaments"
 import Club from "./component/Club"
 import Shorts from "./component/Shorts"
 import { useUserData } from "../../suppliers/zustand/store"
@@ -18,18 +16,11 @@ const Profile = () => {
   new useEffect(() => {
     switch (pageroute) {
       case 1:
-        setpagecompo(<Post />)
+        setpagecompo(<Tournaments tournaments={result.joinedTournaments} />)
         break;
       case 2:
-        setpagecompo(<Shorts />)
+        setpagecompo(<Club clubs={result.joinedClubs} />)
         break;
-      case 3:
-        setpagecompo(<Club />)
-        break;
-      case 4:
-        setpagecompo(<Friends />)
-        break;
-
       default:
         setpagecompo("page not found")
         break;
@@ -37,17 +28,17 @@ const Profile = () => {
   }, [pageroute])
   return (
     <main className={style.profile_main}>
-      <Profilecard username={result.username} followers={result.followCount} posts={result.post} following={result.followingCount} avatar={result.avatar} bio={result.bio} name={result.name} verified={result.isVerified} />
+      <Profilecard username={result.username} followers={result.followCount} posts={result.post} following={result.followingCount} avatar={result.avatar} bio={result.bio} name={result.name} verified={result.isVerified} hisUid={result._id} />
       <nav className={style.nav}>
-      <ul onClick={() => { setpageroute(3) }} className={`${pageroute == 4 && style.active_link}`}>
+      {/* <ul onClick={() => { setpageroute(0) }} className={`${pageroute == 4 && style.active_link}`}>
           <Diversity2Icon />
           <li>Team</li>
-        </ul>
+        </ul> */}
         <ul onClick={() => { setpageroute(1) }} className={`${pageroute == 1 && style.active_link}`}>
-          <DynamicFeedIcon posts={result.post} />
-          <li>Posts</li>
+          <EmojiEventsIcon />
+          <li>Tournaments</li>
         </ul>
-        <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 3 && style.active_link}`}>
+        <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 2 && style.active_link}`}>
           <FriendsIcon />
           <li>Clubs</li>
         </ul>

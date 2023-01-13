@@ -23,9 +23,9 @@ const Topfeaturedtournament = () => {
 </header>
     <section className={style.crausal_container}>
     {
-      result?.map(({date,game,PrizePool,slot,bannerImgUrl,mode,id},i)=>{
+      result?.map(({date,game,PrizePool,slot,bannerImgUrl,mode,id,participiants},i)=>{
         {/* console.log(e) */}
-        return <Tournamentcard date={date} game={game} PrizePool={PrizePool} slots={slot} bannerImgUrl={bannerImgUrl} mode={mode} id={id} key={i}/>
+        return <Tournamentcard date={date} game={game} PrizePool={PrizePool} slots={slot} bannerImgUrl={bannerImgUrl} mode={mode} id={id} key={i} left={participiants.length}/>
       })
     }
     </section>

@@ -1,6 +1,6 @@
 import axios from "axios"
 import create from "zustand"
-const url = `https://gamynt-backend-production.up.railway.app`
+const url = `http://localhost:8080`
 import io from 'socket.io-client'
 const useSendOTP = create(
     (set) => ({
@@ -152,7 +152,7 @@ const useTournament = create(set => ({
     done: false,
     createTournament: ({ game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags,schedule }) => {
         // console.log({ game, title, bannerImgUrl, mode, slot, EntryFees, description, PrizePool, tags })
-        axios.get(`${url}/register-tournament?game=${game}&title=${title}&bannerImgUrl=${bannerImgUrl}&mode=${mode}&slot=${slot}&EntryFees=${EntryFees}&descriptions=${description}&PrizePool=${PrizePool}&tags=${tags}&schedule=${schedule}`).then(() => {
+        axios.get(`${url}/register-tournament?game=${game}&title=${title}&bannerImgUrl=${bannerImgUrl}&mode=${mode}&slot=${slot}&EntryFees=${EntryFees}&description=${description}&PrizePool=${PrizePool}&tags=${tags}&schedule=${schedule}`).then(() => {
             // console.log("done")
             set(() => ({
                 done: true
@@ -164,8 +164,20 @@ const useTournament = create(set => ({
         axios.get(`${url}/all-tournament`).then((e)=>{
             // console.log(e.data)
             set(()=>({
-                result:e.data
+               result:e.data
             }))
+        })
+    },
+    isDone:false,
+    joinTournament: ({_id,idTournament,amount,email}) => {
+        axios.get(`${url}/join-tournament?_id=${_id}&idTournament=${idTournament}`).then((e)=>{
+            if(e.data.done){
+                axios.get(`${url}/coins?email=${email}&amount=${amount}`).then(()=>{
+                    set(()=>({
+                        isDone:true
+                    }))
+                })
+            }
         })
     }
 }));
@@ -173,7 +185,7 @@ const useTournament = create(set => ({
 const useClub = create(set => ({
     isCreated:false,
     result:[],
-    createClub: ({ clubName, clubOwner, clubLogo, clubBanner, description }) => {
+    createClub: ({ clubName, clubOwner, clubLogo, clubBanner, description,userID }) => {
         axios.get(`${url}/create-club?clubName=${clubName}&clubOwner=${clubOwner}&clubLogo=${clubLogo}&clubBanner=${clubBanner}&description=${description}`).then((e)=>{
             // console.log(e);
             set(()=>({
@@ -232,9 +244,9 @@ const useClub = create(set => ({
             }))
         })
     },
-    addMember: ({username,avatar,_id}) => {
+    addMember: ({userID,_id}) => {
         // console.log(username,avatar,_id)
-        axios.get(`${url}/add-member?_id=${_id}&username=${username}&avatar=${avatar}`)
+        axios.get(`${url}/add-member?_id=${_id}&userID=${userID}`)
     }
 }));
 

@@ -61,7 +61,7 @@ const Index = () => {
                 </div>
             </section>
             <button onClick={()=>{
-              createClub({ clubName:name, clubOwner:result.name, clubLogo:logo, clubBanner:banner, description:desc })
+              createClub({ clubName:name, clubOwner:result.name, clubLogo:logo, clubBanner:banner, description:desc,userID:result._id })
             }} >create</button>
         </div>
           </div>: 

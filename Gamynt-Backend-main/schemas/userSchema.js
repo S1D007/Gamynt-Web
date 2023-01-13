@@ -1,101 +1,117 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    username:{
-        type:String
+    username: {
+        type: String
     },
-    email:{
-        type:String
+    email: {
+        type: String
     },
-    bio:String,
-    joinedClubs:{
-        type:mongoose.Schema.Types.Array
-    },
-    avatar:{
-        type:String
-    },
-    banner:{
-        type:String
-    },
-    joinedTournaments:{
-        type:mongoose.Schema.Types.Array
-    },
-    uid:{
-        type:String
-    },
-    tags:[
+    bio: String,
+    joinedClubs: [
         {
-            name:String,
-            tag:String
+            club:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Club"
+            }
         }
     ],
-    gamesIPlay:{
-        type:[]
+    avatar: {
+        type: String
     },
-    team:{
-        type:[]
+    banner: {
+        type: String
     },
-    balance:{
-        type:Number
-    },
-    followers:[
+    joinedTournaments: [
         {
-            username:String,
-            email:String,
+            tournament: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "TournamentRegistration"
+            }
         }
     ],
-    followCount:Number,
-    followingCount:Number,
-    following:[
+    uid: {
+        type: String
+    },
+    tags: [
         {
-            username:String,
-            email:String,
+            name: String,
+            tag: String
         }
     ],
-    post:[
+    gamesIPlay: {
+        type: []
+    },
+    team: {
+        type: []
+    },
+    balance: {
+        type: Number
+    },
+    followers: [
         {
-            type:String,
-            url:String
+            user:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }
         }
     ],
-    directMessage:[
+    followCount: Number,
+    followingCount: Number,
+    following: [
         {
-            name:String,
-            avatar:String,
-            messages:[
+            user:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }
+        }
+    ],
+    post: [
+        {
+            typeOfPost: String,
+            url: String
+        }
+    ],
+    directMessage: [
+        {
+            user:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:"User"
+            },
+            messages: [
                 {
-                    date:String,
-                    msg:String,
-                    type:String
+                    date: String,
+                    msg: String,
+                    typeOfMessage: String
                 }
             ]
         }
     ],
-    notifications:[
+    notifications: [
         {
-            date:String,
-            message:String,
-            callToActionLink:String
+            date: String,
+            message: String,
+            callToActionLink: String
         }
     ],
-    coins:Number,
-    diamonds:Number,
-    name:String,
-    isVerified:Boolean, 
-    subscription:[
+    coins: Number,
+    diamonds: Number,
+    name: String,
+    isVerified: Boolean,
+    subscription: [
         {
-            name:String,
-            duration:String
+            name: String,
+            duration: String
         }
     ],
-    phone:"",
-    ip_address:"",
-    state:"",
-    likedPost:[
+    phone: "",
+    ip_address: "",
+    state: "",
+    likedPost: [
         {
-            username:String,
-            email:String,
-        }  
+            username: String,
+            email: String,
+        }
     ]
 })
 

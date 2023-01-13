@@ -39,7 +39,7 @@ const NavBar = () => {
 
                 <li className={`${path == "/" && style.active_link}`} onClick={() => router.push("/")} ><HomeIcon />  <p className={shrikclass}>home</p></li>
 
-                <li className={`${path == "/post" && style.active_link}`} onClick={() => router.push("/post")}><DynamicFeedIcon /> <p className={shrikclass}>Explore</p></li>
+                {/* <li className={`${path == "/post" && style.active_link}`} onClick={() => router.push("/post")}><DynamicFeedIcon /> <p className={shrikclass}>Explore</p></li> */}
 
                 <li className={`${path == "/tournaments" && style.active_link}`} onClick={() => router.push("/tournaments")}><EmojiEventsIcon /> <p className={shrikclass}>tournaments</p></li>
 
@@ -57,8 +57,9 @@ const NavBar = () => {
                     <h2 className={shrikclass}>my clubs</h2>
                 </div>
                 {
-                    result?.joinedClubs?.map(({name,clubID,logo},i)=>{
-                        return <li onClick={()=>router.push(`club/chat/${clubID}?cid=0`)} key = {i} > <img src={logo} alt="" width={50} height={50} /> <p className={shrikclass}>{name}</p></li>
+                    result?.joinedClubs?.map((e,i)=>{
+                        {/* console.log(e) */}
+                        return <li onClick={()=>router.push(`club/chat/${e.club._id}?cid=0`)} key = {i} > <img src={e?.club?.clubLogo} alt="" width={50} height={50} /> <p className={shrikclass}>{e?.club?.clubName}</p></li>
                     })
                 }
             </section>

@@ -8,7 +8,7 @@
   .banner {
     // box-shadow: 0px 0px 40px #;
     img {
-      width: 35rem;
+      width: 50rem;
       border-radius: 10px;
       z-index: -1;
     }
@@ -19,7 +19,7 @@
     background-color: rgba(84, 84, 84, 0.107);
     border-radius: 10px;
     position: relative;
-    top: -70px;
+    top: -100px;
     box-shadow: 0px 0px 40px #000;
     padding: 10px;
     backdrop-filter: blur(20px);
@@ -88,21 +88,7 @@
             // transition: cubic-bezier(0.075, 0.82, 0.165, 1);
           }
         }
-        @media (max-width: $mobile) {
-          .nav {
-            top: 0rem;
-            justify-content: space-between;
-            ul {
-              padding: 0.5rem;
-              width: 50%;
-              @include flex_box(column, $gap: 0rem);
-              li {
-                font-size: 0.7rem;
-                display: none;
-              }
-            }
-          }
-        }
+    
       }
       ._2 {
         width: 100%;
@@ -155,6 +141,155 @@
     button {
       padding: 0.5rem 5rem;
       font-weight: bold;
+    }
+  }
+}
+@media (max-width: $mobile) {
+  .container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .banner{
+      // width:5rem;
+      display:flex;
+      justify-content: center;
+      img{
+        width: 20rem;
+        // height:auto;
+      }
+    }
+    .detailsContainer {
+      width: 22rem;
+      height: 100vh;
+      background-color: rgba(84, 84, 84, 0.107);
+      border-radius: 10px;
+      position: relative;
+      top: -10px;
+      box-shadow: 0px 0px 40px #000;
+      padding: 10px;
+      backdrop-filter: blur(20px);
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      h1 {
+        text-align: center;
+        background-color: #0d0d0d;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px var(--primary-color);
+      }
+      .items {
+        background-color: rgb(15, 15, 15);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        // justify-content: flex-end;
+        ._1 {
+          width: 100%;
+          height: 100%;
+          background-color: rgba(1, 1, 1, 0);
+          border-radius: 10px;
+          box-shadow: 0px 0px 2px #fff;
+          padding: 10px;
+          .nav {
+            border-radius: 10px;
+          //   padding: 0.3rem 0.3rem;
+            // @include stickynav();
+            // position: absolute;
+            @include flex_box($gap: 0rem);
+            ul {
+              // position: relative;
+              cursor: pointer;
+              padding: 0.1rem 0.8rem;
+              // @include flex_box(row, $gap: 0.5rem);
+              list-style: none;
+              color: var(--theme-color-dark);
+              li {
+                font-size: 0.8rem;
+                list-style: none;
+              }
+              &:hover:not(.active_link) {
+                color: var(--theme-color);
+              }
+            }
+          }
+          .active_link {
+            &::before {
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              content: "";
+              position: absolute;
+              // background-color:""
+              box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.601);
+              // border-bottom: 5px solid var(--primary-color);
+              // background-color: rgba(var(--primary-color-rgb), 0.1);
+              border-radius: 0.4rem;
+              // transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
+          }
+      
+        }
+        ._2 {
+          width: 100%;
+          height: 100%;
+          background-color: rgba(4, 4, 4, 0);
+          border-radius: 10px;
+          box-shadow: 0px 0px 2px #fff;
+          display: flex;
+          // justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          padding: 10px;
+        }
+        .organizer {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          gap: 4px;
+          margin-bottom: 4px;
+          button {
+            padding: 0.2rem;
+            background-color: #2a2a32;
+          }
+        }
+        .tournament_info {
+          width: 100%;
+          padding: 0.5rem 0.5rem;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.5rem;
+          align-items: center;
+          justify-content: center;
+          p {
+            padding: 0.2rem 0.5rem;
+            height: 3rem;
+            @include flex_box(row, flex-start);
+            background-color: #1f1f25;
+            border-radius: 0.4rem;
+            text-transform: capitalize;
+            font-weight: 600;
+            &:nth-child(1) {
+              background-color: #000;
+              img {
+                width: 30px;
+              }
+            }
+          }
+        }
+      }
+      button {
+        padding: 0.5rem 5rem;
+        font-weight: bold;
+      }
     }
   }
 }

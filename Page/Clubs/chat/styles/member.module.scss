@@ -85,10 +85,11 @@
 @media (max-width:$tablet) {
     .member_container_main{
         flex-basis: 0;
+        z-index: 10;
     }
     .open_member{
         z-index: 10;
-        flex: 0 0 15rem;
+        flex: 0 0 20rem;
     }
 }
 

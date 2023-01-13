@@ -9,22 +9,32 @@ import GroupIcon from '@mui/icons-material/Group';
 import millify from "millify"
 import Rule from './../../../Page/Tournament/TournamentInfo/Rule';
 import Creds from '../../../Page/Tournament/TournamentInfo/Creds';
-function index({result}) {
-  // const [] = useState(<Info/>)
-  const [pageroute, setpageroute] = new useState(1)
-  // console.log(pageroute)
-  const [pagecompo, setpagecompo] = new useState("loading .. ")
-  // const result = useUserData((e) => e.result)
+import {useRouter} from "next/router"
+import { useTournament, useUserData } from '../../../suppliers/zustand/store';
+function Index({tournament}) {
+  const {joinTournament,isDone} = useTournament();
+  const {result} = useUserData()
+  const route = useRouter()
+  const [joined, setJoined] =  useState(false)
+  useEffect(()=>{
+    tournament.participiants.some(e=>e.user === result._id)?setJoined(true):setJoined(false)
+  },[tournament,result._id])
+  useEffect(()=>{
+    isDone && route.reload()
+  },[isDone])
+  const [pageroute, setpageroute] =  useState(1)
+  console.log()
+  const [pagecompo, setpagecompo] =  useState("loading .. ")
   new useEffect(() => {
     switch (pageroute) {
       case 1:
-        setpagecompo(<Info />)
+        setpagecompo(<Info description={tournament.description} tags={tournament.tags} />)
         break;
       case 2:
-        setpagecompo(<Rule />)
+        setpagecompo(<Rule rules={tournament.rules} />)
         break;
       case 3:
-        setpagecompo(<Creds />)
+        setpagecompo(<Creds creds={tournament.creds} />)
         break;
       case 4:
         // setpagecompo(<Friends />)
@@ -39,10 +49,10 @@ function index({result}) {
     <div className={style.container} >
 
       <div className={style.banner} >
-        <img src={result.bannerImgUrl} />
+        <img src={tournament.bannerImgUrl} />
       </div>
       <div className={style.detailsContainer} >
-        <h1>{result.title}</h1>
+        <h1>{tournament.title}</h1>
         <div className={style.items} >
           <div className={style._1} >
           <nav className={style.nav}>
@@ -50,17 +60,17 @@ function index({result}) {
           <InfoIcon  />
         </ul>
         <ul onClick={()=>{setpageroute(2)}}>
-          <GavelIcon  />
+          <GavelIcon />
         </ul>
         <ul onClick={()=>{setpageroute(3)}}>
-          <KeyIcon  />
+          <KeyIcon />
         </ul>
         <ul>
-          <EmojiEventsIcon />
+          <EmojiEventsIcon winners={tournament.winner} />
         </ul>
       </nav>
       {pagecompo}
-        {/* <Info desc={result.desc} /> */}
+        {/* <Info desc={tournament.desc} /> */}
           </div>
           <div className={style._2} >
           <div className={style.organizer} >
@@ -72,12 +82,22 @@ function index({result}) {
               borderRadius: "100px"
             }} src="/images/freefire.jpeg" alt="" />
             <div className={style.tournament_info}>
-              <p> <img src="/coin.gif" />50 GMT</p>
-              <p><img src="/util/prize.webp" alt="" width={35} height={35} />₹ {millify(result.PrizePool)}</p>
-              <p> <img src="/util/member.png" alt="" width={35} height={35} />{result.slot}</p>
-              <p> <GroupIcon /> {result.mode}</p>
+              {tournament.EntryFees === ""?<p> <img src="/coin.gif" />1 GMT</p>:<p> <img src="/coin.gif" />{EntryFees} GMT</p>}
+              <p><img src="/util/prize.webp" alt="" width={35} height={35} />₹ {millify(tournament.PrizePool)}</p>
+              <p> <img src="/util/member.png" alt="" width={35} height={35} />{tournament.slot}</p>
+              <p> <GroupIcon /> {tournament.mode}</p>
             </div>
-            <button>Register</button>
+            <button disabled={joined} style={{
+              backgroundColor:joined&&"#15151a",
+              boxShadow:joined&&"0px 0px 10px #000"
+            }} onClick={()=>{
+              joinTournament({
+                _id:result._id,
+                idTournament:tournament._id,
+                email:result.email,
+                amount:tournament.EntryFees === "" ? "-1": `${-parseInt(tournament.Entryfees)}`
+              })
+            }} >{joined?"Joined":"Join"}</button>
           </div>
         </div>
       </div>
@@ -85,16 +105,16 @@ function index({result}) {
   )
 }
 
-export default index
+export default Index
 
 export const getServerSideProps = async (context) =>{
   const id = context.params.id;
-  const res = await fetch(`https://gamynt-backend-production.up.railway.app/get-tournament?id=${id}`)
-  const result = await res.json()
-  // console.log(result)
+  const res = await fetch(`http://localhost:8080/get-tournament?id=${id}`)
+  const tournament = await res.json()
+  console.log(tournament)
   return {
     props: {
-      result:result
+      tournament:tournament
     }
   }
 }

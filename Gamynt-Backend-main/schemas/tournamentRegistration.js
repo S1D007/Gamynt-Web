@@ -21,15 +21,21 @@ const TournamentRegistrationSchema = mongoose.Schema({
     slot:{
         type:Number
     },
-    clubName:{
-        type:String
+    club:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Club"
     },
     EntryFees:{
         type:String
     },
-    participiants:{
-        type: mongoose.Schema.Types.Array 
-    },
+    participiants:[
+        {
+            user:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:"User"
+            }
+        }
+    ],
     tags:{
         type:mongoose.Schema.Types.Array
     },
@@ -47,7 +53,20 @@ const TournamentRegistrationSchema = mongoose.Schema({
         advanceAmount:Number,
         duration:String
     }],
-    
+    creds:{
+        id:String,
+        pass:String
+    },
+    rules:String,
+    winners:[
+        {
+            user:{
+                type:mongoose.Schema.Types.ObjectId,
+            ref:"User"
+            },
+            position:String
+        }
+    ]
 })
 
 module.exports = TournamentRegistrationSchema
