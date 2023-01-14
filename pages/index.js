@@ -10,7 +10,7 @@ export default function Index() {
     <Fragment>
       <Crausal />
       <Topfeaturedtournament />
-      <Topfeaturedclubs />
+      {/* <Topfeaturedclubs /> */}
       <TopPlayer />
       <Topfeaturedgames />
     </Fragment>

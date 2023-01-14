@@ -34,6 +34,35 @@
 
 // clubs card and container
 
+// tournament contaienr s 
+.tournament_container{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    main{
+        max-width: 350px;
+        flex: 0.5 1 260px;
+    div{
+        &:first-child{
+            width: 100%;
+            img{
+                width: 100%;
+            }
+        } 
+        }
+    }
+}
+
+.club_container_in_profile{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 // post card and contaienr
 .post_container{
     padding: 0.5rem;

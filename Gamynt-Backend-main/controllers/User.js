@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 module.exports.getUser = async (req, res) => {
   const { uid } = req.query
   try {
-    User.findOne({ uid }).populate("joinedClubs.club").populate("joinedTournaments.tournament").exec(function (err, user) {
+    User.findOne({ uid }).populate("joinedTournaments.tournament").populate("joinedClubs.club").exec(function (err, user) {
       if (err) console.log(err);
       res.send(user);
     });

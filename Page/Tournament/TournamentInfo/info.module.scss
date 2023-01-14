@@ -1,4 +1,10 @@
+@import "../../../styles/mixins";
+
 .container{
+    .winner{
+    @include flex_box();
+
+    }
     .info{
         display:flex;
         justify-content: center;
@@ -9,7 +15,7 @@
         .desc{
             font-size: 0.9rem;
             color:rgba(245, 245, 220, 0.708);
-            text-align:center
+            text-align:center;
         };
         .rules{
             font-size: 1rem;
@@ -58,4 +64,9 @@
             // margin-top: 10px;
         }
     }
+}
+.h1_head{
+    @include flex_box();
+    height: 80%;
+    width: 100%;
 }

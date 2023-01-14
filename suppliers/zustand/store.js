@@ -1,6 +1,6 @@
 import axios from "axios"
 import create from "zustand"
-const url = `http://localhost:8080`
+const url = `https://gamynt-backend-production.up.railway.app`
 import io from 'socket.io-client'
 const useSendOTP = create(
     (set) => ({

@@ -13,11 +13,12 @@ module.exports.createClub = async (req, res) => {
             }
         ], channelList: [{
             name: "general",
-            messages: [{
-                user: userID,
-                date: "",
-                message: `Welcome to ${clubName}`
-            }]
+            messages:[]
+            // messages: [{
+            //     user: userID,
+            //     date: "",
+            //     message: `Welcome to ${clubName}`
+            // }]
         }
         ],
         isPaid: false,
@@ -92,8 +93,7 @@ module.exports.addMember = async (req,res)=>{
     const club = await ClubServer.findOne({
         _id
     })
-    // console.log(club.membersList[0].user._id.toHexString() === userID)
-    if (!club.membersList[0].user._id.toHexString() === userID){
+    if (!club?.membersList?.some((member) => member?.user?.toString() === userID)){
         User.findByIdAndUpdate(userID, {$push: {joinedClubs: {club:_id}}}, {new: true}, function (err, user) {});
         ClubServer.findByIdAndUpdate(_id, {$push: {membersList: {user:userID}}}, {new: true}, function (err, club) {});
     }

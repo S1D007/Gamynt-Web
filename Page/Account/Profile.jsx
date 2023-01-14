@@ -13,6 +13,7 @@ const Profile = () => {
   // console.log(pageroute)
   const [pagecompo, setpagecompo] = new useState("loading .. ")
   const result = useUserData((e) => e.result)
+  console.log(result.joinedTournaments)
   new useEffect(() => {
     switch (pageroute) {
       case 1:
@@ -34,14 +35,14 @@ const Profile = () => {
           <Diversity2Icon />
           <li>Team</li>
         </ul> */}
-        <ul onClick={() => { setpageroute(1) }} className={`${pageroute == 1 && style.active_link}`}>
+        {/* <ul onClick={() => { setpageroute(1) }} className={`${pageroute == 1 && style.active_link}`}>
           <EmojiEventsIcon />
           <li>Tournaments</li>
-        </ul>
-        <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 2 && style.active_link}`}>
+        </ul> */}
+        {/* <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 2 && style.active_link}`}>
           <FriendsIcon />
           <li>Clubs</li>
-        </ul>
+        </ul> */}
       </nav>
       {pagecompo}
     </main>

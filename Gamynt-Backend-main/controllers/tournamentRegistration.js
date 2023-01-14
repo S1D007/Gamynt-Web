@@ -43,8 +43,8 @@ module.exports.tournamentAll = async (req, res) => {
 }
 
 module.exports.getTournament = async (req, res) => {
-    const { id } = req.query
-    const data = await TournamentRegistration.findOne({ id })
+    const { id } = req.query;
+    const data = await TournamentRegistration.findOne({ id }).populate("participiants.user")
     res.send(data)
 }
 

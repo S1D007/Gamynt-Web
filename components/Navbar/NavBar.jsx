@@ -43,7 +43,7 @@ const NavBar = () => {
 
                 <li className={`${path == "/tournaments" && style.active_link}`} onClick={() => router.push("/tournaments")}><EmojiEventsIcon /> <p className={shrikclass}>tournaments</p></li>
 
-                <li className={`${path == "/club" && style.active_link}`} onClick={() => router.push("/club")}><GroupsIcon /> <p className={shrikclass}>clubs</p></li>
+                {/* <li className={`${path == "/club" && style.active_link}`} onClick={() => router.push("/club")}><GroupsIcon /> <p className={shrikclass}>clubs</p></li> */}
 
                 <li className={`${style.mob_hiden} ${path == "/store" && style.active_link}`} onClick={() => router.push("/store")}><WalletIcon /> <p className={shrikclass}>store</p></li>
                 <li className={`${path == "/account" && style.active_link}`} onClick={() => router.push("/account")}><AccountCircleIcon /> <p className={shrikclass}>profile</p></li>
@@ -53,15 +53,15 @@ const NavBar = () => {
             {/*   -----   mt clubs  -----  */}
             <section className={style.my_clubs}>
                 <div>
-                    <GroupsIcon />
-                    <h2 className={shrikclass}>my clubs</h2>
+                    <EmojiEventsIcon />
+                    <h2 className={shrikclass}>Joined</h2>
                 </div>
-                {
-                    result?.joinedClubs?.map((e,i)=>{
+                {/* {
+                    result?.joinedTou?.map((e,i)=>{
                         {/* console.log(e) */}
-                        return <li onClick={()=>router.push(`club/chat/${e.club._id}?cid=0`)} key = {i} > <img src={e?.club?.clubLogo} alt="" width={50} height={50} /> <p className={shrikclass}>{e?.club?.clubName}</p></li>
+                        {/* return <li onClick={()=>router.push(`club/chat/${e.club._id}?cid=0`)} key = {i} > <img src={e?.club?.clubLogo} alt="" width={50} height={50} /> <p className={shrikclass}>{e?.club?.clubName}</p></li>
                     })
-                }
+                } */}
             </section>
 
         </nav>

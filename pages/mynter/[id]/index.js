@@ -48,7 +48,7 @@ export default index
 
 export const getServerSideProps = async (context) =>{
     const username = context.params.id;
-    const res = await fetch(`http://localhost:8080/get-user-by-username?username=${username}`)
+    const res = await fetch(`https://gamynt-backend-production.up.railway.app/get-user-by-username?username=${username}`)
     const result = await res.json()
     // console.log(result)
     return {

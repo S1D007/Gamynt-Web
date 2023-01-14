@@ -9,6 +9,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import millify from "millify"
 import Rule from './../../../Page/Tournament/TournamentInfo/Rule';
 import Creds from '../../../Page/Tournament/TournamentInfo/Creds';
+import Winner from '../../../Page/Tournament/TournamentInfo/Winner';
 import {useRouter} from "next/router"
 import { useTournament, useUserData } from '../../../suppliers/zustand/store';
 function Index({tournament}) {
@@ -17,7 +18,8 @@ function Index({tournament}) {
   const route = useRouter()
   const [joined, setJoined] =  useState(false)
   useEffect(()=>{
-    tournament.participiants.some(e=>e.user === result._id)?setJoined(true):setJoined(false)
+    // console.log()
+    tournament.participiants.some(e=>e.user._id === result._id)?setJoined(true):setJoined(false)
   },[tournament,result._id])
   useEffect(()=>{
     isDone && route.reload()
@@ -37,7 +39,7 @@ function Index({tournament}) {
         setpagecompo(<Creds creds={tournament.creds} />)
         break;
       case 4:
-        // setpagecompo(<Friends />)
+        setpagecompo(<Winner />)
         break;
 
       default:
@@ -66,7 +68,7 @@ function Index({tournament}) {
           <KeyIcon />
         </ul>
         <ul>
-          <EmojiEventsIcon winners={tournament.winner} />
+          <EmojiEventsIcon onClick={()=>{setpageroute(4)}} />
         </ul>
       </nav>
       {pagecompo}
@@ -75,7 +77,7 @@ function Index({tournament}) {
           <div className={style._2} >
           <div className={style.organizer} >
             <h2>Gamynt Esports</h2>
-            <button>View Club</button>
+            {/* <button>View Club</button> */}
           </div>
             <img style={{
               width: "30px",
@@ -109,7 +111,7 @@ export default Index
 
 export const getServerSideProps = async (context) =>{
   const id = context.params.id;
-  const res = await fetch(`http://localhost:8080/get-tournament?id=${id}`)
+  const res = await fetch(`https://gamynt-backend-production.up.railway.app/get-tournament?id=${id}`)
   const tournament = await res.json()
   console.log(tournament)
   return {

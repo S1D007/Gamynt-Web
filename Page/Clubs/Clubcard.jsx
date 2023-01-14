@@ -12,7 +12,7 @@ const Clubcard = (props) => {
   const {addMember} = useClub()
   const {result} = useUserData()
   return (
-    <section className={style.club_card}>
+    <main className={style.club_card}>
   <header>
 <img src={props.banner} alt="banner" />
   </header>
@@ -34,7 +34,7 @@ const Clubcard = (props) => {
     })
     router.push(`/club/chat/${props._id}?cid=0`)
   }}>{props.btn}</button>
-</section>
+</main>
   )
 }
 

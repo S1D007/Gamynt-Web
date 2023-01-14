@@ -5,16 +5,16 @@ import { useRouter } from 'next/router';
 import millify from "millify"
 import VerifiedIcon from "../../../public/verified.png"
 import { useUserData } from '../../../suppliers/zustand/store';
-const Profilecard = ({ email, username, followers, following, posts, avatar, bio, name, verified, followersList,hisUid }) => {
+const Profilecard = ({ email, username, followers, following, posts, avatar, bio, name, verified, followersList, hisUid }) => {
     // console.log(followersList)
     const { followOrUnFollow } = useUserData()
     const { result, reload } = useUserData()
     // console.log()
     let router = useRouter()
     // const [follow, setFollow] = useState(followersList?.some(user => user.username === username) ? -1 : 1)
-    const [follow,setFollow] = useState(followersList?.some(user => user.username !== result.username) ? -1 : 1)
+    const [follow, setFollow] = useState(followersList?.some(user => user.username !== result.username) ? -1 : 1)
     console.log(followersList)
-    const [disable,setDisable] = useState(false)
+    const [disable, setDisable] = useState(false)
     useEffect(() => {
         if (reload) {
             router.reload()
@@ -60,13 +60,13 @@ const Profilecard = ({ email, username, followers, following, posts, avatar, bio
                             borderRadius: "10px"
                             // textAlign:"center"
                         }} >
-                            <button disabled={disable}  onClick={() => {
+                            <button disabled={disable} onClick={() => {
                                 setFollow(follow === 1 ? -1 : 1)
                                 setDisable(true)
                                 followOrUnFollow({
                                     value: follow,
                                     hisUid,
-                                    myUid:result._id
+                                    myUid: result._id
                                 })
                             }} style={{
                                 padding: "5px 10px",

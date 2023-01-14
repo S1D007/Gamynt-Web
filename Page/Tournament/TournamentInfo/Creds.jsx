@@ -3,7 +3,7 @@ import style from "./info.module.scss"
 function Creds({creds}) {
   console.log(creds)
   return (
-    <div style={{
+    <div className={style.h1_head} style={{
       // display:"flex",
       // justifyContent:"center",
     }}>
@@ -34,7 +34,6 @@ function Creds({creds}) {
             }} >
             <h1 style={
               {
-                fontSize:"1rem"
               }
             } >Pass: gamynt@123 </h1>
             </div>

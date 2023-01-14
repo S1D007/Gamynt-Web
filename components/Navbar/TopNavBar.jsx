@@ -18,6 +18,7 @@ const TopNavbar = () => {
   let path = router.pathname;
   const diamonds = useUserData((e)=>e.diamond)
   const coins = useUserData((e)=>e.coin)
+  const result = useUserData((e)=>e.result)
   return (
     <nav className={style.top_navbar}>
 
@@ -58,7 +59,12 @@ const TopNavbar = () => {
         </div>
 
         <div className={style.profile_icon}>
-          <h1>p</h1>
+         <img onClick={()=>{
+          router.push("/account")
+         }} style={{
+          width:"30px",
+          borderRadius:"10px"
+         }} src={result.avatar} alt="" />
         </div>
       </section>
       <Modal
