@@ -107,7 +107,7 @@ function Index({tournament}) {
                 _id:result._id,
                 idTournament:tournament._id,
                 email:result.email,
-                amount:tournament.EntryFees === "" ? "0": `${-parseInt(tournament.Entryfees)}`
+                amount:tournament.EntryFees === "" ? "-0": `${-parseInt(tournament.Entryfees)}`
               })
               }
             }} >{joined?"Joined":"Join"}</button>

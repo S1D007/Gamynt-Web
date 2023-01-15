@@ -15,7 +15,7 @@ const Topfeaturedgames = () => {
         }} className={style.item}>
           <div>
           <p>free fire </p>
-          < EastIcon/>
+          <EastIcon/>
           </div>
         <Image src="/images/freefire.jpeg" alt="" width={200} height={200}/>
         </div>

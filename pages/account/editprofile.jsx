@@ -22,7 +22,7 @@ const Editprofile = () => {
             bio,
             email: result.email,
             avatar:image,
-            name:name
+            name
         })
         router.push("/account")
     }

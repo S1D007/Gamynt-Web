@@ -13,8 +13,8 @@ const Profilecard = ({ email, username, followers, following, posts, avatar, bio
     const { followOrUnFollow } = useUserData()
     const { result, reload } = useUserData()
     let router = useRouter()
-    const [follow, setFollow] = useState(followersList?.some(user => user?.user?._id !== result?._id) ? -1 : 1)
-    console.log(follow)
+    const [follow, setFollow] = useState(followersList?.some(user => user?.user !== result?._id) ? -1 : 1)
+    console.log(followersList?.map(user =>user.user === result._id ))
     const [disable, setDisable] = useState(false)
     useEffect(() => {
         if (reload) {

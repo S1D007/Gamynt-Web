@@ -130,7 +130,7 @@ const usePost = create(
     })
 )
 const useImageUpload = create(set => ({
-    image: null,
+    image: "",
     imageFor:"",
     uploadImage: ({ image,imageFor }) => {
         const formData = new FormData();
