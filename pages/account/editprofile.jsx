@@ -53,7 +53,7 @@ const Editprofile = () => {
                     <p>IGN :</p>
                     <input onChange={(e) => {
                         setName(e.target.value)
-                    }} type="text" placeholder='name' />
+                    }} type="text" placeholder='In Game Name' />
                 </div>
                 <div className={style.input_box}>
                     <p>Username :</p>
