@@ -55,7 +55,7 @@ function Index({tournament}) {
     <div className={style.container} >
 
       <div className={style.banner} >
-        <img src={tournament.bannerImgUrl} />
+        <img src={tournament?.bannerImgUrl} />
       </div>
       <div className={style.detailsContainer} >
         <h1>{tournament.title}</h1>
@@ -91,7 +91,7 @@ function Index({tournament}) {
               borderRadius: "100px"
             }} src="/images/freefire.jpeg" alt="" />
             <div className={style.tournament_info}>
-              {tournament.EntryFees === ""?<p> <img src="/coin.gif" />Free</p>:<p> <img src="/coin.gif" />{EntryFees} GMT</p>}
+              {tournament?.EntryFees === ""?<p> <img src="/coin.gif" />Free</p>:<p> <img src="/coin.gif" />{EntryFees} GMT</p>}
               <p><img src="/util/prize.webp" alt="" width={35} height={35} />₹ {millify(tournament.PrizePool)}</p>
               <p> <img src="/util/member.png" alt="" width={35} height={35} />{tournament.slot}</p>
               <p> <GroupIcon /> {tournament.mode}</p>
