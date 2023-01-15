@@ -9,28 +9,28 @@ import Club from "./component/Club"
 import Shorts from "./component/Shorts"
 import { useUserData } from "../../suppliers/zustand/store"
 const Profile = () => {
-  const [pageroute, setpageroute] = new useState(1)
-  // console.log(pageroute)
-  const [pagecompo, setpagecompo] = new useState("loading .. ")
-  const result = useUserData((e) => e.result)
-  console.log(result.joinedTournaments)
-  new useEffect(() => {
-    switch (pageroute) {
-      case 1:
-        setpagecompo(<Tournaments tournaments={result.joinedTournaments} />)
-        break;
-      case 2:
-        setpagecompo(<Club clubs={result.joinedClubs} />)
-        break;
-      default:
-        setpagecompo("page not found")
-        break;
-    }
-  }, [pageroute])
+  // const [pageroute, setpageroute] = new useState(1)
+  // console.log(pageroute)//
+  // const [pagecompo, setpagecompo] = new useState("loading .. ")
+  const {result} = useUserData()
+  // console.log(result.joinedTournaments)
+  // new useEffect(() => {
+  //   switch (pageroute) {
+  //     case 1:
+  //       setpagecompo()
+  //       break;
+  //     case 2:
+  //       setpagecompo(<Club clubs={result.joinedClubs} />)
+  //       break;
+  //     default:
+  //       setpagecompo("page not found")
+  //       break;
+  //   }
+  // }, [])
   return (
     <main className={style.profile_main}>
-      <Profilecard username={result.username} followers={result.followCount} posts={result.post} following={result.followingCount} avatar={result.avatar} bio={result.bio} name={result.name} verified={result.isVerified} hisUid={result._id} />
-      <nav className={style.nav}>
+     <Profilecard username={result.username} followers={result.followCount} posts={result.post} following={result.followingCount} avatar={result.avatar} bio={result.bio} name={result.name} verified={result.isVerified} hisUid={result._id} followersList={result.followers} />
+      <nav className={style.nav} followersList={result.followers}>
       {/* <ul onClick={() => { setpageroute(0) }} className={`${pageroute == 4 && style.active_link}`}>
           <Diversity2Icon />
           <li>Team</li>
@@ -44,7 +44,7 @@ const Profile = () => {
           <li>Clubs</li>
         </ul> */}
       </nav>
-      {pagecompo}
+      <Tournaments tournaments={result.joinedTournaments} />
     </main>
   )
 }

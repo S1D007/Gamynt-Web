@@ -1,6 +1,6 @@
 import axios from "axios"
 import create from "zustand"
-const url = `https://gamynt-backend-production.up.railway.app`
+const url = `https://gamynt-backend-production.up.railway.app/`
 import io from 'socket.io-client'
 const useSendOTP = create(
     (set) => ({
@@ -64,9 +64,11 @@ const useUserData = create(
             })
         },
         reload:false,
-        followOrUnFollow: ({value,email,username,myUsername,myEmail}) => {
+        followOrUnFollow: ({value,hisUid,myUid}) => {
             // console.log({value,email,username,myUsername,myEmail})
-            axios.get(`${url}/add-followers?email=${email}&value=${value}&myEmail=${myEmail}&myUsername=${myUsername}&username=${username}`).then((e)=>{
+            console.log(value)
+            console.log(`${url}/add-followers?value=${value}&hisUid=${hisUid}&myUid=${myUid}`)
+            axios.get(`${url}/add-followers?value=${value}&hisUid=${hisUid}&myUid=${myUid}`).then((e)=>{
                 set(()=>({
                     reload:e.data.done
                 }))

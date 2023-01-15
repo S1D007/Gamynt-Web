@@ -1,50 +1,8 @@
 [
     {
-        "id":8,
-        "user":"Prince",
-        "tittle":"tournament page , registration page , loading on page change and loading component in utils and  and mini bug fixing and fixing login page also",
-        "time":"24 : 00 , 28 dec"
-    },
-    {
-        "id":7,
-        "user":"Prince",
-        "tittle":"chat box almost ready for pc version and moboile version also",
-        "time":"23 : 00 , 27 dec"
-    },
-    {
-        "id":6,
-        "user":"Prince",
-        "tittle":"chat box almost ready for pc version",
-        "time":"23 : 00 , 12 dec"
-    },
-    {
-        "id":5,
-        "user":"Prince",
-        "tittle":"chat box fixing for future",
-        "time":"23 : 58 , 11 dec"
-    },
-    {
-        "id":4,
-        "user":"Prince",
-        "tittle":"start working on chat inbox",
-        "time":"23 : 19 , 11 dec"
-    },
-    {
-        "id":3,
-        "user":"Prince",
-        "tittle":"side navbar and bug fixing",
-        "time":"23 : 19 , 11 dec"
-    },
-    {
-        "id":2,
-        "user":"Prince",
-        "tittle":"working on chat app",
-        "time":"20: 11 , 11 dec"
-    },
-    {
         "id":1,
-        "user":"Prince",
-        "tittle":"navbar done",
-        "time":"old"
+        "user":"Gamynt",
+        "tittle":"This Page is in Construction",
+        "time":" "
     }
 ]

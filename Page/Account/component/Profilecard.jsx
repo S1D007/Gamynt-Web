@@ -5,15 +5,16 @@ import { useRouter } from 'next/router';
 import millify from "millify"
 import VerifiedIcon from "../../../public/verified.png"
 import { useUserData } from '../../../suppliers/zustand/store';
-const Profilecard = ({ email, username, followers, following, posts, avatar, bio, name, verified, followersList, hisUid }) => {
-    // console.log(followersList)
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useCookies } from 'react-cookie';
+const Profilecard = ({ email, username, followers, following, posts, avatar, bio, name, verified, followersList, hisUid, followingsList }) => {
+    const [cookies, setCookie, removeCookie] = useCookies(['UserInfo']);
+
     const { followOrUnFollow } = useUserData()
     const { result, reload } = useUserData()
-    // console.log()
     let router = useRouter()
-    // const [follow, setFollow] = useState(followersList?.some(user => user.username === username) ? -1 : 1)
-    const [follow, setFollow] = useState(followersList?.some(user => user.username !== result.username) ? -1 : 1)
-    console.log(followersList)
+    const [follow, setFollow] = useState(followersList?.some(user => user?.user?._id !== result?._id) ? -1 : 1)
+    console.log(follow)
     const [disable, setDisable] = useState(false)
     useEffect(() => {
         if (reload) {
@@ -23,7 +24,20 @@ const Profilecard = ({ email, username, followers, following, posts, avatar, bio
     return (
         <main className={style.profile_container}>
             <header>
-                <button onClick={() => { router.push("/account/editprofile") }}><CreateIcon /></button>
+                {
+                    !router.pathname.includes("mynter") &&
+                    <div style={{
+                        display: "flex",
+                        gap: "20px"
+                    }} >
+                        <button onClick={() => { router.push("/account/editprofile") }}><CreateIcon /></button><button onClick={() => {
+                            removeCookie(['UserInfo'])
+                            removeCookie('UserID',{path:'/'});
+                            removeCookie('LoggedIN',{path:'/'});
+                            router.reload()
+                        }}><LogoutIcon /></button>
+                    </div>
+                }
             </header>
             <div className={style.container} >
                 <section>

@@ -23,22 +23,23 @@ const index = ({result}) => {
         break;
     }
   }, [pageroute])
+  // console.log(result.following)
   return (
-    <main className={style.profile_main}>
-      <Profilecard username={result.username} followers={result.followCount} posts={result.post} following={result.followingCount} avatar={result.avatar} bio={result.bio} name={result.name} verified={result.isVerified} hisUid={result._id} />
-      <nav className={style.nav}>
+    <main data={result} className={style.profile_main}>
+      <Profilecard followersList={result.followers} followers={result.followCount} posts={result.post} following={result.followingCount} avatar={result.avatar} followingsList={result.following} name={result.name} verified={result.isVerified} hisUid={result._id} username={result.username} bio={result.bio} />
+      <nav className={style.nav} >
       {/* <ul onClick={() => { setpageroute(0) }} className={`${pageroute == 4 && style.active_link}`}>
           <Diversity2Icon />
           <li>Team</li>
         </ul> */}
-        <ul onClick={() => { setpageroute(1) }} className={`${pageroute == 1 && style.active_link}`}>
+        {/* <ul onClick={() => { setpageroute(1) }} className={`${pageroute == 1 && style.active_link}`}>
           <EmojiEventsIcon />
           <li>Tournaments</li>
-        </ul>
-        <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 2 && style.active_link}`}>
+        </ul> */}
+        {/* <ul onClick={() => { setpageroute(2) }} className={`${pageroute == 2 && style.active_link}`}>
           <FriendsIcon />
-          <li>Clubs</li>
-        </ul>
+          <li>Team</li>
+        </ul> */}
       </nav>
       {pagecompo}
     </main>

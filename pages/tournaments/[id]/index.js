@@ -10,16 +10,18 @@ import millify from "millify"
 import Rule from './../../../Page/Tournament/TournamentInfo/Rule';
 import Creds from '../../../Page/Tournament/TournamentInfo/Creds';
 import Winner from '../../../Page/Tournament/TournamentInfo/Winner';
+import PeopleIcon from '@mui/icons-material/People';
 import {useRouter} from "next/router"
 import { useTournament, useUserData } from '../../../suppliers/zustand/store';
+import Participiants from '../../../Page/Tournament/TournamentInfo/Participiants';
 function Index({tournament}) {
   const {joinTournament,isDone} = useTournament();
   const {result} = useUserData()
   const route = useRouter()
   const [joined, setJoined] =  useState(false)
+  // console.log(t)
   useEffect(()=>{
-    // console.log()
-    tournament.participiants.some(e=>e.user._id === result._id)?setJoined(true):setJoined(false)
+    tournament.participiants.some(e=>e?.user?._id === result?._id)?setJoined(true):setJoined(false)
   },[tournament,result._id])
   useEffect(()=>{
     isDone && route.reload()
@@ -41,7 +43,9 @@ function Index({tournament}) {
       case 4:
         setpagecompo(<Winner />)
         break;
-
+      case 5:
+        setpagecompo(<Participiants participiants={tournament.participiants} />)
+        break;
       default:
         setpagecompo("page not found")
         break;
@@ -70,6 +74,9 @@ function Index({tournament}) {
         <ul>
           <EmojiEventsIcon onClick={()=>{setpageroute(4)}} />
         </ul>
+        <ul>
+          <PeopleIcon onClick={()=>{setpageroute(5)}} />
+        </ul>
       </nav>
       {pagecompo}
         {/* <Info desc={tournament.desc} /> */}
@@ -84,7 +91,7 @@ function Index({tournament}) {
               borderRadius: "100px"
             }} src="/images/freefire.jpeg" alt="" />
             <div className={style.tournament_info}>
-              {tournament.EntryFees === ""?<p> <img src="/coin.gif" />1 GMT</p>:<p> <img src="/coin.gif" />{EntryFees} GMT</p>}
+              {tournament.EntryFees === ""?<p> <img src="/coin.gif" />Free</p>:<p> <img src="/coin.gif" />{EntryFees} GMT</p>}
               <p><img src="/util/prize.webp" alt="" width={35} height={35} />₹ {millify(tournament.PrizePool)}</p>
               <p> <img src="/util/member.png" alt="" width={35} height={35} />{tournament.slot}</p>
               <p> <GroupIcon /> {tournament.mode}</p>
@@ -93,12 +100,16 @@ function Index({tournament}) {
               backgroundColor:joined&&"#15151a",
               boxShadow:joined&&"0px 0px 10px #000"
             }} onClick={()=>{
-              joinTournament({
+              if(!result?.name){
+                alert("Please Add a IGN in Profile")
+              }else{
+                joinTournament({
                 _id:result._id,
                 idTournament:tournament._id,
                 email:result.email,
-                amount:tournament.EntryFees === "" ? "-1": `${-parseInt(tournament.Entryfees)}`
+                amount:tournament.EntryFees === "" ? "0": `${-parseInt(tournament.Entryfees)}`
               })
+              }
             }} >{joined?"Joined":"Join"}</button>
           </div>
         </div>

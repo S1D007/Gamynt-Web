@@ -16,7 +16,7 @@ module.exports.getUser = async (req, res) => {
 module.exports.getUserByUsername = async (req, res) => {
   const { username } = req.query
   try {
-    User.findOne({ username }).populate("joinedClubs.club").populate("joinedTournaments.tournament").exec(function (err, user) {
+    User.findOne({ username }).populate("joinedClubs.club").populate("joinedTournaments.tournament").populate("followers.user").exec(function (err, user) {
       if (err) console.log(err);
       res.send(user);
     });
@@ -34,6 +34,7 @@ module.exports.getUsers = async (req, res) => {
 }
 module.exports.addFollowers = async (req, res) => {
   const { value, myUid, hisUid } = req.query;
+  console.log(value,myUid,hisUid)
   if (value === "1") {
     User.updateOne({ _id: hisUid }, { $inc: { followCount: 1 }, $push: { followers: { user: myUid } } }, (e) => {
     });
@@ -43,9 +44,9 @@ module.exports.addFollowers = async (req, res) => {
       done: true
     })
   } else {
-    User.updateOne({ _id: myUid }, { $inc: { followCount: -1 }, $pull: { followers: { user: hisUid } } }, (e) => {
+    User.updateOne({ _id: hisUid }, { $inc: { followCount: -1 }, $pull: { followers: { user: myUid } } }, (e) => {
     });
-    User.updateOne({ email: hisUid }, { $inc: { followingCount: -1 }, $pull: { following: { user: myUid } } }, (e) => {
+    User.updateOne({ _id: myUid }, { $inc: { followingCount: -1 }, $pull: { following: { user: hisUid } } }, (e) => {
     });
     res.send({
       done: true

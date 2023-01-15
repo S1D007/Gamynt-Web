@@ -3,7 +3,7 @@ import style from "../styles/profileitem.module.scss"
 import Tournamentcard from './../../Tournament/Tournamentcard';
 
 const Tournaments = ({tournaments}) => {
-  console.log(tournaments)
+  // console.log(tournaments)
   return (
     <main className={style.tournament_container}>
       {tournaments?.map(({tournament},i)=>{
