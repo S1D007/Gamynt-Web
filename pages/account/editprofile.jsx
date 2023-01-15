@@ -50,7 +50,7 @@ const Editprofile = () => {
                 </div>
 
                 <div className={style.input_box}>
-                    <p>Name :</p>
+                    <p>IGN :</p>
                     <input onChange={(e) => {
                         setName(e.target.value)
                     }} type="text" placeholder='name' />
